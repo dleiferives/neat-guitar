@@ -30,6 +30,9 @@ if(NOT rtcqt_POPULATED)
 endif()
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
+# Exclude bindings.cpp from main executable
+list(FILTER SOURCES EXCLUDE REGEX ".*bindings\\.cpp$")
+
 add_executable(neat_detector ${SOURCES})
 
 target_include_directories(neat_detector PRIVATE
@@ -44,20 +47,25 @@ target_link_libraries(neat_detector PRIVATE
 target_compile_options(neat_detector PRIVATE -O3 -ffast-math -flto -march=native -Wall -Wextra)
 
 pybind11_add_module(neat_fitness
-    bindings.cpp
-    fitness.cpp
-    neat/genome.cpp
-    neat/network.cpp
-    neat/population.cpp
-    audio/dataset.cpp
-    audio/processing.cpp
+    src/bindings.cpp
+    src/fitness.cpp
+    src/neat/genome.cpp
+    src/neat/network.cpp
+    src/neat/population.cpp
+    src/audio/dataset.cpp
+    src/audio/processing.cpp
 )
 
-target_include_directories(neat_fitness PRIVATE ${CMAKE_SOURCE_DIR}
+target_include_directories(neat_fitness PRIVATE
+    src
     ${SNDFILE_INCLUDE_DIRS}
     ${rtcqt_SOURCE_DIR}/include
 )
-target_link_libraries(neat_fitness PRIVATE sndfile)
+target_link_libraries(neat_fitness PRIVATE
+    ${SNDFILE_LIBRARIES}
+    nlohmann_json::nlohmann_json
+)
+target_compile_options(neat_fitness PRIVATE -O3 -ffast-math -march=native)
 
 option(BUILD_BENCH "Build micro-benchmark" OFF)
 if(BUILD_BENCH)
