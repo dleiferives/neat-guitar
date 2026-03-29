@@ -24,3 +24,5 @@ sys     0m0.236s
 real    2m9.682s
 user    2m9.442s
 sys     0m0.228s
+
+I did PGO... was not faster...
