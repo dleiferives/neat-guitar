@@ -334,67 +334,6 @@ static inline float focal_loss(float target, float pred, float alpha) {
     return -alpha_t * omp * omp * fast_log(p_t);
 }
 
-// ── Frame-level fitness component ─────────────────────────────────────────────
-// Evaluates how well the network's raw outputs match the target piano roll
-
-struct FrameMetrics {
-    float onset_loss = 0.0f;
-    float frame_loss = 0.0f;
-    int   n_frames = 0;
-};
-
-
-// ── Note-level F1 with improved matching ──────────────────────────────────────
-
-struct MatchCandidate {
-    size_t truth_idx;
-    size_t det_idx;
-    float  distance;
-};
-
-float note_f1(const std::vector<NoteEvent>& truth,
-              const std::vector<DetectedNote>& detected,
-              float onset_tol_secs) {
-    if (truth.empty() && detected.empty()) return 1.0f;
-    if (truth.empty() || detected.empty()) return 0.0f;
-
-    // Build all valid match candidates sorted by distance
-    std::vector<MatchCandidate> candidates;
-    for (size_t i = 0; i < truth.size(); ++i) {
-        const auto& gt = truth[i];
-        float win_lo = gt.time - onset_tol_secs;
-        float win_hi = gt.time + gt.duration + onset_tol_secs;
-
-        for (size_t j = 0; j < detected.size(); ++j) {
-            if (detected[j].midi != gt.midi) continue;
-            float t = detected[j].time;
-            if (t >= win_lo && t <= win_hi) {
-                float dist = std::abs(t - gt.time);
-                candidates.push_back({i, j, dist});
-            }
-        }
-    }
-
-    std::sort(candidates.begin(), candidates.end(),
-              [](const auto& a, const auto& b) { return a.distance < b.distance; });
-
-    std::vector<bool> truth_matched(truth.size(), false);
-    std::vector<bool> det_matched(detected.size(), false);
-    int tp = 0;
-
-    for (const auto& c : candidates) {
-        if (truth_matched[c.truth_idx] || det_matched[c.det_idx]) continue;
-        truth_matched[c.truth_idx] = true;
-        det_matched[c.det_idx] = true;
-        ++tp;
-    }
-
-    float precision = (float)tp / (float)detected.size();
-    float recall = (float)tp / (float)truth.size();
-    if (precision + recall < 1e-9f) return 0.0f;
-    return 2.0f * precision * recall / (precision + recall);
-}
-
 // ── Main fitness function ─────────────────────────────────────────────────────
 
 float evaluate_genome(const Genome& g,
@@ -402,8 +341,7 @@ float evaluate_genome(const Genome& g,
                       const NeatConfig& cfg,
                       std::mt19937& rng,
                       float window_secs,
-                      float threshold,
-                      int cooldown_frames) {
+                      float threshold) {
     if (data.empty()) return 0.0f;
 
     float hop_secs = data[0].hop_secs;
@@ -428,12 +366,8 @@ float evaluate_genome(const Genome& g,
         remaining -= use;
     }
 
-    // Run network and collect both frame outputs and detected notes
+    // Run network and accumulate frame-level metrics
     Network net = Network::from_genome(g, cfg);
-    std::vector<bool> was_active(n_out, false);
-    std::vector<int> cooldown(n_out, 0);
-    std::vector<DetectedNote> all_detected;
-    std::vector<NoteEvent> all_truth;
 
     // Pre-allocated buffers: reused every frame, zero heap allocs in the hot loop.
     std::vector<float> inp_buf(cfg.n_inputs());
@@ -443,84 +377,52 @@ float evaluate_genome(const Genome& g,
     float total_frame_loss = 0.0f;
     int total_frames = 0;
 
-    float time_offset = 0.0f;
+    // Frame-level TP/FP/FN for per-frame "is this note active?" F1
+    int tp = 0, fp = 0, fn = 0;
+
     for (const auto& seg : segments) {
         const auto& rf = data[seg.rec_idx];
-        float seg_start_time = seg.start * rf.hop_secs;
-        float seg_end_time = seg.end * rf.hop_secs;
-
-        for (const auto& n : rf.notes) {
-            if (n.time >= seg_start_time && n.time < seg_end_time) {
-                all_truth.push_back({n.midi, n.time - seg_start_time + time_offset,
-                                     n.duration});
-            }
-        }
 
         net.reset();
-        std::fill(was_active.begin(), was_active.end(), false);
-        std::fill(cooldown.begin(), cooldown.end(), 0);
 
         for (int fi = seg.start; fi < seg.end; ++fi) {
             build_input(rf.frames, fi, cfg.pitch_history, inp_buf.data());
             net.activate(inp_buf.data(), out_buf.data());
 
-            float frame_time = (fi - seg.start) * rf.hop_secs + time_offset;
-
-            for (int k = 0; k < n_out; ++k) {
-                bool active = (out_buf[k] >= threshold);
-                if (cooldown[k] > 0) {
-                    --cooldown[k];
-                } else if (active && !was_active[k]) {
-                    all_detected.push_back({cfg.midi_min + k, frame_time});
-                    cooldown[k] = cooldown_frames;
-                }
-                was_active[k] = active;
-            }
-
-            // Fused frame-metric accumulation (eliminates seg_outputs allocation).
             const float* o = out_buf.data();
             const float* on_tgt = rf.onset_targets[fi].data();
             const float* fr_tgt = rf.frame_targets[fi].data();
             for (int p = 0; p < n_out; ++p) {
                 total_onset_loss += focal_loss(on_tgt[p], o[p], 0.9f);
                 total_frame_loss += focal_loss(fr_tgt[p], o[p], 0.75f);
+
+                bool predicted = (o[p] >= threshold);
+                bool target    = (fr_tgt[p] >= 0.5f);
+                tp += ( predicted &&  target);
+                fp += ( predicted && !target);
+                fn += (!predicted &&  target);
             }
             ++total_frames;
         }
-
-        time_offset += (seg.end - seg.start) * rf.hop_secs;
     }
 
     // === COMBINE FITNESS COMPONENTS ===
 
-    // 1. Frame-level: low loss = good
+    // 1. Frame-level loss: low loss = good (confidence calibration via focal loss)
     float avg_onset_loss = total_onset_loss / (total_frames * n_out);
     float avg_frame_loss = total_frame_loss / (total_frames * n_out);
     float frame_score = std::exp(-0.5f * (avg_onset_loss + avg_frame_loss));
 
-    // 2. Note-level F1
-    float f1 = note_f1(all_truth, all_detected, 0.05f);
+    // 2. Frame-level F1: per-frame "is this note active?" precision/recall
+    float frame_f1 = 0.0f;
+    if (tp + fp + fn > 0)
+        frame_f1 = (2.0f * tp) / (2.0f * tp + fp + fn);
 
-    // 3. Sparsity penalty: severely punish over-detection
-    float sparsity_penalty = 1.0f;
-    if (!all_truth.empty() && !all_detected.empty()) {
-        float ratio = (float)all_detected.size() / (float)all_truth.size();
-        if (ratio > 1.5f) {
-            // Quadratic penalty for over-detection
-            sparsity_penalty = 1.0f / (1.0f + 0.5f * (ratio - 1.5f) * (ratio - 1.5f));
-        }
-    }
+    // 3. Complexity penalty: discourage bloat
+    float complexity = (float)(g.nodes.size() + g.conns.size());
+    float parsimony = 1.0f / (1.0f + 0.0002f * complexity);
 
-    // 4. Silence penalty: if network does nothing when notes exist
-    if (all_detected.empty() && !all_truth.empty()) {
-        return 0.01f;  // Very low but non-zero to maintain gradient
-    }
-
-    // Weighted combination:
-    // - frame_score: ensures network learns note patterns
-    // - f1: ensures correct onset detection
-    // - sparsity: prevents spam
-    float fitness = (0.3f * frame_score + 0.7f * f1) * sparsity_penalty;
+    float fitness = (0.5f * frame_f1 + 0.5f * frame_score) * parsimony;
 
     return std::max(0.01f, fitness);
 }

@@ -19,11 +19,6 @@ struct RecordingFrames {
     std::vector<std::vector<float>> frame_targets;
 };
 
-struct DetectedNote {
-    int   midi;
-    float time;
-};
-
 // Cache management
 constexpr uint32_t CACHE_MAGIC   = 0x4E454154;  // "NEAT"
 constexpr uint32_t CACHE_VERSION = 2;
@@ -42,14 +37,9 @@ std::vector<RecordingFrames> precompute_frames(const std::vector<Recording>& rec
 std::vector<RecordingFrames> load_or_compute_frames(const std::string& data_dir,
                                                      const NeatConfig& cfg);
 
-float note_f1(const std::vector<NoteEvent>& truth,
-              const std::vector<DetectedNote>& detected,
-              float onset_tol_secs = 0.05f);
-
 float evaluate_genome(const Genome& g,
                       const std::vector<RecordingFrames>& data,
                       const NeatConfig& cfg,
                       std::mt19937& rng,
                       float window_secs = 100.0f,
-                      float threshold = 0.5f,
-                      int cooldown_frames = 5);
+                      float threshold = 0.5f);

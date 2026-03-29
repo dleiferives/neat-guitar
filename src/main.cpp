@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <chrono>
+#include <cstdio>
 #include <cstring>
 #include <filesystem>
 #include <iostream>
@@ -154,13 +156,17 @@ static int cmd_train(const std::vector<std::string>& args) {
     if (!load_pop_path.empty())
         std::cout << "  (resuming from gen " << pop.generation << ")";
     std::cout << "\n\n";
-    std::mt19937 rng(std::random_device{}());
+    int gen_counter = pop.generation;
 
     auto fit_fn = [&](const Genome& g) {
-        return evaluate_genome(g, data, cfg, rng);
+        // Same seed for all genomes in a generation = fair comparison.
+        // Different seed each generation = diverse evaluation over time.
+        std::mt19937 eval_rng(42 + gen_counter);
+        return evaluate_genome(g, data, cfg, eval_rng);
     };
 
     auto on_gen = [&](int gen, float best_fit, const Genome& best) {
+        ++gen_counter;
         std::cout << "Gen " << gen
                   << "  best=" << best_fit
                   << "  species=" << pop.species.size()
@@ -228,50 +234,48 @@ static int cmd_eval(const std::vector<std::string>& args) {
     }
 
     constexpr float threshold = 0.5f;
-    constexpr int cooldown_frames = 5;
+    int n_out = cfg.n_outputs();
+
+    int total_tp = 0, total_fp = 0, total_fn = 0;
 
     for (const auto& rf : data) {
         Network net = Network::from_genome(g, cfg);
         net.reset();
 
-        int n_out = cfg.n_outputs();
-        std::vector<bool> was_active(n_out, false);
-        std::vector<int> cooldown(n_out, 0);
-        std::vector<DetectedNote> detected;
+        int tp = 0, fp = 0, fn = 0;
 
         for (int fi = 0; fi < (int)rf.frames.size(); ++fi) {
             auto inp = build_input(rf.frames, fi, cfg.pitch_history);
             auto out = net.activate(inp);
             for (int k = 0; k < n_out; ++k) {
-                bool active = (out[k] >= threshold);
-                if (cooldown[k] > 0) {
-                    --cooldown[k];
-                } else if (active && !was_active[k]) {
-                    detected.push_back({cfg.midi_min + k, fi * rf.hop_secs});
-                    cooldown[k] = cooldown_frames;
-                }
-                was_active[k] = active;
+                bool predicted = (out[k] >= threshold);
+                bool target    = (rf.frame_targets[fi][k] >= 0.5f);
+                tp += ( predicted &&  target);
+                fp += ( predicted && !target);
+                fn += (!predicted &&  target);
             }
         }
 
-        float f1 = note_f1(rf.notes, detected);
-        std::cout << rf.name << "  f1=" << f1
-                  << "  detected=" << detected.size()
-                  << "  truth=" << rf.notes.size() << "\n"
-                  << "  predicted: [";
-        for (size_t i = 0; i < detected.size(); ++i)
-            std::cout << detected[i].midi << "@" << detected[i].time
-                      << (i + 1 < detected.size() ? "," : "");
-        std::cout << "]\n  truth:     [";
-        for (size_t i = 0; i < rf.notes.size(); ++i)
-            std::cout << rf.notes[i].midi << "@" << rf.notes[i].time
-                      << (i + 1 < rf.notes.size() ? "," : "");
-        std::cout << "]\n";
+        float prec = (tp + fp > 0) ? (float)tp / (tp + fp) : 0.0f;
+        float rec  = (tp + fn > 0) ? (float)tp / (tp + fn) : 0.0f;
+        float f1   = (prec + rec > 0) ? 2.0f * prec * rec / (prec + rec) : 0.0f;
+
+        std::printf("%-40s  f1=%.4f  prec=%.4f  rec=%.4f  tp=%d fp=%d fn=%d\n",
+                    rf.name.c_str(), f1, prec, rec, tp, fp, fn);
+
+        total_tp += tp; total_fp += fp; total_fn += fn;
     }
 
+    float prec = (total_tp + total_fp > 0) ? (float)total_tp / (total_tp + total_fp) : 0.0f;
+    float rec  = (total_tp + total_fn > 0) ? (float)total_tp / (total_tp + total_fn) : 0.0f;
+    float f1   = (prec + rec > 0) ? 2.0f * prec * rec / (prec + rec) : 0.0f;
+
+    std::printf("\nOverall:  f1=%.4f  prec=%.4f  rec=%.4f  tp=%d fp=%d fn=%d\n",
+                f1, prec, rec, total_tp, total_fp, total_fn);
+
     std::mt19937 rng(std::random_device{}());
-    float fit = evaluate_genome(g, data, cfg, rng, 100.0f, threshold, cooldown_frames);
-    std::cout << "\nOverall F1: " << fit << "\n";
+    float fit = evaluate_genome(g, data, cfg, rng, 100.0f, threshold);
+    std::printf("Fitness (100s window): %.4f\n", fit);
     return 0;
 }
 
@@ -317,24 +321,55 @@ static int cmd_infer(const std::vector<std::string>& args) {
     net.reset();
 
     int n_out = cfg.n_outputs();
-    std::vector<float> max_act(n_out, 0.0f);
+    float hop_secs = (float)cfg.hop_size / (float)rec.sample_rate;
+    constexpr float threshold = 0.5f;
+
+    static const char* NOTE_NAMES[] = {
+        "C","C#","D","D#","E","F","F#","G","G#","A","A#","B"
+    };
+
+    // Track active note ranges
+    struct NoteRange { int midi; float start; float end; };
+    std::vector<NoteRange> ranges;
+    std::vector<bool> active(n_out, false);
+    std::vector<float> start_time(n_out, 0.0f);
+
     for (int fi = 0; fi < (int)frames.size(); ++fi) {
         auto inp = build_input(frames, fi, cfg.pitch_history);
         auto out = net.activate(inp);
-        for (int k = 0; k < n_out; ++k)
-            max_act[k] = std::max(max_act[k], out[k]);
-    }
+        float t = fi * hop_secs;
 
-    std::cout << "Detected notes (MIDI): [";
-    bool first = true;
-    for (int k = 0; k < n_out; ++k) {
-        if (max_act[k] >= 0.5f) {
-            if (!first) std::cout << ", ";
-            std::cout << (cfg.midi_min + k) << " (" << max_act[k] << ")";
-            first = false;
+        for (int k = 0; k < n_out; ++k) {
+            bool on = (out[k] >= threshold);
+            if (on && !active[k]) {
+                start_time[k] = t;
+                active[k] = true;
+            } else if (!on && active[k]) {
+                ranges.push_back({cfg.midi_min + k, start_time[k], t});
+                active[k] = false;
+            }
         }
     }
-    std::cout << "]\n";
+    // Close any still-active notes
+    float end_t = (float)frames.size() * hop_secs;
+    for (int k = 0; k < n_out; ++k) {
+        if (active[k])
+            ranges.push_back({cfg.midi_min + k, start_time[k], end_t});
+    }
+
+    // Sort by start time
+    std::sort(ranges.begin(), ranges.end(),
+              [](const NoteRange& a, const NoteRange& b) { return a.start < b.start; });
+
+    // Print
+    std::cout << "Detected notes (" << ranges.size() << "):\n";
+    for (const auto& r : ranges) {
+        int note = r.midi % 12;
+        int octave = r.midi / 12 - 1;
+        std::printf("  %6.2fs - %6.2fs  %s%d (MIDI %d)\n",
+                    r.start, r.end, NOTE_NAMES[note], octave, r.midi);
+    }
+
     return 0;
 }
 
