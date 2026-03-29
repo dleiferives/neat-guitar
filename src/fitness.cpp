@@ -420,10 +420,10 @@ float evaluate_genome(const Genome& g,
         frame_f1 = (2.0f * tp) / (2.0f * tp + fp + fn);
 
     // 3. Complexity penalty: discourage bloat
-    float complexity = (float)(g.nodes.size() + g.conns.size());
-    float parsimony = 1.0f / (1.0f + 0.0002f * complexity);
+//  float complexity = (float)(g.nodes.size() + g.conns.size());
+//  float parsimony = 1.0f / (1.0f + 0.0002f * complexity);
 
-    float fitness = (0.5f * frame_f1 + 0.5f * frame_score) * parsimony;
+    float fitness = (0.5f * frame_f1 + 0.5f * frame_score); // * parsimony;
 
     return std::max(0.01f, fitness);
 }
