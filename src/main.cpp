@@ -240,9 +240,9 @@ auto on_gen = [&](int gen, float best_fit, const Genome& best) {
         }
 
         std::cout << " new order:";
-        for (size_t i = 0; i < data.size(); ++i)
+        for (size_t i = 0; i < 3; ++i)
             std::cout << " " << data[i].name;
-        std::cout << "\n";
+        std::cout << "...\n";
 
         pop.signal_rotation();
         best_fit_ever = 0.0f;
