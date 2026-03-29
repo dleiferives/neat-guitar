@@ -79,9 +79,17 @@ static inline float focal_loss_bench(float target, float pred, float alpha) {
     return -alpha_t * omp * omp * fast_log_bench(p_t);
 }
 
+// ── Multi-round timing: run n_rounds rounds, report median ns/call ────────────
+
+static double median_of(std::vector<double>& v) {
+    std::sort(v.begin(), v.end());
+    size_t n = v.size();
+    return (n & 1) ? v[n / 2] : (v[n / 2 - 1] + v[n / 2]) * 0.5;
+}
+
 // ── Benchmark: Network::activate() ───────────────────────────────────────────
 
-static void bench_activate(int n_conns, int n_hidden, int n_iter) {
+static void bench_activate(int n_conns, int n_hidden, int n_iter, int n_rounds = 15) {
     Network net = make_bench_network(n_conns, n_hidden);
     NeatConfig cfg;
 
@@ -91,25 +99,28 @@ static void bench_activate(int n_conns, int n_hidden, int n_iter) {
     // Warmup
     for (int i = 0; i < 1000; ++i) net.activate(inp.data(), out.data());
 
-    // Prevent dead-code elimination
     volatile float sink = 0.0f;
+    std::vector<double> samples(n_rounds);
 
-    auto t0 = Clock::now();
-    for (int i = 0; i < n_iter; ++i) {
-        inp[0] = (float)i * 0.000001f;
-        net.activate(inp.data(), out.data());
-        sink += out[0];
+    for (int r = 0; r < n_rounds; ++r) {
+        auto t0 = Clock::now();
+        for (int i = 0; i < n_iter; ++i) {
+            inp[0] = (float)i * 0.000001f;
+            net.activate(inp.data(), out.data());
+            sink += out[0];
+        }
+        auto t1 = Clock::now();
+        samples[r] = elapsed_ns(t0, t1) / n_iter;
     }
-    auto t1 = Clock::now();
 
-    double ns_per_call = elapsed_ns(t0, t1) / n_iter;
+    double med = median_of(samples);
     printf("activate() | conns=%4d hidden=%3d | %7.1f ns/call  (sink=%.4f)\n",
-           n_conns, n_hidden, ns_per_call, (float)sink);
+           n_conns, n_hidden, med, (float)sink);
 }
 
 // ── Benchmark: focal_loss() ───────────────────────────────────────────────────
 
-static void bench_focal_loss(int n_iter) {
+static void bench_focal_loss(int n_iter, int n_rounds = 15) {
     std::mt19937 rng(99);
     std::uniform_real_distribution<float> dist(0.01f, 0.99f);
 
@@ -120,17 +131,21 @@ static void bench_focal_loss(int n_iter) {
     }
 
     volatile float sink = 0.0f;
+    std::vector<double> samples(n_rounds);
 
-    auto t0 = Clock::now();
-    for (int i = 0; i < n_iter; ++i) {
-        int idx = i & 1023;
-        sink += focal_loss_bench(targets[idx], preds[idx], 0.75f);
+    for (int r = 0; r < n_rounds; ++r) {
+        auto t0 = Clock::now();
+        for (int i = 0; i < n_iter; ++i) {
+            int idx = i & 1023;
+            sink += focal_loss_bench(targets[idx], preds[idx], 0.75f);
+        }
+        auto t1 = Clock::now();
+        samples[r] = elapsed_ns(t0, t1) / n_iter;
     }
-    auto t1 = Clock::now();
 
-    double ns_per_call = elapsed_ns(t0, t1) / n_iter;
+    double med = median_of(samples);
     printf("focal_loss()                       | %7.1f ns/call  (sink=%.4f)\n",
-           ns_per_call, (float)sink);
+           med, (float)sink);
 }
 
 // ── main ──────────────────────────────────────────────────────────────────────

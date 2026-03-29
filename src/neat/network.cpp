@@ -78,15 +78,17 @@ void Network::activate(const float* __restrict__ inp,
     const float* __restrict__ cw = conn_w.data();
     const int n_c = (int)conn_w.size();
 
+    const float* __restrict__ bias = biases.data();
+
     for (int pass = 0; pass < n_passes; ++pass) {
         for (int i = n_inputs; i < (int)sums.size(); ++i)
-            sums[i] = 0.0f;
+            sums[i] = bias[i];
 
         for (int c = 0; c < n_c; ++c)
             sums[co[c]] += values[ci[c]] * cw[c];
 
         for (int i = n_inputs; i < (int)values.size(); ++i)
-            values[i] = sigmoid(sums[i] + biases[i]);
+            values[i] = sigmoid(sums[i]);
     }
 
     for (int i = 0; i < n_outputs; ++i)
