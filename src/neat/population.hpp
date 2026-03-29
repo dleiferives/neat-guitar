@@ -43,9 +43,7 @@ struct Population {
     // Call after rotating the track to enter addition-only mode for 100 gens.
     void signal_rotation() {
         gens_since_rotation = 0;
-        rotation_depth      = 1;
-        rotation_step       = 0;
-        global_stagnation   = 0;
+        global_stagnation = 0;
         global_best_fitness = 0.0f;
     }
 

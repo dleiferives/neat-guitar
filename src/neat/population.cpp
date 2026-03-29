@@ -86,37 +86,18 @@ void Population::evolve(FitnessFn fit_fn,
 }
 
 void Population::step(FitnessFn fit_fn) {
-     innov.reset_generation();
-     evaluate(fit_fn);
-    // Rotation mode: triangular wave stagnation (0 → -1 → 0 → -1 → -2 → -1 → 0 → ...)
-    if (gens_since_rotation < 100) {
-        ++rotation_step;
-
-        if (rotation_step <= rotation_depth) {
-            // Descending phase
-            global_stagnation = -rotation_step;
-        } else {
-            // Ascending phase
-            global_stagnation = -(2 * rotation_depth - rotation_step);
-        }
-
-        // Cycle complete? Go deeper next time
-        if (rotation_step >= 2 * rotation_depth) {
-            ++rotation_depth;
-            rotation_step = 0;
-        }
-     } else {
-        // Normal stagnation tracking
-        float current_best = best_genome().fitness;
-        if (current_best > global_best_fitness) {
-            global_best_fitness = current_best;
-            global_stagnation   = 0;
-        } else {
-            ++global_stagnation;
-        }
-    }
-
+    innov.reset_generation();
+    evaluate(fit_fn);
     ++gens_since_rotation;
+
+    // Track global stagnation for auto-tuning
+    float current_best = best_genome().fitness;
+    if (current_best > global_best_fitness) {
+        global_best_fitness = current_best;
+        global_stagnation   = 0;
+    } else {
+        ++global_stagnation;
+    }
 
     // Stagnation-responsive mutation boost: ramp from 1× up to max_boost.
     // Max boost starts at 3 and increases by 1 at every power-of-10 stagnation

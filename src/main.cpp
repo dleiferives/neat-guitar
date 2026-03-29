@@ -182,6 +182,10 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     float best_fit_ever = 0.0f;
     Genome best_genome;
+    int gens_since_rotation = 100;  // start in normal mode
+    int rotation_depth = 1;
+    int rotation_step = 0;
+    bool rotation_descending = true;
 
     auto on_gen = [&](int gen, float best_fit, const Genome& best) {
         if (best_fit > best_fit_ever) {
@@ -209,8 +213,32 @@ static int cmd_train(const std::vector<std::string>& args) {
             std::printf("  [stag=%d boost=%.1f/%.0fx]", pop.global_stagnation, boost, mb);
         }
 
-        // Track rotation: every 100 stagnation gens, rotate the file order
-        // to break local optima tied to a specific track layout.
+        // Triangle wave file rotation during addition-only period
+        if (gens_since_rotation < 100) {
+            ++gens_since_rotation;
+
+            if (rotation_descending) {
+                // Rotate forward (same direction as initial rotation)
+                std::rotate(data.begin(), data.end() - 1, data.end());
+                ++rotation_step;
+                if (rotation_step >= rotation_depth) {
+                    rotation_descending = false;
+                }
+            } else {
+                // Rotate backward (undo)
+                std::rotate(data.begin(), data.begin() + 1, data.end());
+                --rotation_step;
+                if (rotation_step <= 0) {
+                    rotation_descending = true;
+                    ++rotation_depth;
+                }
+            }
+
+            // Force re-evaluation since track changed
+            for (auto& g : pop.genomes) g.is_elite = false;
+        }
+
+        // Stagnation-triggered rotation (existing logic)
         if (pop.global_stagnation >= 100) {
             std::rotate(data.begin(), data.end() - 1, data.end());
             std::cout << "\n  [TRACK ROTATED] new order:";
@@ -218,16 +246,16 @@ static int cmd_train(const std::vector<std::string>& args) {
                 std::cout << " " << data[i].name;
             std::cout << "\n";
 
+            // Enter addition-only mode with triangle wave
             pop.signal_rotation();
+            gens_since_rotation = 0;
+            rotation_depth = 1;
+            rotation_step = 0;
+            rotation_descending = true;
 
-            // New track = new fitness landscape.  Reset stagnation and baseline
-            // so the boost backs off and the population adapts to the new order.
-            pop.global_stagnation   = 0;
-            pop.global_best_fitness = 0.0f;
-            best_fit_ever           = 0.0f;
-            theoretical_max         = racing_theoretical_max(data);
+            best_fit_ever = 0.0f;
+            theoretical_max = racing_theoretical_max(data);
 
-            // Force re-evaluation of all genomes (elites have stale fitness)
             for (auto& g : pop.genomes) g.is_elite = false;
         }
 
