@@ -1,119 +1,53 @@
 # dataset.py
-"""Dataset loading."""
+"""Fast dataset loading from pre-computed cache."""
 
-import json
 import pickle
-from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Optional
 
-import librosa
 import numpy as np
-import soundfile as sf
-
-from config import Config
-from processing import extract_frames, AudioFrame
+import torch
+from torch.utils.data import Dataset
 
 
-@dataclass
-class NoteEvent:
-    midi: int
-    time: float
-    duration: float
+class GuitarSetDataset(Dataset):
+    """Load pre-computed features from cache."""
 
+    def __init__(self, data_dir: str, segment_frames: int = 256):
+        self.segment_frames = segment_frames
+        cache_path = Path(data_dir) / "features_cache.pkl"
 
-@dataclass
-class RecordingFrames:
-    name: str
-    frames: List[AudioFrame]
-    notes: List[NoteEvent]
-    midi_min: int
-    midi_max: int
-    hop_secs: float
-    onset_targets: np.ndarray = field(default_factory=lambda: np.array([]))
-    frame_targets: np.ndarray = field(default_factory=lambda: np.array([]))
+        with open(cache_path, 'rb') as f:
+            self.recordings = pickle.load(f)
 
+        # Build index: (recording_idx, frame_offset)
+        self.index = []
+        for ri, rec in enumerate(self.recordings):
+            n_frames = rec["features"].shape[0]
+            for start in range(0, max(1, n_frames - segment_frames + 1), segment_frames // 2):
+                self.index.append((ri, start))
 
-def load_recording(wav_path: Path, json_path: Path, cfg: Config) -> Optional[RecordingFrames]:
-    """Load a single recording."""
-    try:
-        audio, sr = sf.read(wav_path)
-        if audio.ndim > 1:
-            audio = audio.mean(axis=1)
-        if sr != cfg.sample_rate:
-            audio = librosa.resample(audio, orig_sr=sr, target_sr=cfg.sample_rate)
+    def __len__(self) -> int:
+        return len(self.index)
 
-        with open(json_path) as f:
-            data = json.load(f)
+    def __getitem__(self, idx: int) -> dict:
+        ri, start = self.index[idx]
+        rec = self.recordings[ri]
+        n_frames = rec["features"].shape[0]
+        end = min(start + self.segment_frames, n_frames)
 
-        notes = [
-            NoteEvent(n['midi'], n['time'], n['duration'])
-            for n in data['notes']
-        ]
+        features = rec["features"][start:end]
+        onset_t = rec["onset_targets"][start:end]
+        frame_t = rec["frame_targets"][start:end]
 
-        frames = extract_frames(audio.astype(np.float32), cfg.sample_rate, cfg.hop_size)
-        hop_secs = cfg.hop_size / cfg.sample_rate
-        n_frames = len(frames)
-        n_outputs = cfg.n_outputs
+        # Pad if needed
+        if features.shape[0] < self.segment_frames:
+            pad = self.segment_frames - features.shape[0]
+            features = np.pad(features, ((0, pad), (0, 0)))
+            onset_t = np.pad(onset_t, ((0, pad), (0, 0)))
+            frame_t = np.pad(frame_t, ((0, pad), (0, 0)))
 
-        # Build frame-level targets
-        frame_targets = np.zeros((n_frames, n_outputs), dtype=np.float32)
-        for note in notes:
-            if note.midi < cfg.midi_min or note.midi > cfg.midi_max:
-                continue
-            k = note.midi - cfg.midi_min
-            start_frame = int(note.time / hop_secs)
-            end_frame = int((note.time + note.duration) / hop_secs)
-            for fi in range(max(0, start_frame), min(n_frames, end_frame + 1)):
-                frame_targets[fi, k] = 1.0
-
-        return RecordingFrames(
-            name=wav_path.stem,
-            frames=frames,
-            notes=notes,
-            midi_min=cfg.midi_min,
-            midi_max=cfg.midi_max,
-            hop_secs=hop_secs,
-            frame_targets=frame_targets,
-        )
-    except Exception as e:
-        print(f"[skip] {wav_path.stem}: {e}")
-        return None
-
-
-def load_recordings(data_dir: str, cfg: Config) -> List[RecordingFrames]:
-    """Load all recordings from directory."""
-    data_path = Path(data_dir)
-    wav_dir = data_path / "audio_mono-mic"
-    json_dir = data_path / "processed"
-    cache_path = data_path / "frames.pkl"
-
-    # Try cache first
-    if cache_path.exists():
-        print(f"[cache] Loading from {cache_path}...")
-        try:
-            with open(cache_path, 'rb') as f:
-                return pickle.load(f)
-        except Exception as e:
-            print(f"[cache] Failed: {e}, recomputing...")
-
-    recordings = []
-    for wav_path in sorted(wav_dir.glob("*_mic.wav")):
-        stem = wav_path.stem.replace("_mic", "")
-        json_path = json_dir / f"{stem}.json"
-        if not json_path.exists():
-            print(f"[skip] {stem} — no JSON")
-            continue
-
-        rec = load_recording(wav_path, json_path, cfg)
-        if rec:
-            print(f"  {stem}: {len(rec.frames)} frames, {len(rec.notes)} notes")
-            recordings.append(rec)
-
-    # Save cache
-    if recordings:
-        with open(cache_path, 'wb') as f:
-            pickle.dump(recordings, f)
-        print(f"[cache] Saved to {cache_path}")
-
-    return recordings
+        return {
+            "features": torch.from_numpy(features.copy()),
+            "onset_targets": torch.from_numpy(onset_t.copy()),
+            "frame_targets": torch.from_numpy(frame_t.copy()),
+        }
