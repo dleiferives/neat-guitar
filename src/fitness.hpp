@@ -1,4 +1,4 @@
-// fitness.hpp
+// fitness.hpp - add cache declarations
 #pragma once
 #include <random>
 #include <vector>
@@ -15,9 +15,8 @@ struct RecordingFrames {
     int                      midi_max;
     float                    hop_secs;
 
-    // Precomputed frame-level targets
-    std::vector<std::vector<float>> onset_targets;  // [frame][pitch] soft onset
-    std::vector<std::vector<float>> frame_targets;  // [frame][pitch] note active
+    std::vector<std::vector<float>> onset_targets;
+    std::vector<std::vector<float>> frame_targets;
 };
 
 struct DetectedNote {
@@ -25,8 +24,23 @@ struct DetectedNote {
     float time;
 };
 
+// Cache management
+constexpr uint32_t CACHE_MAGIC   = 0x4E454154;  // "NEAT"
+constexpr uint32_t CACHE_VERSION = 2;
+
+bool save_frames_cache(const std::vector<RecordingFrames>& data,
+                       const std::string& path);
+
+bool load_frames_cache(std::vector<RecordingFrames>& data,
+                       const std::string& path,
+                       const NeatConfig& cfg);
+
 std::vector<RecordingFrames> precompute_frames(const std::vector<Recording>& recs,
                                                 const NeatConfig& cfg);
+
+// Load with automatic caching
+std::vector<RecordingFrames> load_or_compute_frames(const std::string& data_dir,
+                                                     const NeatConfig& cfg);
 
 float note_f1(const std::vector<NoteEvent>& truth,
               const std::vector<DetectedNote>& detected,
