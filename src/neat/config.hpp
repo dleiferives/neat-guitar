@@ -36,18 +36,18 @@ struct NeatConfig {
     int   activation_passes   = 4;      // forward-pass iterations (handles cycles)
 
     // ── Audio ────────────────────────────────────────────────────────────────
-    int   fft_size            = 512;    // FFT window (power of 2)
-    int   n_fft_bins          = 256;    // = fft_size / 2
+    int   n_cqt_bins          = 108;    // CQT_N_OCTAVES(9) x CQT_BINS_PER_OCTAVE(12)
+    int   n_salience_bins     = 49;     // N_SALIENCE_BINS: one per semitone E2-E6
     int   hop_size            = 512;    // samples between frames
     int   sample_rate         = 22050;
-    int   pitch_history       = 8;      // recent dominant-pitch values appended to input
+    int   pitch_history       = 8;      // recent peak-salience values appended to input
 
     // ── MIDI / guitar range ───────────────────────────────────────────────────
     int   midi_min            = 40;     // E2
     int   midi_max            = 88;     // E6
 
     // ── Derived (call after setting the above) ───────────────────────────────
-    int n_inputs()  const { return n_fft_bins + pitch_history; }
+    int n_inputs()  const { return n_cqt_bins + n_salience_bins + pitch_history; }
     int n_outputs() const { return midi_max - midi_min + 1; }   // 49
     int first_output_node() const { return n_inputs(); }
     int first_hidden_node() const { return n_inputs() + n_outputs(); }

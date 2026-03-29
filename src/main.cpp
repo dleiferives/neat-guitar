@@ -44,7 +44,7 @@ static int cmd_train(const std::vector<std::string>& args) {
     auto recs = load_recordings(rec_dir, cfg.sample_rate);  // rec_dir = data root
     if (recs.empty()) { std::cerr << "No recordings found.\n"; return 1; }
 
-    std::cout << "Precomputing FFT frames...\n";
+    std::cout << "Precomputing CQT frames...\n";
     auto data = precompute_frames(recs, cfg);
 
     std::cout << "Network: " << cfg.n_inputs() << " inputs, "
@@ -183,8 +183,7 @@ static int cmd_infer(const std::vector<std::string>& args) {
         }
     }
 
-    auto frames = extract_frames(rec.audio, rec.sample_rate,
-                                  cfg.fft_size, cfg.hop_size, cfg.n_fft_bins);
+    auto frames = extract_frames(rec.audio, rec.sample_rate, cfg.hop_size);
 
     Network net = Network::from_genome(g, cfg);
     net.reset();

@@ -1,33 +1,30 @@
 #pragma once
 #include <vector>
 
-// One analysis frame: FFT magnitude bins + dominant MIDI pitch estimate
+// CQT parameters (must match processing.cpp internals)
+inline constexpr int CQT_BINS_PER_OCTAVE = 12;
+inline constexpr int CQT_N_OCTAVES       = 9;
+inline constexpr int CQT_TOTAL_BINS      = CQT_BINS_PER_OCTAVE * CQT_N_OCTAVES;  // 108
+
+// Salience covers the full guitar MIDI range
+inline constexpr int SALIENCE_MIDI_MIN = 40;  // E2
+inline constexpr int SALIENCE_MIDI_MAX = 88;  // E6
+inline constexpr int N_SALIENCE_BINS   = SALIENCE_MIDI_MAX - SALIENCE_MIDI_MIN + 1;  // 49
+
+// One analysis frame
 struct AudioFrame {
-    std::vector<float> fft_bins;   // n_fft_bins values, normalized [0, 1]
-    float              pitch_midi; // dominant frequency as MIDI note, 0 = silence
+    std::vector<float> cqt_bins;      // CQT_TOTAL_BINS values, peak-normalised [0, 1]
+    std::vector<float> salience;      // N_SALIENCE_BINS harmonic-salience values, [0, 1]
+    float              peak_salience; // max(salience), used as temporal history signal
 };
 
-// Compute FFT magnitude spectrum for one hop of 'fft_size' samples.
-// Returns fft_size/2 magnitude bins, peak-normalised.
-// Uses single-precision fftw3f internally.
-std::vector<float> compute_fft_magnitudes(const float* samples, int fft_size);
-
-// Estimate dominant MIDI pitch from magnitude spectrum.
-// bin_hz = sample_rate / fft_size
-float dominant_pitch_midi(const std::vector<float>& mags, float bin_hz,
-                           float midi_min = 40.0f, float midi_max = 88.0f);
-
-// Slice an entire recording into overlapping frames.
+// Slice an entire recording into overlapping frames using the Constant-Q Transform.
 // hop_size: samples between successive frames
-// fft_size: analysis window length (must be power of 2, >= hop_size)
 std::vector<AudioFrame> extract_frames(const std::vector<float>& audio,
                                         int sample_rate,
-                                        int fft_size,
-                                        int hop_size,
-                                        int n_fft_bins);
+                                        int hop_size);
 
-// Build a single NEAT input vector from a frame window.
-// Appends the last 'pitch_history' dominant pitch values (normalised) after fft_bins.
+// Build a single NEAT input vector: cqt_bins + salience + recent peak_salience history.
 std::vector<float> build_input(const std::vector<AudioFrame>& frames,
                                 int frame_idx,
                                 int pitch_history);

@@ -18,9 +18,7 @@ std::vector<RecordingFrames> precompute_frames(const std::vector<Recording>& rec
         rf.midi_min  = cfg.midi_min;
         rf.midi_max  = cfg.midi_max;
         rf.hop_secs  = (float)cfg.hop_size / (float)cfg.sample_rate;
-        rf.frames    = extract_frames(r.audio, r.sample_rate,
-                                      cfg.fft_size, cfg.hop_size,
-                                      cfg.n_fft_bins);
+        rf.frames    = extract_frames(r.audio, r.sample_rate, cfg.hop_size);
         out.push_back(std::move(rf));
     }
     return out;
