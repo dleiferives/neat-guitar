@@ -2,6 +2,7 @@
 #include "neat/network.hpp"
 #include <algorithm>
 #include <cmath>
+#include <deque>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -425,4 +426,126 @@ float evaluate_genome(const Genome& g,
     float fitness = (0.5f * frame_f1 + 0.5f * frame_score) * parsimony;
 
     return std::max(0.01f, fitness);
+}
+
+// ── Racing fitness ────────────────────────────────────────────────────────────
+// Each frame's contribution to fitness = rolling F1 at that point.
+// A model at F1=0.9 earns 0.9/frame; at F1=0.0 earns nothing.
+// Distance and quality are naturally unified — can't game one at the other's expense.
+// Hard kill at low threshold (0.2) is just a compute optimization.
+
+float racing_theoretical_max(const std::vector<RecordingFrames>& data_sorted) {
+    int total_frames = 0;
+    for (const auto& rf : data_sorted) total_frames += (int)rf.frames.size();
+    int n_files = (int)data_sorted.size();
+    // Perfect F1 (1.0) every frame, all files completed, no parsimony penalty
+    return (float)total_frames * 1.0f * (1.0f + 0.10f * (float)n_files);
+}
+
+RacingResult evaluate_genome_racing_detailed(const Genome& g,
+                                              const std::vector<RecordingFrames>& data_sorted,
+                                              const NeatConfig& cfg,
+                                              float threshold,
+                                              float kill_threshold,
+                                              float window_secs) {
+    RacingResult result{0.01f, 0, 0, 0, (int)data_sorted.size(), 0.0f};
+    if (data_sorted.empty()) return result;
+
+    float hop_secs = data_sorted[0].hop_secs;
+    int window_frames = std::max(1, (int)(window_secs / hop_secs));
+    int n_out = cfg.n_outputs();
+
+    for (const auto& rf : data_sorted) result.total_frames += (int)rf.frames.size();
+    if (result.total_frames == 0) return result;
+
+    Network net = Network::from_genome(g, cfg);
+    std::vector<float> inp_buf(cfg.n_inputs());
+    std::vector<float> out_buf(cfg.n_outputs());
+
+    // Rolling window of per-frame (tp, fp, fn) for computing window F1.
+    // TN intentionally excluded — with 49 outputs and ~2-3 active, TN dominates
+    // and masks false positives (a "predict nothing" model scores 94% accuracy).
+    struct FrameTPFPFN { int tp, fp, fn; };
+    std::deque<FrameTPFPFN> win;
+    int win_tp = 0, win_fp = 0, win_fn = 0;
+
+    double fitness_accum = 0.0;   // sum of per-frame rolling_f1 contributions
+    int frames_processed = 0;
+    int files_completed = 0;
+
+    for (const auto& rf : data_sorted) {
+        net.reset();
+        bool file_alive = true;
+
+        for (int fi = 0; fi < (int)rf.frames.size(); ++fi) {
+            build_input(rf.frames, fi, cfg.pitch_history, inp_buf.data());
+            net.activate(inp_buf.data(), out_buf.data());
+
+            const float* fr_tgt = rf.frame_targets[fi].data();
+            FrameTPFPFN m{0, 0, 0};
+            for (int p = 0; p < n_out; ++p) {
+                bool predicted = (out_buf[p] >= threshold);
+                bool target    = (fr_tgt[p] >= 0.5f);
+                m.tp += ( predicted &&  target);
+                m.fp += ( predicted && !target);
+                m.fn += (!predicted &&  target);
+            }
+
+            // Maintain rolling window sums
+            win.push_back(m);
+            win_tp += m.tp; win_fp += m.fp; win_fn += m.fn;
+            if ((int)win.size() > window_frames) {
+                win_tp -= win.front().tp;
+                win_fp -= win.front().fp;
+                win_fn -= win.front().fn;
+                win.pop_front();
+            }
+
+            // Rolling F1 over the window (silence correctly predicted → 1.0)
+            int denom = 2 * win_tp + win_fp + win_fn;
+            float rolling_f1 = (denom > 0)
+                ? (float)(2 * win_tp) / (float)denom
+                : 1.0f;
+
+            // Each frame earns its rolling F1 as fitness
+            fitness_accum += (double)rolling_f1;
+            ++frames_processed;
+
+            // Hard kill: only fires once window is full, saves compute on dead models
+            if ((int)win.size() == window_frames && rolling_f1 < kill_threshold) {
+                file_alive = false;
+                break;
+            }
+        }
+
+        if (!file_alive) break;
+        ++files_completed;
+    }
+
+    if (frames_processed == 0) return result;
+
+    float fitness = (float)fitness_accum;
+
+    // File completion bonus: +10% per completed file
+    fitness *= (1.0f + 0.10f * (float)files_completed);
+
+    // Parsimony penalty
+    float complexity = (float)(g.nodes.size() + g.conns.size());
+    fitness *= 1.0f / (1.0f + 0.0002f * complexity);
+
+    result.fitness          = std::max(0.01f, fitness);
+    result.frames_processed = frames_processed;
+    result.files_completed  = files_completed;
+    result.avg_accuracy     = (float)(fitness_accum / frames_processed);  // avg rolling F1
+    return result;
+}
+
+float evaluate_genome_racing(const Genome& g,
+                              const std::vector<RecordingFrames>& data_sorted,
+                              const NeatConfig& cfg,
+                              float threshold,
+                              float kill_threshold,
+                              float window_secs) {
+    return evaluate_genome_racing_detailed(g, data_sorted, cfg, threshold,
+                                           kill_threshold, window_secs).fitness;
 }

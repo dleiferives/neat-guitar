@@ -144,6 +144,18 @@ static int cmd_train(const std::vector<std::string>& args) {
         return 1;
     }
 
+    // Sort recordings alphabetically — this is the fixed "race track" every genome runs.
+    // Order is hardcoded by filename so it never changes between training runs.
+    std::sort(data.begin(), data.end(),
+              [](const RecordingFrames& a, const RecordingFrames& b) {
+                  return a.name < b.name;
+              });
+
+    std::cout << "Track order (" << data.size() << " files):\n";
+    for (size_t i = 0; i < data.size(); ++i)
+        std::cout << "  " << (i + 1) << ". " << data[i].name << "\n";
+    std::cout << "\n";
+
     std::cout << "Network: " << cfg.n_inputs() << " inputs, "
               << cfg.n_outputs() << " outputs ("
               << cfg.midi_min << "-" << cfg.midi_max << " MIDI)\n";
@@ -156,37 +168,65 @@ static int cmd_train(const std::vector<std::string>& args) {
     if (!load_pop_path.empty())
         std::cout << "  (resuming from gen " << pop.generation << ")";
     std::cout << "\n\n";
-    int gen_counter = pop.generation;
 
+    // Racing fitness is fully deterministic (fixed track, no RNG) — all genomes
+    // in a generation are evaluated identically and fairly.
     auto fit_fn = [&](const Genome& g) {
-        // Same seed for all genomes in a generation = fair comparison.
-        // Different seed each generation = diverse evaluation over time.
-        std::mt19937 eval_rng(42 + gen_counter);
-        return evaluate_genome(g, data, cfg, eval_rng);
+        return evaluate_genome_racing(g, data, cfg);
     };
 
-    float best_val_ever = 0.0f;
-    Genome best_val_genome;
+    float theoretical_max = racing_theoretical_max(data);
+
+    float best_fit_ever = 0.0f;
+    Genome best_genome;
 
     auto on_gen = [&](int gen, float best_fit, const Genome& best) {
-        ++gen_counter;
-        // Evaluate best on fixed validation set (seed 0, always the same segments)
-        std::mt19937 val_rng(0);
-        float val_fit = evaluate_genome(best, data, cfg, val_rng);
-        if (val_fit > best_val_ever) {
-            best_val_ever = val_fit;
-            best_val_genome = best;
-            best_val_genome.save(save_path);
-            std::cout << "  [saved -> " << save_path << " (new best val)]\n";
+        if (best_fit > best_fit_ever) {
+            best_fit_ever = best_fit;
+            best_genome = best;
+            best_genome.save(save_path);
+            auto r = evaluate_genome_racing_detailed(best, data, cfg);
+            float pct = 100.0f * (float)r.frames_processed / (float)r.total_frames;
+            std::printf("  [new best] fitness=%.1f / %.1f (%.1f%%)  "
+                        "files=%d/%d  acc=%.3f  -> %s\n",
+                        r.fitness, theoretical_max, pct,
+                        r.files_completed, r.total_files,
+                        r.avg_accuracy, save_path.c_str());
         }
         std::cout << "Gen " << gen
                   << "  best=" << best_fit
-                  << "  val=" << val_fit
-                  << "  best_val=" << best_val_ever
+                  << "  best_ever=" << best_fit_ever
                   << "  species=" << pop.species.size()
                   << "  nodes=" << best.nodes.size()
-                  << "  conns=" << best.conns.size()
-                  << "\n";
+                  << "  conns=" << best.conns.size();
+        if (pop.global_stagnation > 10) {
+            float mb = 3.0f;
+            for (int p = 100; p <= pop.global_stagnation; p *= 10) mb += 1.0f;
+            float boost = std::min(mb, 1.0f + (float)(pop.global_stagnation - 10) * 0.1f);
+            std::printf("  [stag=%d boost=%.1f/%.0fx]", pop.global_stagnation, boost, mb);
+        }
+
+        // Track rotation: every 100 stagnation gens, rotate the file order
+        // to break local optima tied to a specific track layout.
+        if (pop.global_stagnation >= 100) {
+            std::rotate(data.begin(), data.end() - 1, data.end());
+            std::cout << "\n  [TRACK ROTATED] new order:";
+            for (size_t i = 0; i < data.size(); ++i)
+                std::cout << " " << data[i].name;
+            std::cout << "\n";
+
+            // New track = new fitness landscape.  Reset stagnation and baseline
+            // so the boost backs off and the population adapts to the new order.
+            pop.global_stagnation   = 0;
+            pop.global_best_fitness = 0.0f;
+            best_fit_ever           = 0.0f;
+            theoretical_max         = racing_theoretical_max(data);
+
+            // Force re-evaluation of all genomes (elites have stale fitness)
+            for (auto& g : pop.genomes) g.is_elite = false;
+        }
+
+        std::cout << "\n";
         if (!save_pop_path.empty() && save_pop_every > 0 && gen % save_pop_every == 0) {
             pop.save_all(save_pop_path);
             std::cout << "  [pop saved -> " << save_pop_path << "]\n";
@@ -197,9 +237,9 @@ static int cmd_train(const std::vector<std::string>& args) {
     pop.evolve(fit_fn, on_gen);
     auto t1 = std::chrono::steady_clock::now();
 
-    // Save best-on-validation genome (already saved incrementally, but ensure final save)
-    if (best_val_ever > 0.0f)
-        best_val_genome.save(save_path);
+    // Ensure final best is saved (already saved incrementally, this is a safety net)
+    if (best_fit_ever > 0.0f)
+        best_genome.save(save_path);
 
     if (!save_pop_path.empty()) {
         pop.save_all(save_pop_path);
@@ -208,7 +248,7 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     double secs = std::chrono::duration<double>(t1 - t0).count();
     std::cout << "\nDone in " << secs << "s\n";
-    std::cout << "Best val fitness: " << best_val_ever << "\n";
+    std::cout << "Best racing fitness: " << best_fit_ever << "\n";
     std::cout << "Saved to: " << save_path << "\n";
     return 0;
 }

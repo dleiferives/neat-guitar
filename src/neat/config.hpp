@@ -3,34 +3,33 @@
 
 struct NeatConfig {
     // ── Population ──────────────────────────────────────────────────────────
-    int   pop_size            = 150;
+    int   pop_size            = 300;
     int   generations         = 500;
-    float fitness_threshold   = 0.95f;  // stop early if best reaches this
 
     // ── Speciation ───────────────────────────────────────────────────────────
     float compat_threshold    = 3.0f;
     float c1                  = 1.0f;   // excess gene coefficient
     float c2                  = 1.0f;   // disjoint gene coefficient
     float c3                  = 0.4f;   // average weight diff coefficient
-    int   target_species      = 10;     // dynamic threshold aims at this
+    int   target_species      = 15;     // dynamic threshold aims at this
     float compat_mod          = 0.1f;   // threshold adjustment per generation
 
     // ── Mutation ─────────────────────────────────────────────────────────────
     float weight_mutate_rate  = 0.80f;
     float weight_perturb_rate = 0.90f;  // perturb vs full replace
-    float weight_perturb_power= 0.25f;
+    float weight_perturb_power= 0.15f;
     float weight_init_range   = 1.0f;
-    float add_conn_rate       = 0.05f;
-    float add_node_rate       = 0.005f;
+    float add_conn_rate       = 0.08f;
+    float add_node_rate       = 0.01f;
     float toggle_conn_rate    = 0.01f;
-    int   add_conn_tries      = 20;     // max attempts to find a novel connection
+    int   add_conn_tries      = 50;     // max attempts to find a novel connection
 
     // ── Reproduction ─────────────────────────────────────────────────────────
     float crossover_rate      = 0.75f;
-    float interspecies_rate   = 0.001f;
+    float interspecies_rate   = 0.01f;
     float elitism_fraction    = 0.10f;  // top 10% per species survive unchanged
-    float survival_threshold  = 0.20f;  // fraction allowed to reproduce
-    int   stagnation_limit    = 50;     // generations before culling a species
+    float survival_threshold  = 0.30f;  // fraction allowed to reproduce
+    int   stagnation_limit    = 30;     // generations before culling a species
 
     // ── Network evaluation ───────────────────────────────────────────────────
     int   activation_passes   = 4;      // forward-pass iterations (handles cycles)

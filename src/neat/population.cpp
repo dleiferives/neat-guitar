@@ -82,15 +82,48 @@ void Population::evolve(FitnessFn fit_fn,
         step(fit_fn);
         const Genome& best = best_genome();
         if (on_gen) on_gen(generation, best.fitness, best);
-        if (best.fitness >= cfg.fitness_threshold) break;
     }
 }
 
 void Population::step(FitnessFn fit_fn) {
     innov.reset_generation();
     evaluate(fit_fn);
+
+    // Track global stagnation for auto-tuning
+    float current_best = best_genome().fitness;
+    if (current_best > global_best_fitness) {
+        global_best_fitness = current_best;
+        global_stagnation   = 0;
+    } else {
+        ++global_stagnation;
+    }
+
+    // Stagnation-responsive mutation boost: ramp from 1× up to max_boost.
+    // Max boost starts at 3 and increases by 1 at every power-of-10 stagnation
+    // milestone (10→3, 100→4, 1000→5, ...).  Escalating pressure.
+    float max_boost = 3.0f;
+    for (int p = 100; p <= global_stagnation; p *= 10)
+        max_boost += 1.0f;
+
+    float boost = 1.0f;
+    if (global_stagnation > 10)
+        boost = std::min(max_boost, 1.0f + (float)(global_stagnation - 10) * 0.1f);
+
+    float saved_add_conn = cfg.add_conn_rate;
+    float saved_add_node = cfg.add_node_rate;
+    float saved_perturb  = cfg.weight_perturb_power;
+
+    cfg.add_conn_rate    *= boost;
+    cfg.add_node_rate    *= boost;
+    cfg.weight_perturb_power *= (1.0f + (boost - 1.0f) * 0.5f);
+
     speciate();
     reproduce();
+
+    cfg.add_conn_rate    = saved_add_conn;
+    cfg.add_node_rate    = saved_add_node;
+    cfg.weight_perturb_power = saved_perturb;
+
     ++generation;
 }
 
@@ -103,15 +136,13 @@ const Genome& Population::best_genome() const {
 
 void Population::evaluate(FitnessFn fit_fn) {
     for (auto& g : genomes) {
-        float new_fit = fit_fn(g);
         if (g.is_elite) {
-            // Rolling average: mostly trust the score that earned elite status,
-            // but blend in the new evaluation to slowly correct stale scores.
-            g.fitness = (0.5f * g.fitness) + (0.5f * new_fit);
+            // Deterministic fitness — unmodified genome scores identically.
+            // Skip evaluation to save compute (racing eval can be expensive).
             g.is_elite = false;
-        } else {
-            g.fitness = new_fit;
+            continue;
         }
+        g.fitness = fit_fn(g);
     }
 }
 
@@ -331,6 +362,51 @@ void Population::reproduce() {
         next_gen.push_back(make_offspring(sp, rng));
     }
     next_gen.resize(cfg.pop_size);
+
+    // ── Stagnation diversity injection ─────────────────────────────────────
+    if (global_stagnation > 10) {
+        int slot = cfg.pop_size - 1;  // overwrite from the tail (lowest-priority)
+
+        // Bozos: clone the worst 5% and mutate aggressively (3 passes).
+        // Their divergent topology re-injects diversity the population has lost.
+        int n_bozos = std::max(1, (int)(cfg.pop_size * 0.05f));
+        {
+            std::vector<int> worst(genomes.size());
+            std::iota(worst.begin(), worst.end(), 0);
+            std::sort(worst.begin(), worst.end(),
+                [&](int a, int b){ return genomes[a].fitness < genomes[b].fitness; });
+
+            for (int i = 0; i < n_bozos && i < (int)worst.size() && slot > 0; ++i, --slot) {
+                Genome bozo = genomes[worst[i]];
+                bozo.id = next_genome_id++;
+                bozo.mutate(cfg, innov, rng);
+                bozo.mutate(cfg, innov, rng);
+                bozo.mutate(cfg, innov, rng);
+                next_gen[slot] = std::move(bozo);
+            }
+        }
+
+        // Explorers: clone the BEST genome and force structural mutation.
+        // The best has proven weights — adding structure to it is far more
+        // likely to produce a competitive offspring than random topology.
+        int n_explorers = std::max(1, (int)(cfg.pop_size * 0.05f));
+        {
+            const Genome& best = best_genome();
+            std::uniform_real_distribution<float> unit(0.0f, 1.0f);
+
+            for (int i = 0; i < n_explorers && slot > 0; ++i, --slot) {
+                Genome explorer = best;
+                explorer.id = next_genome_id++;
+                // Always add structure (don't leave it to chance)
+                explorer.mutate_add_connection(cfg, innov, rng);
+                if (unit(rng) < 0.5f)
+                    explorer.mutate_add_node(cfg, innov, rng);
+                // Then tune weights around the new structure
+                explorer.mutate_weights(cfg, rng);
+                next_gen[slot] = std::move(explorer);
+            }
+        }
+    }
 
     genomes = std::move(next_gen);
 }

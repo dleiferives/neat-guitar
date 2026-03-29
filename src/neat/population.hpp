@@ -15,7 +15,7 @@ struct Species {
     int              staleness      = 0;
 };
 
-// Fitness function: receives a genome, returns a scalar fitness in [0, 1].
+// Fitness function: receives a genome, returns a scalar fitness (unbounded).
 using FitnessFn = std::function<float(const Genome&)>;
 
 struct Population {
@@ -24,9 +24,13 @@ struct Population {
     std::vector<Species> species;
     InnovationTracker    innov;
     std::mt19937         rng;
-    int                  generation     = 0;
-    int                  next_genome_id = 0;
-    int                  next_species_id= 0;
+    int                  generation      = 0;
+    int                  next_genome_id  = 0;
+    int                  next_species_id = 0;
+
+    // Auto-tuning: stagnation-responsive mutation boost
+    float                global_best_fitness = 0.0f;
+    int                  global_stagnation   = 0;
 
     explicit Population(NeatConfig cfg, uint64_t seed = 42);
 

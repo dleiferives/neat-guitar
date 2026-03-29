@@ -63,7 +63,8 @@ struct Genome {
     bool            has_connection(int in_node, int out_node) const;
     int             max_node_id() const;
 
-private:
+    // Individual mutation operators (used by mutate() and by Population for
+    // targeted exploration during stagnation).
     void mutate_weights(const NeatConfig& cfg, std::mt19937& rng);
     void mutate_add_connection(const NeatConfig& cfg,
                                InnovationTracker& innov,

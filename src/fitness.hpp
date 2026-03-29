@@ -43,3 +43,33 @@ float evaluate_genome(const Genome& g,
                       std::mt19937& rng,
                       float window_secs = 8.0f,
                       float threshold = 0.5f);
+
+struct RacingResult {
+    float fitness;
+    int   frames_processed;
+    int   total_frames;
+    int   files_completed;
+    int   total_files;
+    float avg_accuracy;
+};
+
+// Compute theoretical maximum fitness for a given track (perfect accuracy, all files done).
+// Ignores parsimony (no genome needed).
+float racing_theoretical_max(const std::vector<RecordingFrames>& data_sorted);
+
+// Racing-style fitness: each frame earns its rolling-window F1 as fitness.
+// Hard kill at kill_threshold is just a compute optimisation for dead models.
+// Fitness = sum(rolling_f1 per frame) * (1 + 0.10 * files_completed) * parsimony
+RacingResult evaluate_genome_racing_detailed(const Genome& g,
+                                              const std::vector<RecordingFrames>& data_sorted,
+                                              const NeatConfig& cfg,
+                                              float threshold = 0.5f,
+                                              float kill_threshold = 0.2f,
+                                              float window_secs = 5.0f);
+
+float evaluate_genome_racing(const Genome& g,
+                              const std::vector<RecordingFrames>& data_sorted,
+                              const NeatConfig& cfg,
+                              float threshold = 0.5f,
+                              float kill_threshold = 0.2f,
+                              float window_secs = 5.0f);
