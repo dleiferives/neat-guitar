@@ -1,23 +1,18 @@
 # train.py
-"""Main training script using neat-python."""
+"""NEAT training using C++ cache data."""
 
 import argparse
-import os
 import pickle
-import sys
 from pathlib import Path
 
 import neat
-import numpy as np
 
 from config import Config
-from dataset import load_recordings
-from fitness import evaluate_genome_racing, RacingResult
+from cache_reader import load_cache
+from fitness import evaluate_genome_racing, racing_theoretical_max
 
 
 class GenomeEvaluator:
-    """Evaluates genomes using racing fitness."""
-
     def __init__(self, data, cfg, neat_config):
         self.data = data
         self.cfg = cfg
@@ -25,43 +20,58 @@ class GenomeEvaluator:
         self.best_fitness = 0.0
         self.best_genome = None
         self.generation = 0
+        self.theoretical_max = racing_theoretical_max(data)
 
     def eval_genomes(self, genomes, config):
-        """Evaluate all genomes in the population."""
         for genome_id, genome in genomes:
             net = neat.nn.RecurrentNetwork.create(genome, config)
             result = evaluate_genome_racing(net, self.data, self.cfg)
-            genome.fitness = result.fitness
+
+            # Apply parsimony penalty (matching C++)
+            n_nodes = len(genome.nodes)
+            n_conns = len(genome.connections)
+            complexity = n_nodes + n_conns
+            parsimony = 1.0 / (1.0 + 0.0002 * complexity)
+            genome.fitness = result.fitness * parsimony
 
             if genome.fitness > self.best_fitness:
                 self.best_fitness = genome.fitness
                 self.best_genome = genome
+                pct = 100.0 * result.frames_processed / max(1, result.total_frames)
                 print(f"  [NEW BEST] fitness={genome.fitness:.1f} "
                       f"files={result.files_completed}/{result.total_files} "
-                      f"acc={result.avg_accuracy:.3f}")
+                      f"acc={result.avg_accuracy:.3f} pct={pct:.1f}% "
+                      f"nodes={n_nodes} conns={n_conns}")
 
 
 def run_training(data_dir: str, save_path: str, config_path: str, generations: int):
-    """Run NEAT training."""
     cfg = Config()
+    cache_path = Path(data_dir) / "frames.cache"
 
-    # Update num_inputs in config file if needed
-    print(f"Network: {cfg.n_inputs} inputs, {cfg.n_outputs} outputs")
-
-    # Load data
-    print(f"Loading recordings from {data_dir}...")
-    data = load_recordings(data_dir, cfg)
-    if not data:
-        print("No recordings found!")
+    if not cache_path.exists():
+        print(f"Cache not found at {cache_path}")
+        print("Run your C++ program first to generate the cache.")
         return
 
-    # Sort by name for consistent track order
+    print(f"Network: {cfg.n_inputs} inputs, {cfg.n_outputs} outputs")
+    data = load_cache(
+        str(cache_path),
+        midi_min=cfg.midi_min,
+        midi_max=cfg.midi_max,
+        hop_size=cfg.hop_size,
+        sample_rate=cfg.sample_rate,
+    )
+
+    if not data:
+        print("No recordings in cache!")
+        return
+
+    # Sort by name (matching C++ track order)
     data.sort(key=lambda r: r.name)
     print(f"\nTrack order ({len(data)} files):")
     for i, rec in enumerate(data):
         print(f"  {i+1}. {rec.name}")
 
-    # Load NEAT config
     neat_config = neat.Config(
         neat.DefaultGenome,
         neat.DefaultReproduction,
@@ -70,36 +80,27 @@ def run_training(data_dir: str, save_path: str, config_path: str, generations: i
         config_path,
     )
 
-    # Create population
     pop = neat.Population(neat_config)
-
-    # Add reporters
     pop.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     pop.add_reporter(stats)
-    pop.add_reporter(neat.Checkpointer(
-        generation_interval=50,
-        filename_prefix='neat-checkpoint-'
-    ))
+    pop.add_reporter(neat.Checkpointer(50, filename_prefix='neat-checkpoint-'))
 
-    # Create evaluator
     evaluator = GenomeEvaluator(data, cfg, neat_config)
+    print(f"\nTheoretical max fitness: {evaluator.theoretical_max:.1f}")
+    print(f"Population: {neat_config.pop_size}  Generations: {generations}\n")
 
-    # Run evolution
     winner = pop.run(evaluator.eval_genomes, generations)
 
-    # Save best genome
     with open(save_path, 'wb') as f:
         pickle.dump(winner, f)
     print(f"\nBest genome saved to {save_path}")
     print(f"Best fitness: {winner.fitness:.1f}")
 
-    return winner
-
 
 def run_eval(genome_path: str, data_dir: str, config_path: str):
-    """Evaluate a saved genome."""
     cfg = Config()
+    cache_path = Path(data_dir) / "frames.cache"
 
     with open(genome_path, 'rb') as f:
         genome = pickle.load(f)
@@ -113,18 +114,17 @@ def run_eval(genome_path: str, data_dir: str, config_path: str):
     )
 
     net = neat.nn.RecurrentNetwork.create(genome, neat_config)
-
-    data = load_recordings(data_dir, cfg)
+    data = load_cache(str(cache_path), cfg.midi_min, cfg.midi_max, cfg.hop_size, cfg.sample_rate)
     data.sort(key=lambda r: r.name)
 
-    # Per-file evaluation
+    from fitness import build_input
+
     total_tp = total_fp = total_fn = 0
     for rec in data:
         net.reset()
         tp = fp = fn = 0
 
         for fi in range(len(rec.frames)):
-            from processing import build_input
             inp = build_input(rec.frames, fi, cfg.pitch_history)
             out = net.activate(inp.tolist())
 
@@ -138,13 +138,12 @@ def run_eval(genome_path: str, data_dir: str, config_path: str):
         prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
         rec_val = tp / (tp + fn) if (tp + fn) > 0 else 0.0
         f1 = 2 * prec * rec_val / (prec + rec_val) if (prec + rec_val) > 0 else 0.0
-
         print(f"{rec.name:40s}  f1={f1:.4f}  prec={prec:.4f}  rec={rec_val:.4f}")
+
         total_tp += tp
         total_fp += fp
         total_fn += fn
 
-    # Overall
     prec = total_tp / (total_tp + total_fp) if (total_tp + total_fp) > 0 else 0.0
     rec_val = total_tp / (total_tp + total_fn) if (total_tp + total_fn) > 0 else 0.0
     f1 = 2 * prec * rec_val / (prec + rec_val) if (prec + rec_val) > 0 else 0.0
@@ -152,20 +151,18 @@ def run_eval(genome_path: str, data_dir: str, config_path: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='NEAT Audio Transcription')
+    parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='command', required=True)
 
-    # Train
     train_p = subparsers.add_parser('train')
-    train_p.add_argument('data_dir', help='Recordings directory')
+    train_p.add_argument('data_dir')
     train_p.add_argument('--save', default='best_genome.pkl')
     train_p.add_argument('--config', default='neat_config.ini')
     train_p.add_argument('--generations', type=int, default=500)
 
-    # Eval
     eval_p = subparsers.add_parser('eval')
-    eval_p.add_argument('genome', help='Saved genome file')
-    eval_p.add_argument('data_dir', help='Recordings directory')
+    eval_p.add_argument('genome')
+    eval_p.add_argument('data_dir')
     eval_p.add_argument('--config', default='neat_config.ini')
 
     args = parser.parse_args()
