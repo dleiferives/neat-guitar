@@ -3,7 +3,7 @@ project(neat_detector CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+find_package(pybind11 REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SNDFILE REQUIRED sndfile)
 
@@ -42,6 +42,19 @@ target_link_libraries(neat_detector PRIVATE
     nlohmann_json::nlohmann_json
 )
 target_compile_options(neat_detector PRIVATE -O3 -ffast-math -flto -march=native -Wall -Wextra)
+
+pybind11_add_module(neat_fitness
+    bindings.cpp
+    fitness.cpp
+    neat/genome.cpp
+    neat/network.cpp
+    neat/population.cpp
+    audio/dataset.cpp
+    audio/processing.cpp
+)
+
+target_include_directories(neat_fitness PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(neat_fitness PRIVATE sndfile)
 
 option(BUILD_BENCH "Build micro-benchmark" OFF)
 if(BUILD_BENCH)

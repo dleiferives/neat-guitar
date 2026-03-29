@@ -1,5 +1,5 @@
 # train.py
-"""NEAT training using C++ cache data."""
+"""NEAT training using C++ fitness evaluation."""
 
 import argparse
 import pickle
@@ -7,70 +7,91 @@ from pathlib import Path
 
 import neat
 
-from config import Config
-from cache_reader import load_cache
-from fitness import evaluate_genome_racing, racing_theoretical_max
+# Import the C++ module
+import neat_fitness
 
 
 class GenomeEvaluator:
-    def __init__(self, data, cfg, neat_config):
-        self.data = data
-        self.cfg = cfg
-        self.neat_config = neat_config
+    def __init__(self):
         self.best_fitness = 0.0
         self.best_genome = None
         self.generation = 0
-        self.theoretical_max = racing_theoretical_max(data)
+        self.lookback = 0
+        self.stagnation = 0
+        self.theoretical_max = neat_fitness.get_theoretical_max()
+
+    def _genome_to_cpp(self, genome):
+        """Convert neat-python genome to C++ format."""
+        nodes = []
+        for key, node in genome.nodes.items():
+            nodes.append((key, node.bias, node.response, 0.0))
+
+        conns = []
+        for key, conn in genome.connections.items():
+            conns.append((conn.key[0], conn.key[1], conn.weight, conn.enabled, 0))
+
+        return nodes, conns
 
     def eval_genomes(self, genomes, config):
         for genome_id, genome in genomes:
-            net = neat.nn.RecurrentNetwork.create(genome, config)
-            result = evaluate_genome_racing(net, self.data, self.cfg)
+            nodes, conns = self._genome_to_cpp(genome)
 
-            # Apply parsimony penalty (matching C++)
-            n_nodes = len(genome.nodes)
-            n_conns = len(genome.connections)
-            complexity = n_nodes + n_conns
-            parsimony = 1.0 / (1.0 + 0.0002 * complexity)
-            genome.fitness = result.fitness * parsimony
+            # Evaluate from start position 0
+            result = neat_fitness.evaluate_genome(nodes, conns, 0)
+            fitness = result['fitness']
+
+            # Multi-start if stagnating
+            for lb in range(1, self.lookback + 1):
+                n_files = neat_fitness.get_num_recordings()
+                alt_start = n_files - lb
+                if alt_start > 0:
+                    alt_result = neat_fitness.evaluate_genome(nodes, conns, alt_start)
+                    fitness += alt_result['fitness']
+
+            genome.fitness = fitness
 
             if genome.fitness > self.best_fitness:
                 self.best_fitness = genome.fitness
                 self.best_genome = genome
-                pct = 100.0 * result.frames_processed / max(1, result.total_frames)
+                self.stagnation = 0
+
+                pct = 100.0 * result['frames_processed'] / max(1, result['total_frames'])
                 print(f"  [NEW BEST] fitness={genome.fitness:.1f} "
-                      f"files={result.files_completed}/{result.total_files} "
-                      f"acc={result.avg_accuracy:.3f} pct={pct:.1f}% "
-                      f"nodes={n_nodes} conns={n_conns}")
+                      f"files={result['files_completed']}/{result['total_files']} "
+                      f"acc={result['avg_accuracy']:.3f} pct={pct:.1f}% "
+                      f"nodes={result['n_nodes']} conns={result['n_conns']}")
+            else:
+                self.stagnation += 1
+
+        # Progressive multi-start (matching C++ logic)
+        if self.stagnation >= 100:
+            new_lookback = (self.stagnation - 100) // 100 + 1
+            n_files = neat_fitness.get_num_recordings()
+            new_lookback = min(new_lookback, n_files - 1)
+            if new_lookback > self.lookback:
+                self.lookback = new_lookback
+                print(f"\n  [MULTI-START] now combining {self.lookback + 1} "
+                      f"starting positions (stag={self.stagnation})")
+                self.theoretical_max = neat_fitness.get_theoretical_max() * (self.lookback + 1)
+                self.stagnation = 0
+                self.best_fitness = 0.0
 
 
 def run_training(data_dir: str, save_path: str, config_path: str, generations: int):
-    cfg = Config()
-    cache_path = Path(data_dir) / "frames.cache"
-
-    if not cache_path.exists():
-        print(f"Cache not found at {cache_path}")
-        print("Run your C++ program first to generate the cache.")
+    # Load data via C++
+    print(f"Loading data from {data_dir}...")
+    if not neat_fitness.load_data(data_dir):
+        print("Failed to load data!")
         return
 
-    print(f"Network: {cfg.n_inputs} inputs, {cfg.n_outputs} outputs")
-    data = load_cache(
-        str(cache_path),
-        midi_min=cfg.midi_min,
-        midi_max=cfg.midi_max,
-        hop_size=cfg.hop_size,
-        sample_rate=cfg.sample_rate,
-    )
+    n_inputs = neat_fitness.get_n_inputs()
+    n_outputs = neat_fitness.get_n_outputs()
+    print(f"Network: {n_inputs} inputs, {n_outputs} outputs")
 
-    if not data:
-        print("No recordings in cache!")
-        return
-
-    # Sort by name (matching C++ track order)
-    data.sort(key=lambda r: r.name)
-    print(f"\nTrack order ({len(data)} files):")
-    for i, rec in enumerate(data):
-        print(f"  {i+1}. {rec.name}")
+    names = neat_fitness.get_recording_names()
+    print(f"\nTrack order ({len(names)} files):")
+    for i, name in enumerate(names):
+        print(f"  {i+1}. {name}")
 
     neat_config = neat.Config(
         neat.DefaultGenome,
@@ -86,7 +107,7 @@ def run_training(data_dir: str, save_path: str, config_path: str, generations: i
     pop.add_reporter(stats)
     pop.add_reporter(neat.Checkpointer(50, filename_prefix='neat-checkpoint-'))
 
-    evaluator = GenomeEvaluator(data, cfg, neat_config)
+    evaluator = GenomeEvaluator()
     print(f"\nTheoretical max fitness: {evaluator.theoretical_max:.1f}")
     print(f"Population: {neat_config.pop_size}  Generations: {generations}\n")
 
@@ -99,55 +120,22 @@ def run_training(data_dir: str, save_path: str, config_path: str, generations: i
 
 
 def run_eval(genome_path: str, data_dir: str, config_path: str):
-    cfg = Config()
-    cache_path = Path(data_dir) / "frames.cache"
+    if not neat_fitness.load_data(data_dir):
+        print("Failed to load data!")
+        return
 
     with open(genome_path, 'rb') as f:
         genome = pickle.load(f)
 
-    neat_config = neat.Config(
-        neat.DefaultGenome,
-        neat.DefaultReproduction,
-        neat.DefaultSpeciesSet,
-        neat.DefaultStagnation,
-        config_path,
-    )
+    nodes = [(k, n.bias, n.response, 0.0) for k, n in genome.nodes.items()]
+    conns = [(c.key[0], c.key[1], c.weight, c.enabled, 0)
+             for c in genome.connections.values()]
 
-    net = neat.nn.RecurrentNetwork.create(genome, neat_config)
-    data = load_cache(str(cache_path), cfg.midi_min, cfg.midi_max, cfg.hop_size, cfg.sample_rate)
-    data.sort(key=lambda r: r.name)
-
-    from fitness import build_input
-
-    total_tp = total_fp = total_fn = 0
-    for rec in data:
-        net.reset()
-        tp = fp = fn = 0
-
-        for fi in range(len(rec.frames)):
-            inp = build_input(rec.frames, fi, cfg.pitch_history)
-            out = net.activate(inp.tolist())
-
-            for k in range(cfg.n_outputs):
-                predicted = out[k] >= 0.5
-                target = rec.frame_targets[fi, k] >= 0.5
-                tp += predicted and target
-                fp += predicted and not target
-                fn += not predicted and target
-
-        prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
-        rec_val = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-        f1 = 2 * prec * rec_val / (prec + rec_val) if (prec + rec_val) > 0 else 0.0
-        print(f"{rec.name:40s}  f1={f1:.4f}  prec={prec:.4f}  rec={rec_val:.4f}")
-
-        total_tp += tp
-        total_fp += fp
-        total_fn += fn
-
-    prec = total_tp / (total_tp + total_fp) if (total_tp + total_fp) > 0 else 0.0
-    rec_val = total_tp / (total_tp + total_fn) if (total_tp + total_fn) > 0 else 0.0
-    f1 = 2 * prec * rec_val / (prec + rec_val) if (prec + rec_val) > 0 else 0.0
-    print(f"\nOverall: f1={f1:.4f}  prec={prec:.4f}  rec={rec_val:.4f}")
+    result = neat_fitness.evaluate_genome(nodes, conns)
+    print(f"Fitness: {result['fitness']:.1f}")
+    print(f"Files completed: {result['files_completed']}/{result['total_files']}")
+    print(f"Frames: {result['frames_processed']}/{result['total_frames']}")
+    print(f"Avg accuracy: {result['avg_accuracy']:.4f}")
 
 
 def main():
