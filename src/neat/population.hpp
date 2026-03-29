@@ -31,12 +31,16 @@ struct Population {
     // Auto-tuning: stagnation-responsive mutation boost
     float                global_best_fitness = 0.0f;
     int                  global_stagnation   = 0;
+    int                  gens_since_rotation = 100;
 
     explicit Population(NeatConfig cfg, uint64_t seed = 42);
 
     // Reconstruct a Population from a saved population file.
     // Rebuilds innovation state from the genomes and re-speciates.
     static Population from_file(const std::string& path, NeatConfig cfg, uint64_t seed = 42);
+
+    // Call after rotating the track to enter addition-only mode for 100 gens.
+    void signal_rotation() { gens_since_rotation = 0; }
 
     // Run the full evolutionary loop.
     // on_generation called at end of each generation with (gen, best_fitness, best_genome).

@@ -218,6 +218,8 @@ static int cmd_train(const std::vector<std::string>& args) {
                 std::cout << " " << data[i].name;
             std::cout << "\n";
 
+            pop.signal_rotation();
+
             // New track = new fitness landscape.  Reset stagnation and baseline
             // so the boost backs off and the population adapts to the new order.
             pop.global_stagnation   = 0;

@@ -88,6 +88,7 @@ void Population::evolve(FitnessFn fit_fn,
 void Population::step(FitnessFn fit_fn) {
     innov.reset_generation();
     evaluate(fit_fn);
+    ++gens_since_rotation;
 
     // Track global stagnation for auto-tuning
     float current_best = best_genome().fitness;
@@ -242,29 +243,40 @@ int Population::pick_parent_index(const Species& sp) const {
 }
 
 Genome Population::make_offspring(const Species& sp, std::mt19937& local_rng) {
-    std::uniform_real_distribution<float> unit(0.0f, 1.0f);
+     std::uniform_real_distribution<float> unit(0.0f, 1.0f);
 
-    if (unit(local_rng) < cfg.crossover_rate && sp.member_indices.size() > 1) {
-        int idx1 = pick_parent_index(sp);
-        int idx2 = pick_parent_index(sp);
-        // Ensure different parents
-        for (int t = 0; t < 5 && idx2 == idx1; ++t) idx2 = pick_parent_index(sp);
+     Genome child;
 
-        const Genome* p1 = &genomes[idx1];
-        const Genome* p2 = &genomes[idx2];
-        if (p1->fitness < p2->fitness) std::swap(p1, p2);
+     if (unit(local_rng) < cfg.crossover_rate && sp.member_indices.size() > 1) {
+         int idx1 = pick_parent_index(sp);
+         int idx2 = pick_parent_index(sp);
+         // Ensure different parents
+         for (int t = 0; t < 5 && idx2 == idx1; ++t) idx2 = pick_parent_index(sp);
 
-        Genome child = Genome::crossover(*p1, *p2, next_genome_id++, local_rng);
-        child.mutate(cfg, innov, local_rng);
-        return child;
+         const Genome* p1 = &genomes[idx1];
+         const Genome* p2 = &genomes[idx2];
+         if (p1->fitness < p2->fitness) std::swap(p1, p2);
+
+        child = Genome::crossover(*p1, *p2, next_genome_id++, local_rng);
+     } else {
+        int idx = pick_parent_index(sp);
+        child   = genomes[idx];
+        child.id = next_genome_id++;
+     }
+
+    // Addition-only mode for 100 gens after track rotation:
+    // freeze existing weights, no toggle — only structural additions allowed.
+    if (gens_since_rotation < 100) {
+        if (unit(local_rng) < cfg.add_conn_rate)
+            child.mutate_add_connection(cfg, innov, local_rng);
+        if (unit(local_rng) < cfg.add_node_rate)
+            child.mutate_add_node(cfg, innov, local_rng);
     } else {
-        int    idx   = pick_parent_index(sp);
-        Genome child = genomes[idx];
-        child.id     = next_genome_id++;
         child.mutate(cfg, innov, local_rng);
-        return child;
     }
-}
+
+    return child;
+ }
 
 void Population::reproduce() {
     // Cull stagnant species (keep at least 2, never cull the species
