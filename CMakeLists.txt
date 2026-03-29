@@ -53,7 +53,10 @@ pybind11_add_module(neat_fitness
     audio/processing.cpp
 )
 
-target_include_directories(neat_fitness PRIVATE ${CMAKE_SOURCE_DIR})
+target_include_directories(neat_fitness PRIVATE ${CMAKE_SOURCE_DIR}
+    ${SNDFILE_INCLUDE_DIRS}
+    ${rtcqt_SOURCE_DIR}/include
+)
 target_link_libraries(neat_fitness PRIVATE sndfile)
 
 option(BUILD_BENCH "Build micro-benchmark" OFF)
