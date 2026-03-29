@@ -41,7 +41,7 @@ target_link_libraries(neat_detector PRIVATE
     ${SNDFILE_LIBRARIES}
     nlohmann_json::nlohmann_json
 )
-target_compile_options(neat_detector PRIVATE -O3 -ffast-math -march=native -Wall -Wextra)
+target_compile_options(neat_detector PRIVATE -O3 -ffast-math -flto -march=native -Wall -Wextra)
 
 option(BUILD_BENCH "Build micro-benchmark" OFF)
 if(BUILD_BENCH)
