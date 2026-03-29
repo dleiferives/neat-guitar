@@ -1,0 +1,3059 @@
+[cache] Loading from "data/frames.cache"...
+[cache] Loaded 360 recordings from data/frames.cache
+Network: 165 inputs, 49 outputs (40-88 MIDI)
+Population: 1000  Generations: 10000000
+
+Gen 1  best=0.266046  species=1  nodes=214  conns=146
+Gen 2  best=0.304217  species=1  nodes=214  conns=147
+[cache] Loading from "data/frames.cache"...
+[cache] Loaded 360 recordings from data/frames.cache
+Network: 165 inputs, 49 outputs (40-88 MIDI)
+Population: 1000  Generations: 10000000
+
+Gen 1  best=0.319487  species=1  nodes=214  conns=147
+Gen 2  best=0.315614  species=1  nodes=214  conns=147
+Gen 3  best=0.315374  species=1  nodes=214  conns=146
+Gen 4  best=0.339693  species=2  nodes=214  conns=146
+Gen 5  best=0.319903  species=2  nodes=214  conns=147
+Gen 6  best=0.328577  species=2  nodes=214  conns=147
+Gen 7  best=0.330478  species=2  nodes=215  conns=147
+Gen 8  best=0.327621  species=3  nodes=214  conns=147
+Gen 9  best=0.357457  species=5  nodes=216  conns=148
+Gen 10  best=0.349407  species=7  nodes=216  conns=148
+  [saved -> bigun_genome.txt]
+Gen 11  best=0.351694  species=6  nodes=217  conns=149
+Gen 12  best=0.337739  species=7  nodes=217  conns=148
+Gen 13  best=0.340751  species=7  nodes=217  conns=147
+Gen 14  best=0.33445  species=7  nodes=217  conns=148
+Gen 15  best=0.350633  species=7  nodes=221  conns=150
+Gen 16  best=0.350635  species=7  nodes=221  conns=149
+Gen 17  best=0.35806  species=7  nodes=224  conns=148
+Gen 18  best=0.347602  species=7  nodes=221  conns=147
+Gen 19  best=0.340911  species=7  nodes=219  conns=147
+Gen 20  best=0.34302  species=7  nodes=219  conns=148
+  [saved -> bigun_genome.txt]
+Gen 21  best=0.33496  species=7  nodes=221  conns=149
+Gen 22  best=0.320172  species=7  nodes=229  conns=150
+Gen 23  best=0.346996  species=7  nodes=222  conns=153
+Gen 24  best=0.319868  species=6  nodes=222  conns=151
+Gen 25  best=0.340026  species=6  nodes=231  conns=152
+Gen 26  best=0.368292  species=6  nodes=223  conns=149
+Gen 27  best=0.335247  species=6  nodes=221  conns=151
+Gen 28  best=0.343742  species=15  nodes=232  conns=152
+Gen 29  best=0.343012  species=6  nodes=232  conns=154
+Gen 30  best=0.335735  species=16  nodes=232  conns=151
+  [saved -> bigun_genome.txt]
+Gen 31  best=0.318254  species=6  nodes=232  conns=151
+Gen 32  best=0.322815  species=12  nodes=233  conns=153
+Gen 33  best=0.307842  species=5  nodes=222  conns=152
+Gen 34  best=0.343011  species=6  nodes=234  conns=155
+Gen 35  best=0.318268  species=8  nodes=231  conns=151
+Gen 36  best=0.332292  species=9  nodes=230  conns=153
+Gen 37  best=0.337866  species=9  nodes=231  conns=154
+Gen 38  best=0.342449  species=9  nodes=236  conns=158
+Gen 39  best=0.354794  species=11  nodes=235  conns=156
+Gen 40  best=0.351788  species=5  nodes=232  conns=154
+  [saved -> bigun_genome.txt]
+Gen 41  best=0.334333  species=12  nodes=236  conns=158
+Gen 42  best=0.343147  species=5  nodes=237  conns=158
+Gen 43  best=0.335597  species=12  nodes=239  conns=156
+Gen 44  best=0.34073  species=5  nodes=238  conns=158
+Gen 45  best=0.346346  species=15  nodes=233  conns=153
+Gen 46  best=0.324185  species=5  nodes=224  conns=153
+Gen 47  best=0.333647  species=15  nodes=234  conns=156
+Gen 48  best=0.359998  species=5  nodes=237  conns=159
+Gen 49  best=0.32648  species=18  nodes=229  conns=158
+Gen 50  best=0.325018  species=5  nodes=241  conns=159
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 51  best=0.330716  species=17  nodes=245  conns=159
+Gen 52  best=0.324102  species=6  nodes=238  conns=160
+Gen 53  best=0.339718  species=16  nodes=246  conns=157
+Gen 54  best=0.329646  species=4  nodes=235  conns=156
+Gen 55  best=0.348737  species=12  nodes=239  conns=160
+Gen 56  best=0.339022  species=5  nodes=236  conns=153
+Gen 57  best=0.331827  species=11  nodes=236  conns=154
+Gen 58  best=0.319487  species=4  nodes=236  conns=158
+Gen 59  best=0.357769  species=10  nodes=237  conns=156
+Gen 60  best=0.334195  species=10  nodes=236  conns=153
+  [saved -> bigun_genome.txt]
+Gen 61  best=0.368648  species=11  nodes=239  conns=153
+Gen 62  best=0.342576  species=4  nodes=244  conns=160
+Gen 63  best=0.348156  species=10  nodes=236  conns=158
+Gen 64  best=0.358805  species=5  nodes=238  conns=153
+Gen 65  best=0.33038  species=17  nodes=247  conns=161
+Gen 66  best=0.354111  species=6  nodes=239  conns=158
+Gen 67  best=0.333739  species=19  nodes=242  conns=160
+Gen 68  best=0.328829  species=5  nodes=244  conns=153
+Gen 69  best=0.353146  species=17  nodes=237  conns=157
+Gen 70  best=0.332714  species=7  nodes=252  conns=165
+  [saved -> bigun_genome.txt]
+Gen 71  best=0.357194  species=19  nodes=247  conns=156
+Gen 72  best=0.336227  species=7  nodes=253  conns=165
+Gen 73  best=0.339417  species=18  nodes=247  conns=162
+Gen 74  best=0.32983  species=5  nodes=243  conns=162
+Gen 75  best=0.341021  species=19  nodes=255  conns=167
+Gen 76  best=0.312445  species=5  nodes=244  conns=157
+Gen 77  best=0.322215  species=17  nodes=255  conns=162
+Gen 78  best=0.345748  species=5  nodes=245  conns=157
+Gen 79  best=0.325901  species=15  nodes=252  conns=158
+Gen 80  best=0.34661  species=5  nodes=256  conns=168
+  [saved -> bigun_genome.txt]
+Gen 81  best=0.351555  species=23  nodes=258  conns=167
+Gen 82  best=0.355458  species=4  nodes=256  conns=164
+Gen 83  best=0.354268  species=18  nodes=256  conns=164
+Gen 84  best=0.344174  species=4  nodes=258  conns=164
+Gen 85  best=0.345458  species=18  nodes=254  conns=158
+Gen 86  best=0.346926  species=5  nodes=254  conns=159
+Gen 87  best=0.329287  species=19  nodes=256  conns=160
+Gen 88  best=0.324795  species=5  nodes=258  conns=166
+Gen 89  best=0.329446  species=18  nodes=254  conns=157
+Gen 90  best=0.333553  species=6  nodes=254  conns=163
+  [saved -> bigun_genome.txt]
+Gen 91  best=0.340474  species=20  nodes=255  conns=157
+Gen 92  best=0.336015  species=7  nodes=255  conns=157
+Gen 93  best=0.337698  species=19  nodes=262  conns=164
+Gen 94  best=0.342645  species=6  nodes=262  conns=162
+Gen 95  best=0.308754  species=17  nodes=262  conns=162
+Gen 96  best=0.32847  species=8  nodes=261  conns=165
+Gen 97  best=0.322176  species=16  nodes=259  conns=159
+Gen 98  best=0.320081  species=6  nodes=260  conns=159
+Gen 99  best=0.329364  species=18  nodes=266  conns=162
+Gen 100  best=0.322398  species=8  nodes=260  conns=159
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 101  best=0.3187  species=16  nodes=269  conns=160
+Gen 102  best=0.348964  species=5  nodes=268  conns=163
+Gen 103  best=0.352978  species=18  nodes=262  conns=166
+Gen 104  best=0.336639  species=7  nodes=262  conns=166
+Gen 105  best=0.334894  species=18  nodes=264  conns=172
+Gen 106  best=0.347307  species=6  nodes=264  conns=166
+Gen 107  best=0.337012  species=18  nodes=270  conns=166
+Gen 108  best=0.328128  species=9  nodes=266  conns=169
+Gen 109  best=0.337507  species=17  nodes=266  conns=169
+Gen 110  best=0.332659  species=6  nodes=268  conns=173
+  [saved -> bigun_genome.txt]
+Gen 111  best=0.31924  species=19  nodes=265  conns=165
+Gen 112  best=0.321898  species=8  nodes=274  conns=166
+Gen 113  best=0.344887  species=21  nodes=273  conns=167
+Gen 114  best=0.319443  species=7  nodes=276  conns=165
+Gen 115  best=0.325714  species=23  nodes=272  conns=171
+Gen 116  best=0.329131  species=6  nodes=275  conns=172
+Gen 117  best=0.333029  species=19  nodes=273  conns=166
+Gen 118  best=0.335789  species=8  nodes=277  conns=178
+Gen 119  best=0.32752  species=13  nodes=278  conns=163
+Gen 120  best=0.320516  species=6  nodes=275  conns=168
+  [saved -> bigun_genome.txt]
+Gen 121  best=0.339476  species=9  nodes=279  conns=170
+Gen 122  best=0.32447  species=10  nodes=279  conns=170
+Gen 123  best=0.348747  species=10  nodes=279  conns=176
+Gen 124  best=0.320366  species=10  nodes=279  conns=168
+Gen 125  best=0.325743  species=11  nodes=283  conns=172
+Gen 126  best=0.336261  species=6  nodes=280  conns=170
+Gen 127  best=0.322113  species=11  nodes=280  conns=176
+Gen 128  best=0.329456  species=4  nodes=281  conns=169
+Gen 129  best=0.336021  species=9  nodes=282  conns=176
+Gen 130  best=0.353642  species=8  nodes=279  conns=168
+  [saved -> bigun_genome.txt]
+Gen 131  best=0.337107  species=8  nodes=278  conns=169
+Gen 132  best=0.338675  species=12  nodes=282  conns=177
+Gen 133  best=0.328429  species=6  nodes=283  conns=170
+Gen 134  best=0.342393  species=10  nodes=280  conns=170
+Gen 135  best=0.336266  species=11  nodes=283  conns=171
+Gen 136  best=0.366916  species=6  nodes=283  conns=171
+Gen 137  best=0.336363  species=11  nodes=281  conns=169
+Gen 138  best=0.322318  species=4  nodes=283  conns=171
+Gen 139  best=0.32415  species=12  nodes=284  conns=172
+Gen 140  best=0.343038  species=4  nodes=283  conns=169
+  [saved -> bigun_genome.txt]
+Gen 141  best=0.328244  species=13  nodes=284  conns=172
+Gen 142  best=0.324763  species=4  nodes=288  conns=175
+Gen 143  best=0.348689  species=17  nodes=284  conns=169
+Gen 144  best=0.336918  species=4  nodes=289  conns=171
+Gen 145  best=0.361985  species=16  nodes=291  conns=177
+Gen 146  best=0.339238  species=4  nodes=290  conns=174
+Gen 147  best=0.364795  species=16  nodes=295  conns=175
+Gen 148  best=0.333568  species=4  nodes=293  conns=169
+Gen 149  best=0.331387  species=15  nodes=294  conns=172
+Gen 150  best=0.321453  species=5  nodes=283  conns=173
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 151  best=0.3432  species=18  nodes=296  conns=174
+Gen 152  best=0.340855  species=5  nodes=293  conns=171
+Gen 153  best=0.333702  species=16  nodes=290  conns=167
+Gen 154  best=0.340153  species=4  nodes=285  conns=171
+Gen 155  best=0.325906  species=20  nodes=294  conns=171
+Gen 156  best=0.31327  species=5  nodes=291  conns=167
+Gen 157  best=0.336701  species=19  nodes=294  conns=171
+Gen 158  best=0.341775  species=5  nodes=304  conns=177
+Gen 159  best=0.350621  species=20  nodes=303  conns=180
+Gen 160  best=0.327436  species=5  nodes=292  conns=170
+  [saved -> bigun_genome.txt]
+Gen 161  best=0.317327  species=18  nodes=287  conns=170
+Gen 162  best=0.3308  species=5  nodes=292  conns=168
+Gen 163  best=0.336237  species=18  nodes=310  conns=179
+Gen 164  best=0.356411  species=5  nodes=306  conns=180
+Gen 165  best=0.326733  species=22  nodes=307  conns=174
+Gen 166  best=0.346496  species=5  nodes=290  conns=177
+Gen 167  best=0.346337  species=25  nodes=293  conns=170
+Gen 168  best=0.324574  species=7  nodes=310  conns=182
+Gen 169  best=0.310995  species=25  nodes=310  conns=182
+Gen 170  best=0.342118  species=6  nodes=293  conns=174
+  [saved -> bigun_genome.txt]
+Gen 171  best=0.32349  species=27  nodes=296  conns=172
+Gen 172  best=0.328706  species=8  nodes=320  conns=182
+Gen 173  best=0.356389  species=23  nodes=315  conns=185
+Gen 174  best=0.318551  species=6  nodes=315  conns=175
+Gen 175  best=0.339112  species=16  nodes=296  conns=172
+Gen 176  best=0.338535  species=5  nodes=321  conns=175
+Gen 177  best=0.344754  species=21  nodes=325  conns=175
+Gen 178  best=0.345601  species=8  nodes=298  conns=172
+Gen 179  best=0.334838  species=23  nodes=327  conns=184
+Gen 180  best=0.363987  species=8  nodes=327  conns=184
+  [saved -> bigun_genome.txt]
+Gen 181  best=0.34811  species=22  nodes=325  conns=175
+Gen 182  best=0.323962  species=8  nodes=296  conns=181
+Gen 183  best=0.333108  species=21  nodes=326  conns=176
+Gen 184  best=0.360218  species=8  nodes=329  conns=182
+Gen 185  best=0.336013  species=23  nodes=330  conns=182
+Gen 186  best=0.329188  species=8  nodes=333  conns=184
+Gen 187  best=0.332692  species=22  nodes=305  conns=179
+Gen 188  best=0.35946  species=7  nodes=304  conns=181
+Gen 189  best=0.369982  species=23  nodes=333  conns=184
+Gen 190  best=0.346363  species=8  nodes=338  conns=179
+  [saved -> bigun_genome.txt]
+Gen 191  best=0.317186  species=29  nodes=306  conns=180
+Gen 192  best=0.369277  species=9  nodes=340  conns=179
+Gen 193  best=0.338573  species=23  nodes=334  conns=186
+Gen 194  best=0.339416  species=10  nodes=334  conns=186
+Gen 195  best=0.362307  species=10  nodes=334  conns=186
+Gen 196  best=0.368219  species=8  nodes=305  conns=181
+Gen 197  best=0.333995  species=17  nodes=308  conns=184
+Gen 198  best=0.335805  species=11  nodes=344  conns=187
+Gen 199  best=0.323983  species=3  nodes=334  conns=177
+Gen 200  best=0.348348  species=7  nodes=308  conns=180
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 201  best=0.333831  species=18  nodes=347  conns=188
+Gen 202  best=0.337537  species=7  nodes=338  conns=186
+Gen 203  best=0.34928  species=16  nodes=346  conns=187
+Gen 204  best=0.321993  species=6  nodes=345  conns=189
+Gen 205  best=0.353035  species=13  nodes=314  conns=185
+Gen 206  best=0.338678  species=6  nodes=345  conns=189
+Gen 207  best=0.350844  species=13  nodes=314  conns=185
+Gen 208  best=0.3531  species=6  nodes=314  conns=185
+Gen 209  best=0.33648  species=15  nodes=354  conns=188
+Gen 210  best=0.326004  species=8  nodes=354  conns=178
+  [saved -> bigun_genome.txt]
+Gen 211  best=0.3321  species=18  nodes=355  conns=177
+Gen 212  best=0.350148  species=7  nodes=355  conns=177
+Gen 213  best=0.345487  species=18  nodes=355  conns=179
+Gen 214  best=0.353049  species=8  nodes=355  conns=178
+Gen 215  best=0.338026  species=18  nodes=347  conns=191
+Gen 216  best=0.340934  species=7  nodes=359  conns=188
+Gen 217  best=0.328317  species=19  nodes=350  conns=192
+Gen 218  best=0.343171  species=6  nodes=350  conns=191
+Gen 219  best=0.321844  species=13  nodes=357  conns=178
+Gen 220  best=0.334645  species=7  nodes=350  conns=191
+  [saved -> bigun_genome.txt]
+Gen 221  best=0.325368  species=15  nodes=363  conns=188
+Gen 222  best=0.327084  species=6  nodes=358  conns=181
+Gen 223  best=0.335028  species=14  nodes=362  conns=188
+Gen 224  best=0.337602  species=6  nodes=317  conns=188
+Gen 225  best=0.333755  species=18  nodes=353  conns=191
+Gen 226  best=0.338043  species=6  nodes=364  conns=180
+Gen 227  best=0.325851  species=16  nodes=317  conns=188
+Gen 228  best=0.332135  species=6  nodes=369  conns=181
+Gen 229  best=0.339581  species=16  nodes=354  conns=198
+Gen 230  best=0.333533  species=6  nodes=369  conns=191
+  [saved -> bigun_genome.txt]
+Gen 231  best=0.330297  species=15  nodes=366  conns=181
+Gen 232  best=0.343378  species=5  nodes=369  conns=190
+Gen 233  best=0.327464  species=15  nodes=354  conns=196
+Gen 234  best=0.325366  species=5  nodes=353  conns=192
+Gen 235  best=0.334005  species=12  nodes=318  conns=193
+Gen 236  best=0.336107  species=5  nodes=356  conns=200
+Gen 237  best=0.347393  species=10  nodes=355  conns=192
+Gen 238  best=0.318623  species=11  nodes=355  conns=198
+Gen 239  best=0.344047  species=5  nodes=318  conns=188
+Gen 240  best=0.331603  species=13  nodes=356  conns=192
+  [saved -> bigun_genome.txt]
+Gen 241  best=0.358199  species=6  nodes=373  conns=181
+Gen 242  best=0.325004  species=13  nodes=356  conns=194
+Gen 243  best=0.346322  species=5  nodes=356  conns=194
+Gen 244  best=0.330762  species=15  nodes=357  conns=201
+Gen 245  best=0.341821  species=6  nodes=356  conns=200
+Gen 246  best=0.330778  species=15  nodes=322  conns=189
+Gen 247  best=0.326377  species=4  nodes=322  conns=188
+Gen 248  best=0.359295  species=10  nodes=358  conns=200
+Gen 249  best=0.356243  species=13  nodes=359  conns=200
+Gen 250  best=0.346457  species=4  nodes=359  conns=194
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 251  best=0.346116  species=11  nodes=360  conns=194
+Gen 252  best=0.329921  species=4  nodes=384  conns=189
+Gen 253  best=0.337977  species=13  nodes=384  conns=183
+Gen 254  best=0.341226  species=3  nodes=386  conns=189
+Gen 255  best=0.321895  species=12  nodes=365  conns=206
+Gen 256  best=0.324644  species=3  nodes=387  conns=182
+Gen 257  best=0.324704  species=18  nodes=388  conns=189
+Gen 258  best=0.328491  species=3  nodes=364  conns=194
+Gen 259  best=0.344365  species=19  nodes=390  conns=190
+Gen 260  best=0.323953  species=6  nodes=367  conns=201
+  [saved -> bigun_genome.txt]
+Gen 261  best=0.345364  species=19  nodes=390  conns=184
+Gen 262  best=0.318992  species=5  nodes=395  conns=191
+Gen 263  best=0.363471  species=21  nodes=371  conns=202
+Gen 264  best=0.34092  species=4  nodes=368  conns=204
+Gen 265  best=0.333233  species=28  nodes=376  conns=208
+Gen 266  best=0.32521  species=6  nodes=397  conns=191
+Gen 267  best=0.334162  species=25  nodes=372  conns=198
+Gen 268  best=0.339301  species=5  nodes=400  conns=185
+Gen 269  best=0.341642  species=23  nodes=403  conns=186
+Gen 270  best=0.33623  species=5  nodes=374  conns=208
+  [saved -> bigun_genome.txt]
+Gen 271  best=0.341673  species=22  nodes=376  conns=209
+Gen 272  best=0.334424  species=4  nodes=397  conns=187
+Gen 273  best=0.342497  species=22  nodes=404  conns=189
+Gen 274  best=0.361801  species=5  nodes=405  conns=188
+Gen 275  best=0.332298  species=28  nodes=390  conns=202
+Gen 276  best=0.323456  species=6  nodes=405  conns=185
+Gen 277  best=0.331444  species=25  nodes=405  conns=187
+Gen 278  best=0.357058  species=6  nodes=381  conns=194
+Gen 279  best=0.341787  species=22  nodes=408  conns=188
+Gen 280  best=0.350043  species=6  nodes=393  conns=202
+  [saved -> bigun_genome.txt]
+Gen 281  best=0.338061  species=28  nodes=393  conns=204
+Gen 282  best=0.323969  species=6  nodes=411  conns=188
+Gen 283  best=0.346645  species=28  nodes=396  conns=212
+Gen 284  best=0.350517  species=5  nodes=407  conns=195
+Gen 285  best=0.3337  species=31  nodes=399  conns=202
+Gen 286  best=0.342649  species=5  nodes=411  conns=193
+Gen 287  best=0.352825  species=27  nodes=414  conns=191
+Gen 288  best=0.345261  species=6  nodes=408  conns=187
+Gen 289  best=0.346967  species=24  nodes=394  conns=204
+Gen 290  best=0.356031  species=6  nodes=416  conns=192
+  [saved -> bigun_genome.txt]
+Gen 291  best=0.323052  species=29  nodes=419  conns=193
+Gen 292  best=0.333841  species=6  nodes=407  conns=198
+Gen 293  best=0.342436  species=29  nodes=419  conns=194
+Gen 294  best=0.365763  species=7  nodes=416  conns=190
+Gen 295  best=0.338315  species=28  nodes=414  conns=214
+Gen 296  best=0.336068  species=11  nodes=424  conns=190
+Gen 297  best=0.334999  species=2  nodes=424  conns=189
+Gen 298  best=0.384014  species=10  nodes=415  conns=209
+Gen 299  best=0.324899  species=11  nodes=410  conns=193
+Gen 300  best=0.340406  species=3  nodes=430  conns=191
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 301  best=0.350808  species=10  nodes=437  conns=191
+Gen 302  best=0.388805  species=11  nodes=429  conns=198
+Gen 303  best=0.33786  species=3  nodes=440  conns=190
+Gen 304  best=0.348328  species=10  nodes=429  conns=198
+Gen 305  best=0.338575  species=8  nodes=438  conns=191
+Gen 306  best=0.347184  species=19  nodes=429  conns=198
+Gen 307  best=0.372573  species=8  nodes=443  conns=194
+Gen 308  best=0.343713  species=18  nodes=442  conns=195
+Gen 309  best=0.350057  species=10  nodes=430  conns=213
+Gen 310  best=0.340734  species=9  nodes=442  conns=190
+  [saved -> bigun_genome.txt]
+Gen 311  best=0.324124  species=16  nodes=452  conns=190
+Gen 312  best=0.345104  species=11  nodes=445  conns=201
+Gen 313  best=0.334429  species=2  nodes=447  conns=199
+Gen 314  best=0.351647  species=5  nodes=449  conns=195
+Gen 315  best=0.368276  species=12  nodes=451  conns=198
+Gen 316  best=0.353385  species=5  nodes=459  conns=198
+Gen 317  best=0.327774  species=15  nodes=457  conns=202
+Gen 318  best=0.325359  species=5  nodes=459  conns=199
+Gen 319  best=0.359257  species=12  nodes=458  conns=199
+Gen 320  best=0.332705  species=6  nodes=464  conns=193
+  [saved -> bigun_genome.txt]
+Gen 321  best=0.364849  species=14  nodes=458  conns=199
+Gen 322  best=0.356662  species=5  nodes=466  conns=198
+Gen 323  best=0.347806  species=14  nodes=469  conns=195
+Gen 324  best=0.37703  species=6  nodes=459  conns=200
+Gen 325  best=0.349136  species=16  nodes=468  conns=191
+Gen 326  best=0.34196  species=5  nodes=459  conns=200
+Gen 327  best=0.336648  species=21  nodes=460  conns=192
+Gen 328  best=0.314571  species=5  nodes=469  conns=196
+Gen 329  best=0.336136  species=20  nodes=472  conns=197
+Gen 330  best=0.342697  species=4  nodes=473  conns=197
+  [saved -> bigun_genome.txt]
+Gen 331  best=0.341943  species=18  nodes=471  conns=200
+Gen 332  best=0.333803  species=4  nodes=462  conns=196
+Gen 333  best=0.378558  species=17  nodes=473  conns=200
+Gen 334  best=0.346989  species=5  nodes=472  conns=196
+Gen 335  best=0.391883  species=21  nodes=475  conns=202
+Gen 336  best=0.336568  species=5  nodes=477  conns=195
+Gen 337  best=0.319797  species=10  nodes=486  conns=200
+Gen 338  best=0.353013  species=2  nodes=462  conns=196
+Gen 339  best=0.335723  species=12  nodes=485  conns=201
+Gen 340  best=0.345513  species=2  nodes=488  conns=201
+  [saved -> bigun_genome.txt]
+Gen 341  best=0.344828  species=21  nodes=480  conns=205
+Gen 342  best=0.35415  species=3  nodes=488  conns=200
+Gen 343  best=0.349915  species=24  nodes=488  conns=202
+Gen 344  best=0.358163  species=4  nodes=483  conns=198
+Gen 345  best=0.367581  species=20  nodes=483  conns=198
+Gen 346  best=0.366732  species=4  nodes=483  conns=202
+Gen 347  best=0.378087  species=25  nodes=493  conns=201
+Gen 348  best=0.326651  species=5  nodes=494  conns=201
+Gen 349  best=0.343887  species=22  nodes=495  conns=201
+Gen 350  best=0.345684  species=6  nodes=491  conns=205
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 351  best=0.368378  species=24  nodes=496  conns=206
+Gen 352  best=0.345497  species=7  nodes=499  conns=204
+Gen 353  best=0.332165  species=22  nodes=497  conns=208
+Gen 354  best=0.349956  species=7  nodes=497  conns=205
+Gen 355  best=0.362016  species=20  nodes=498  conns=207
+Gen 356  best=0.342825  species=6  nodes=494  conns=206
+Gen 357  best=0.336228  species=21  nodes=494  conns=204
+Gen 358  best=0.338983  species=5  nodes=497  conns=204
+Gen 359  best=0.337648  species=24  nodes=495  conns=209
+Gen 360  best=0.342882  species=4  nodes=497  conns=205
+  [saved -> bigun_genome.txt]
+Gen 361  best=0.341191  species=19  nodes=504  conns=201
+Gen 362  best=0.34551  species=4  nodes=511  conns=208
+Gen 363  best=0.364142  species=18  nodes=505  conns=208
+Gen 364  best=0.330411  species=5  nodes=505  conns=208
+Gen 365  best=0.340586  species=20  nodes=504  conns=208
+Gen 366  best=0.340992  species=7  nodes=505  conns=209
+Gen 367  best=0.327945  species=19  nodes=514  conns=210
+Gen 368  best=0.331708  species=4  nodes=511  conns=206
+Gen 369  best=0.343818  species=16  nodes=502  conns=205
+Gen 370  best=0.341045  species=4  nodes=514  conns=204
+  [saved -> bigun_genome.txt]
+Gen 371  best=0.358573  species=18  nodes=501  conns=204
+Gen 372  best=0.338536  species=5  nodes=502  conns=205
+Gen 373  best=0.346387  species=17  nodes=516  conns=210
+Gen 374  best=0.344203  species=5  nodes=511  conns=210
+Gen 375  best=0.348356  species=18  nodes=503  conns=201
+Gen 376  best=0.356369  species=6  nodes=503  conns=205
+Gen 377  best=0.349287  species=22  nodes=520  conns=212
+Gen 378  best=0.347998  species=5  nodes=520  conns=210
+Gen 379  best=0.344428  species=19  nodes=507  conns=207
+Gen 380  best=0.343706  species=5  nodes=530  conns=211
+  [saved -> bigun_genome.txt]
+Gen 381  best=0.352724  species=19  nodes=530  conns=211
+Gen 382  best=0.337468  species=6  nodes=533  conns=205
+Gen 383  best=0.350178  species=22  nodes=533  conns=209
+Gen 384  best=0.357945  species=8  nodes=539  conns=205
+Gen 385  best=0.366084  species=21  nodes=539  conns=205
+Gen 386  best=0.332239  species=8  nodes=538  conns=205
+Gen 387  best=0.346623  species=18  nodes=528  conns=213
+Gen 388  best=0.344104  species=8  nodes=514  conns=211
+Gen 389  best=0.345303  species=23  nodes=540  conns=206
+Gen 390  best=0.348843  species=7  nodes=542  conns=206
+  [saved -> bigun_genome.txt]
+Gen 391  best=0.377399  species=23  nodes=515  conns=205
+Gen 392  best=0.345295  species=6  nodes=544  conns=211
+Gen 393  best=0.332014  species=21  nodes=512  conns=205
+Gen 394  best=0.349669  species=8  nodes=542  conns=206
+Gen 395  best=0.353825  species=23  nodes=512  conns=205
+Gen 396  best=0.373951  species=8  nodes=516  conns=205
+Gen 397  best=0.366721  species=19  nodes=530  conns=217
+Gen 398  best=0.352884  species=7  nodes=518  conns=205
+Gen 399  best=0.333568  species=11  nodes=531  conns=217
+Gen 400  best=0.342782  species=7  nodes=545  conns=213
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 401  best=0.347852  species=13  nodes=519  conns=211
+Gen 402  best=0.344436  species=8  nodes=524  conns=214
+Gen 403  best=0.36219  species=15  nodes=549  conns=213
+Gen 404  best=0.349251  species=8  nodes=549  conns=215
+Gen 405  best=0.333996  species=17  nodes=549  conns=213
+Gen 406  best=0.343836  species=6  nodes=525  conns=215
+Gen 407  best=0.352761  species=18  nodes=526  conns=215
+Gen 408  best=0.351143  species=7  nodes=526  conns=214
+Gen 409  best=0.375827  species=17  nodes=549  conns=209
+Gen 410  best=0.363526  species=7  nodes=527  conns=214
+  [saved -> bigun_genome.txt]
+Gen 411  best=0.342743  species=19  nodes=536  conns=217
+Gen 412  best=0.34211  species=6  nodes=552  conns=214
+Gen 413  best=0.328051  species=18  nodes=554  conns=207
+Gen 414  best=0.343788  species=7  nodes=554  conns=213
+Gen 415  best=0.358457  species=17  nodes=555  conns=215
+Gen 416  best=0.338013  species=9  nodes=558  conns=215
+Gen 417  best=0.330908  species=16  nodes=560  conns=219
+Gen 418  best=0.339824  species=6  nodes=560  conns=218
+Gen 419  best=0.342153  species=18  nodes=534  conns=216
+Gen 420  best=0.375981  species=6  nodes=529  conns=211
+  [saved -> bigun_genome.txt]
+Gen 421  best=0.341362  species=18  nodes=534  conns=218
+Gen 422  best=0.340757  species=6  nodes=529  conns=212
+Gen 423  best=0.358443  species=12  nodes=566  conns=218
+Gen 424  best=0.347626  species=6  nodes=530  conns=214
+Gen 425  best=0.351109  species=12  nodes=529  conns=212
+Gen 426  best=0.363125  species=6  nodes=536  conns=218
+Gen 427  best=0.347027  species=18  nodes=566  conns=219
+Gen 428  best=0.361263  species=6  nodes=569  conns=213
+Gen 429  best=0.3628  species=18  nodes=566  conns=217
+Gen 430  best=0.346564  species=7  nodes=568  conns=219
+  [saved -> bigun_genome.txt]
+Gen 431  best=0.329529  species=22  nodes=537  conns=220
+Gen 432  best=0.353143  species=9  nodes=571  conns=221
+Gen 433  best=0.34705  species=20  nodes=572  conns=217
+Gen 434  best=0.329957  species=7  nodes=573  conns=217
+Gen 435  best=0.327576  species=24  nodes=576  conns=212
+Gen 436  best=0.339992  species=7  nodes=580  conns=215
+Gen 437  best=0.347017  species=25  nodes=540  conns=219
+Gen 438  best=0.346991  species=8  nodes=541  conns=221
+Gen 439  best=0.338208  species=21  nodes=580  conns=222
+Gen 440  best=0.347352  species=8  nodes=584  conns=221
+  [saved -> bigun_genome.txt]
+Gen 441  best=0.331609  species=22  nodes=591  conns=217
+Gen 442  best=0.336706  species=8  nodes=581  conns=219
+Gen 443  best=0.356375  species=20  nodes=583  conns=215
+Gen 444  best=0.346237  species=7  nodes=580  conns=218
+Gen 445  best=0.380193  species=14  nodes=540  conns=220
+Gen 446  best=0.337451  species=7  nodes=542  conns=220
+Gen 447  best=0.350285  species=15  nodes=592  conns=215
+Gen 448  best=0.332298  species=6  nodes=542  conns=220
+Gen 449  best=0.338526  species=17  nodes=543  conns=220
+Gen 450  best=0.354297  species=6  nodes=595  conns=217
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 451  best=0.350318  species=19  nodes=595  conns=217
+Gen 452  best=0.339235  species=6  nodes=598  conns=220
+Gen 453  best=0.368661  species=23  nodes=593  conns=222
+Gen 454  best=0.353836  species=7  nodes=599  conns=227
+Gen 455  best=0.344906  species=20  nodes=546  conns=220
+Gen 456  best=0.368403  species=8  nodes=546  conns=221
+Gen 457  best=0.332935  species=22  nodes=599  conns=227
+Gen 458  best=0.350662  species=7  nodes=608  conns=220
+Gen 459  best=0.349407  species=18  nodes=610  conns=225
+Gen 460  best=0.336738  species=4  nodes=608  conns=224
+  [saved -> bigun_genome.txt]
+Gen 461  best=0.344595  species=19  nodes=550  conns=220
+Gen 462  best=0.340597  species=6  nodes=608  conns=219
+Gen 463  best=0.353525  species=21  nodes=549  conns=220
+Gen 464  best=0.348486  species=5  nodes=621  conns=221
+Gen 465  best=0.332583  species=20  nodes=552  conns=220
+Gen 466  best=0.335736  species=5  nodes=551  conns=220
+Gen 467  best=0.345468  species=21  nodes=615  conns=229
+Gen 468  best=0.344659  species=5  nodes=619  conns=221
+Gen 469  best=0.348504  species=13  nodes=554  conns=220
+Gen 470  best=0.352737  species=6  nodes=619  conns=226
+  [saved -> bigun_genome.txt]
+Gen 471  best=0.392647  species=11  nodes=554  conns=220
+Gen 472  best=0.356505  species=6  nodes=554  conns=220
+Gen 473  best=0.333854  species=11  nodes=554  conns=220
+Gen 474  best=0.365101  species=5  nodes=628  conns=226
+Gen 475  best=0.347944  species=14  nodes=556  conns=220
+Gen 476  best=0.351576  species=5  nodes=629  conns=226
+Gen 477  best=0.337989  species=15  nodes=630  conns=228
+Gen 478  best=0.359956  species=5  nodes=636  conns=228
+Gen 479  best=0.344894  species=20  nodes=632  conns=226
+Gen 480  best=0.353739  species=6  nodes=632  conns=226
+  [saved -> bigun_genome.txt]
+Gen 481  best=0.364776  species=18  nodes=638  conns=230
+Gen 482  best=0.338164  species=7  nodes=629  conns=226
+Gen 483  best=0.346482  species=15  nodes=629  conns=227
+Gen 484  best=0.347155  species=5  nodes=634  conns=222
+Gen 485  best=0.352257  species=14  nodes=645  conns=224
+Gen 486  best=0.365054  species=4  nodes=638  conns=226
+Gen 487  best=0.352501  species=17  nodes=642  conns=223
+Gen 488  best=0.337464  species=4  nodes=651  conns=226
+Gen 489  best=0.354613  species=20  nodes=645  conns=224
+Gen 490  best=0.357846  species=5  nodes=645  conns=224
+  [saved -> bigun_genome.txt]
+Gen 491  best=0.342117  species=21  nodes=646  conns=225
+Gen 492  best=0.339785  species=6  nodes=654  conns=227
+Gen 493  best=0.34203  species=25  nodes=650  conns=228
+Gen 494  best=0.355371  species=6  nodes=653  conns=231
+Gen 495  best=0.355903  species=23  nodes=646  conns=228
+Gen 496  best=0.364143  species=5  nodes=656  conns=228
+Gen 497  best=0.35985  species=22  nodes=655  conns=229
+Gen 498  best=0.342672  species=5  nodes=653  conns=231
+Gen 499  best=0.35106  species=21  nodes=653  conns=231
+Gen 500  best=0.358455  species=5  nodes=658  conns=228
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 501  best=0.344171  species=19  nodes=658  conns=227
+Gen 502  best=0.353264  species=6  nodes=655  conns=226
+Gen 503  best=0.341596  species=19  nodes=659  conns=228
+Gen 504  best=0.364213  species=6  nodes=660  conns=228
+Gen 505  best=0.350754  species=22  nodes=661  conns=234
+Gen 506  best=0.350174  species=6  nodes=661  conns=229
+Gen 507  best=0.344612  species=21  nodes=661  conns=229
+Gen 508  best=0.362592  species=6  nodes=671  conns=230
+Gen 509  best=0.361955  species=21  nodes=658  conns=228
+Gen 510  best=0.346018  species=6  nodes=667  conns=232
+  [saved -> bigun_genome.txt]
+Gen 511  best=0.353524  species=24  nodes=675  conns=235
+Gen 512  best=0.354944  species=6  nodes=669  conns=233
+Gen 513  best=0.34743  species=25  nodes=668  conns=234
+Gen 514  best=0.346111  species=6  nodes=670  conns=232
+Gen 515  best=0.355263  species=23  nodes=667  conns=229
+Gen 516  best=0.341245  species=5  nodes=676  conns=231
+Gen 517  best=0.340328  species=20  nodes=669  conns=227
+Gen 518  best=0.340805  species=6  nodes=676  conns=231
+Gen 519  best=0.35225  species=22  nodes=680  conns=232
+Gen 520  best=0.345999  species=5  nodes=678  conns=236
+  [saved -> bigun_genome.txt]
+Gen 521  best=0.359187  species=18  nodes=681  conns=234
+Gen 522  best=0.349046  species=6  nodes=673  conns=233
+Gen 523  best=0.355528  species=18  nodes=681  conns=237
+Gen 524  best=0.34949  species=6  nodes=679  conns=236
+Gen 525  best=0.350971  species=20  nodes=683  conns=234
+Gen 526  best=0.345757  species=5  nodes=688  conns=235
+Gen 527  best=0.344992  species=20  nodes=682  conns=234
+Gen 528  best=0.365786  species=5  nodes=687  conns=235
+Gen 529  best=0.356077  species=17  nodes=677  conns=238
+Gen 530  best=0.387104  species=5  nodes=681  conns=237
+  [saved -> bigun_genome.txt]
+Gen 531  best=0.344953  species=18  nodes=681  conns=238
+Gen 532  best=0.364432  species=7  nodes=682  conns=239
+Gen 533  best=0.361355  species=18  nodes=687  conns=235
+Gen 534  best=0.370338  species=6  nodes=681  conns=232
+Gen 535  best=0.347334  species=21  nodes=679  conns=233
+Gen 536  best=0.338816  species=6  nodes=688  conns=236
+Gen 537  best=0.348557  species=18  nodes=691  conns=237
+Gen 538  best=0.361656  species=6  nodes=689  conns=235
+Gen 539  best=0.356774  species=23  nodes=689  conns=242
+Gen 540  best=0.363353  species=8  nodes=682  conns=232
+  [saved -> bigun_genome.txt]
+Gen 541  best=0.348538  species=22  nodes=686  conns=239
+Gen 542  best=0.351805  species=5  nodes=696  conns=240
+Gen 543  best=0.347032  species=28  nodes=697  conns=235
+Gen 544  best=0.348  species=9  nodes=698  conns=235
+Gen 545  best=0.362057  species=23  nodes=699  conns=239
+Gen 546  best=0.354205  species=7  nodes=693  conns=239
+Gen 547  best=0.347031  species=21  nodes=699  conns=235
+Gen 548  best=0.363157  species=8  nodes=697  conns=239
+Gen 549  best=0.361671  species=20  nodes=697  conns=234
+Gen 550  best=0.345342  species=9  nodes=689  conns=235
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 551  best=0.355093  species=20  nodes=690  conns=234
+Gen 552  best=0.355985  species=8  nodes=699  conns=235
+Gen 553  best=0.372975  species=19  nodes=703  conns=241
+Gen 554  best=0.344308  species=8  nodes=700  conns=237
+Gen 555  best=0.365537  species=19  nodes=689  conns=236
+Gen 556  best=0.351938  species=7  nodes=702  conns=245
+Gen 557  best=0.349166  species=19  nodes=689  conns=235
+Gen 558  best=0.358849  species=8  nodes=704  conns=241
+Gen 559  best=0.379286  species=19  nodes=703  conns=241
+Gen 560  best=0.389079  species=8  nodes=702  conns=245
+  [saved -> bigun_genome.txt]
+Gen 561  best=0.35849  species=22  nodes=709  conns=246
+Gen 562  best=0.358488  species=9  nodes=699  conns=245
+Gen 563  best=0.366392  species=17  nodes=689  conns=235
+Gen 564  best=0.339117  species=8  nodes=701  conns=238
+Gen 565  best=0.397724  species=17  nodes=704  conns=243
+Gen 566  best=0.343162  species=8  nodes=703  conns=239
+Gen 567  best=0.333365  species=18  nodes=701  conns=239
+Gen 568  best=0.357045  species=7  nodes=707  conns=236
+Gen 569  best=0.376076  species=17  nodes=720  conns=240
+Gen 570  best=0.346601  species=7  nodes=702  conns=236
+  [saved -> bigun_genome.txt]
+Gen 571  best=0.385318  species=16  nodes=700  conns=232
+Gen 572  best=0.342468  species=7  nodes=700  conns=233
+Gen 573  best=0.347893  species=17  nodes=714  conns=244
+Gen 574  best=0.36718  species=6  nodes=716  conns=240
+Gen 575  best=0.376987  species=12  nodes=700  conns=233
+Gen 576  best=0.363285  species=6  nodes=701  conns=233
+Gen 577  best=0.365816  species=12  nodes=715  conns=244
+Gen 578  best=0.367038  species=6  nodes=717  conns=250
+Gen 579  best=0.372088  species=12  nodes=717  conns=248
+Gen 580  best=0.367417  species=5  nodes=701  conns=234
+  [saved -> bigun_genome.txt]
+Gen 581  best=0.362389  species=11  nodes=710  conns=237
+Gen 582  best=0.354762  species=6  nodes=716  conns=248
+Gen 583  best=0.352238  species=10  nodes=716  conns=244
+Gen 584  best=0.384269  species=14  nodes=716  conns=245
+Gen 585  best=0.352163  species=6  nodes=718  conns=245
+Gen 586  best=0.34238  species=12  nodes=720  conns=247
+Gen 587  best=0.373139  species=6  nodes=717  conns=245
+Gen 588  best=0.365278  species=13  nodes=719  conns=247
+Gen 589  best=0.341254  species=6  nodes=716  conns=248
+Gen 590  best=0.351432  species=13  nodes=716  conns=248
+  [saved -> bigun_genome.txt]
+Gen 591  best=0.349023  species=5  nodes=712  conns=240
+Gen 592  best=0.34167  species=12  nodes=718  conns=248
+Gen 593  best=0.35143  species=5  nodes=723  conns=249
+Gen 594  best=0.341803  species=15  nodes=718  conns=248
+Gen 595  best=0.347669  species=6  nodes=714  conns=244
+Gen 596  best=0.353723  species=12  nodes=715  conns=241
+Gen 597  best=0.347728  species=5  nodes=720  conns=250
+Gen 598  best=0.388831  species=12  nodes=723  conns=248
+Gen 599  best=0.393849  species=4  nodes=715  conns=242
+Gen 600  best=0.374319  species=13  nodes=723  conns=248
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 601  best=0.355527  species=5  nodes=702  conns=236
+Gen 602  best=0.378385  species=12  nodes=725  conns=251
+Gen 603  best=0.363232  species=5  nodes=718  conns=243
+Gen 604  best=0.361134  species=14  nodes=717  conns=243
+Gen 605  best=0.353334  species=5  nodes=727  conns=247
+Gen 606  best=0.349761  species=13  nodes=721  conns=245
+Gen 607  best=0.365283  species=5  nodes=726  conns=249
+Gen 608  best=0.347938  species=12  nodes=726  conns=251
+Gen 609  best=0.359525  species=5  nodes=728  conns=250
+Gen 610  best=0.348788  species=15  nodes=705  conns=237
+  [saved -> bigun_genome.txt]
+Gen 611  best=0.371512  species=5  nodes=721  conns=242
+Gen 612  best=0.350201  species=15  nodes=721  conns=242
+Gen 613  best=0.332421  species=5  nodes=723  conns=244
+Gen 614  best=0.346804  species=17  nodes=727  conns=251
+Gen 615  best=0.356046  species=5  nodes=724  conns=246
+Gen 616  best=0.347737  species=16  nodes=730  conns=246
+Gen 617  best=0.355518  species=5  nodes=721  conns=246
+Gen 618  best=0.343817  species=12  nodes=727  conns=248
+Gen 619  best=0.360914  species=4  nodes=732  conns=241
+Gen 620  best=0.370943  species=14  nodes=728  conns=246
+  [saved -> bigun_genome.txt]
+Gen 621  best=0.364922  species=4  nodes=728  conns=246
+Gen 622  best=0.333997  species=14  nodes=736  conns=253
+Gen 623  best=0.362138  species=4  nodes=728  conns=248
+Gen 624  best=0.354159  species=16  nodes=728  conns=248
+Gen 625  best=0.350919  species=4  nodes=736  conns=250
+Gen 626  best=0.350838  species=13  nodes=736  conns=252
+Gen 627  best=0.347727  species=4  nodes=738  conns=246
+Gen 628  best=0.344088  species=13  nodes=729  conns=251
+Gen 629  best=0.34448  species=4  nodes=729  conns=251
+Gen 630  best=0.356664  species=16  nodes=706  conns=240
+  [saved -> bigun_genome.txt]
+Gen 631  best=0.34893  species=5  nodes=740  conns=252
+Gen 632  best=0.352141  species=17  nodes=741  conns=247
+Gen 633  best=0.381724  species=4  nodes=743  conns=250
+Gen 634  best=0.372112  species=19  nodes=706  conns=241
+Gen 635  best=0.372362  species=5  nodes=732  conns=243
+Gen 636  best=0.357816  species=20  nodes=744  conns=254
+Gen 637  best=0.387342  species=6  nodes=744  conns=254
+Gen 638  best=0.353738  species=21  nodes=744  conns=242
+Gen 639  best=0.351716  species=6  nodes=708  conns=240
+Gen 640  best=0.357099  species=22  nodes=752  conns=253
+  [saved -> bigun_genome.txt]
+Gen 641  best=0.357775  species=9  nodes=750  conns=250
+Gen 642  best=0.333167  species=23  nodes=733  conns=243
+Gen 643  best=0.352633  species=7  nodes=733  conns=243
+Gen 644  best=0.370316  species=21  nodes=750  conns=248
+Gen 645  best=0.352668  species=6  nodes=753  conns=256
+Gen 646  best=0.35707  species=21  nodes=753  conns=255
+Gen 647  best=0.356523  species=9  nodes=752  conns=255
+Gen 648  best=0.350296  species=20  nodes=755  conns=258
+Gen 649  best=0.349814  species=7  nodes=753  conns=256
+Gen 650  best=0.350335  species=19  nodes=750  conns=259
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 651  best=0.367981  species=5  nodes=750  conns=259
+Gen 652  best=0.367473  species=17  nodes=758  conns=259
+Gen 653  best=0.355677  species=4  nodes=762  conns=259
+Gen 654  best=0.352609  species=9  nodes=763  conns=265
+Gen 655  best=0.367715  species=12  nodes=758  conns=250
+Gen 656  best=0.34012  species=3  nodes=764  conns=265
+Gen 657  best=0.359099  species=11  nodes=762  conns=250
+Gen 658  best=0.356535  species=4  nodes=766  conns=267
+Gen 659  best=0.377816  species=18  nodes=764  conns=267
+Gen 660  best=0.346905  species=5  nodes=763  conns=254
+  [saved -> bigun_genome.txt]
+Gen 661  best=0.343115  species=22  nodes=768  conns=262
+Gen 662  best=0.3533  species=7  nodes=766  conns=259
+Gen 663  best=0.343453  species=19  nodes=768  conns=252
+Gen 664  best=0.351029  species=6  nodes=772  conns=262
+Gen 665  best=0.33771  species=21  nodes=764  conns=255
+Gen 666  best=0.342909  species=7  nodes=774  conns=267
+Gen 667  best=0.344295  species=21  nodes=768  conns=254
+Gen 668  best=0.365623  species=7  nodes=772  conns=262
+Gen 669  best=0.341069  species=23  nodes=774  conns=267
+Gen 670  best=0.44645  species=8  nodes=776  conns=262
+  [saved -> bigun_genome.txt]
+Gen 671  best=0.355733  species=14  nodes=777  conns=267
+Gen 672  best=0.349418  species=4  nodes=780  conns=267
+Gen 673  best=0.340512  species=14  nodes=744  conns=253
+Gen 674  best=0.334471  species=4  nodes=771  conns=244
+Gen 675  best=0.359294  species=14  nodes=781  conns=262
+Gen 676  best=0.397754  species=6  nodes=786  conns=265
+Gen 677  best=0.369688  species=17  nodes=785  conns=267
+Gen 678  best=0.371444  species=5  nodes=782  conns=263
+Gen 679  best=0.369189  species=16  nodes=782  conns=268
+Gen 680  best=0.377558  species=5  nodes=744  conns=257
+  [saved -> bigun_genome.txt]
+Gen 681  best=0.383722  species=19  nodes=785  conns=269
+Gen 682  best=0.350071  species=6  nodes=785  conns=262
+Gen 683  best=0.367838  species=17  nodes=785  conns=262
+Gen 684  best=0.350821  species=6  nodes=746  conns=256
+Gen 685  best=0.362029  species=20  nodes=786  conns=269
+Gen 686  best=0.360729  species=6  nodes=786  conns=269
+Gen 687  best=0.353909  species=19  nodes=791  conns=262
+Gen 688  best=0.335592  species=6  nodes=751  conns=257
+Gen 689  best=0.343666  species=20  nodes=794  conns=262
+Gen 690  best=0.360841  species=6  nodes=793  conns=266
+  [saved -> bigun_genome.txt]
+Gen 691  best=0.356659  species=21  nodes=796  conns=269
+Gen 692  best=0.337724  species=6  nodes=794  conns=264
+Gen 693  best=0.377887  species=20  nodes=778  conns=249
+Gen 694  best=0.356327  species=6  nodes=801  conns=269
+Gen 695  best=0.352023  species=19  nodes=755  conns=258
+Gen 696  best=0.351142  species=4  nodes=802  conns=266
+Gen 697  best=0.349428  species=11  nodes=751  conns=256
+Gen 698  best=0.359716  species=5  nodes=755  conns=258
+Gen 699  best=0.353151  species=10  nodes=755  conns=258
+Gen 700  best=0.367495  species=12  nodes=803  conns=266
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 701  best=0.348068  species=4  nodes=803  conns=267
+Gen 702  best=0.360211  species=14  nodes=755  conns=258
+Gen 703  best=0.362029  species=4  nodes=808  conns=266
+Gen 704  best=0.344031  species=12  nodes=803  conns=264
+Gen 705  best=0.365131  species=5  nodes=807  conns=267
+Gen 706  best=0.340605  species=12  nodes=807  conns=272
+Gen 707  best=0.354689  species=5  nodes=809  conns=263
+Gen 708  best=0.358082  species=12  nodes=809  conns=267
+Gen 709  best=0.363775  species=3  nodes=812  conns=267
+Gen 710  best=0.342749  species=14  nodes=813  conns=270
+  [saved -> bigun_genome.txt]
+Gen 711  best=0.358483  species=2  nodes=813  conns=270
+Gen 712  best=0.349851  species=16  nodes=814  conns=265
+Gen 713  best=0.367429  species=3  nodes=814  conns=267
+Gen 714  best=0.360034  species=18  nodes=817  conns=274
+Gen 715  best=0.350952  species=3  nodes=813  conns=268
+Gen 716  best=0.357935  species=20  nodes=819  conns=268
+Gen 717  best=0.357921  species=2  nodes=819  conns=265
+Gen 718  best=0.384655  species=16  nodes=820  conns=267
+Gen 719  best=0.376502  species=3  nodes=823  conns=272
+Gen 720  best=0.353148  species=17  nodes=819  conns=269
+  [saved -> bigun_genome.txt]
+Gen 721  best=0.352981  species=2  nodes=823  conns=272
+Gen 722  best=0.354478  species=20  nodes=824  conns=273
+Gen 723  best=0.356461  species=2  nodes=819  conns=269
+Gen 724  best=0.373711  species=30  nodes=826  conns=270
+Gen 725  best=0.352268  species=3  nodes=825  conns=268
+Gen 726  best=0.356556  species=32  nodes=829  conns=268
+Gen 727  best=0.358873  species=2  nodes=828  conns=265
+Gen 728  best=0.360404  species=28  nodes=824  conns=272
+Gen 729  best=0.360969  species=4  nodes=832  conns=271
+Gen 730  best=0.367782  species=27  nodes=830  conns=270
+  [saved -> bigun_genome.txt]
+Gen 731  best=0.362589  species=5  nodes=834  conns=272
+Gen 732  best=0.350783  species=25  nodes=828  conns=265
+Gen 733  best=0.353012  species=3  nodes=838  conns=268
+Gen 734  best=0.350522  species=22  nodes=832  conns=271
+Gen 735  best=0.348857  species=4  nodes=840  conns=271
+Gen 736  best=0.387784  species=26  nodes=841  conns=267
+Gen 737  best=0.393239  species=4  nodes=843  conns=267
+Gen 738  best=0.350394  species=31  nodes=843  conns=267
+Gen 739  best=0.351015  species=4  nodes=841  conns=272
+Gen 740  best=0.35486  species=26  nodes=846  conns=272
+  [saved -> bigun_genome.txt]
+Gen 741  best=0.376915  species=4  nodes=841  conns=272
+Gen 742  best=0.356304  species=27  nodes=849  conns=272
+Gen 743  best=0.363784  species=3  nodes=851  conns=274
+Gen 744  best=0.37021  species=33  nodes=854  conns=268
+Gen 745  best=0.357127  species=6  nodes=854  conns=268
+Gen 746  best=0.367088  species=28  nodes=853  conns=272
+Gen 747  best=0.378792  species=8  nodes=863  conns=275
+Gen 748  best=0.36208  species=23  nodes=847  conns=270
+Gen 749  best=0.35835  species=4  nodes=864  conns=272
+Gen 750  best=0.355207  species=22  nodes=861  conns=272
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 751  best=0.36958  species=9  nodes=871  conns=272
+Gen 752  best=0.351653  species=20  nodes=871  conns=270
+Gen 753  best=0.361995  species=4  nodes=874  conns=276
+Gen 754  best=0.380785  species=18  nodes=871  conns=276
+Gen 755  best=0.376747  species=3  nodes=871  conns=276
+Gen 756  best=0.362191  species=23  nodes=877  conns=272
+Gen 757  best=0.34714  species=3  nodes=877  conns=272
+Gen 758  best=0.34764  species=25  nodes=875  conns=271
+Gen 759  best=0.352416  species=3  nodes=881  conns=271
+Gen 760  best=0.368986  species=29  nodes=877  conns=276
+  [saved -> bigun_genome.txt]
+Gen 761  best=0.35545  species=5  nodes=877  conns=281
+Gen 762  best=0.355194  species=25  nodes=876  conns=282
+Gen 763  best=0.391037  species=7  nodes=879  conns=276
+Gen 764  best=0.355343  species=19  nodes=882  conns=278
+Gen 765  best=0.342701  species=5  nodes=882  conns=276
+Gen 766  best=0.352317  species=21  nodes=882  conns=276
+Gen 767  best=0.363435  species=4  nodes=881  conns=271
+Gen 768  best=0.347877  species=23  nodes=882  conns=279
+Gen 769  best=0.359966  species=6  nodes=883  conns=272
+Gen 770  best=0.348886  species=26  nodes=899  conns=276
+  [saved -> bigun_genome.txt]
+Gen 771  best=0.355486  species=7  nodes=883  conns=274
+Gen 772  best=0.355497  species=27  nodes=901  conns=276
+Gen 773  best=0.358119  species=6  nodes=897  conns=274
+Gen 774  best=0.366929  species=24  nodes=902  conns=271
+Gen 775  best=0.359902  species=5  nodes=913  conns=279
+Gen 776  best=0.347053  species=22  nodes=913  conns=279
+Gen 777  best=0.360088  species=3  nodes=915  conns=277
+Gen 778  best=0.354751  species=20  nodes=912  conns=278
+Gen 779  best=0.362575  species=6  nodes=915  conns=279
+Gen 780  best=0.345947  species=22  nodes=913  conns=281
+  [saved -> bigun_genome.txt]
+Gen 781  best=0.365455  species=7  nodes=911  conns=277
+Gen 782  best=0.368425  species=21  nodes=920  conns=272
+Gen 783  best=0.349977  species=5  nodes=915  conns=279
+Gen 784  best=0.341126  species=18  nodes=915  conns=279
+Gen 785  best=0.350252  species=6  nodes=920  conns=277
+Gen 786  best=0.378685  species=26  nodes=922  conns=277
+Gen 787  best=0.362807  species=5  nodes=928  conns=278
+Gen 788  best=0.356545  species=19  nodes=924  conns=272
+Gen 789  best=0.362734  species=7  nodes=924  conns=272
+Gen 790  best=0.361617  species=18  nodes=923  conns=280
+  [saved -> bigun_genome.txt]
+Gen 791  best=0.375973  species=7  nodes=929  conns=280
+Gen 792  best=0.354371  species=19  nodes=931  conns=277
+Gen 793  best=0.35693  species=7  nodes=932  conns=283
+Gen 794  best=0.352978  species=19  nodes=934  conns=275
+Gen 795  best=0.36799  species=6  nodes=928  conns=285
+Gen 796  best=0.357926  species=20  nodes=930  conns=285
+Gen 797  best=0.355667  species=4  nodes=938  conns=272
+Gen 798  best=0.352768  species=11  nodes=935  conns=275
+Gen 799  best=0.353897  species=4  nodes=934  conns=279
+Gen 800  best=0.368639  species=15  nodes=933  conns=279
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 801  best=0.34606  species=5  nodes=933  conns=279
+Gen 802  best=0.352544  species=15  nodes=936  conns=276
+Gen 803  best=0.400018  species=5  nodes=938  conns=278
+Gen 804  best=0.358051  species=15  nodes=978  conns=283
+Gen 805  best=0.352707  species=6  nodes=940  conns=278
+Gen 806  best=0.35185  species=16  nodes=942  conns=279
+Gen 807  best=0.376784  species=5  nodes=940  conns=278
+Gen 808  best=0.358432  species=18  nodes=978  conns=281
+Gen 809  best=0.349846  species=7  nodes=938  conns=275
+Gen 810  best=0.365359  species=18  nodes=936  conns=278
+  [saved -> bigun_genome.txt]
+Gen 811  best=0.354065  species=5  nodes=938  conns=282
+Gen 812  best=0.367549  species=19  nodes=970  conns=275
+Gen 813  best=0.358336  species=7  nodes=937  conns=278
+Gen 814  best=0.349676  species=21  nodes=987  conns=281
+Gen 815  best=0.368855  species=4  nodes=987  conns=281
+Gen 816  best=0.352561  species=18  nodes=937  conns=280
+Gen 817  best=0.36234  species=7  nodes=955  conns=278
+Gen 818  best=0.344692  species=17  nodes=953  conns=283
+Gen 819  best=0.399869  species=6  nodes=984  conns=275
+Gen 820  best=0.363514  species=18  nodes=984  conns=275
+  [saved -> bigun_genome.txt]
+Gen 821  best=0.368416  species=7  nodes=994  conns=281
+Gen 822  best=0.343908  species=17  nodes=984  conns=275
+Gen 823  best=0.383145  species=6  nodes=992  conns=285
+Gen 824  best=0.363445  species=19  nodes=990  conns=275
+Gen 825  best=0.355725  species=4  nodes=995  conns=286
+Gen 826  best=0.361515  species=18  nodes=990  conns=275
+Gen 827  best=0.386367  species=4  nodes=993  conns=290
+Gen 828  best=0.347065  species=21  nodes=1001  conns=287
+Gen 829  best=0.341507  species=4  nodes=990  conns=285
+Gen 830  best=0.344089  species=21  nodes=999  conns=284
+  [saved -> bigun_genome.txt]
+Gen 831  best=0.360415  species=5  nodes=960  conns=286
+Gen 832  best=0.358081  species=22  nodes=998  conns=277
+Gen 833  best=0.366677  species=4  nodes=1003  conns=287
+Gen 834  best=0.371143  species=23  nodes=1002  conns=289
+Gen 835  best=0.356057  species=6  nodes=1011  conns=286
+Gen 836  best=0.365476  species=25  nodes=1004  conns=285
+Gen 837  best=0.363753  species=5  nodes=1001  conns=284
+Gen 838  best=0.353306  species=22  nodes=1008  conns=284
+Gen 839  best=0.37797  species=5  nodes=998  conns=281
+Gen 840  best=0.35014  species=21  nodes=1003  conns=282
+  [saved -> bigun_genome.txt]
+Gen 841  best=0.361228  species=6  nodes=1015  conns=290
+Gen 842  best=0.351312  species=24  nodes=1012  conns=285
+Gen 843  best=0.376862  species=7  nodes=1012  conns=288
+Gen 844  best=0.349081  species=21  nodes=1013  conns=288
+Gen 845  best=0.361904  species=6  nodes=1014  conns=287
+Gen 846  best=0.39113  species=25  nodes=1012  conns=293
+Gen 847  best=0.373638  species=7  nodes=1014  conns=287
+Gen 848  best=0.367271  species=24  nodes=1016  conns=289
+Gen 849  best=0.387316  species=9  nodes=1015  conns=294
+Gen 850  best=0.356523  species=21  nodes=1018  conns=282
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 851  best=0.34842  species=7  nodes=1016  conns=288
+Gen 852  best=0.367078  species=20  nodes=1015  conns=294
+Gen 853  best=0.340772  species=9  nodes=1022  conns=289
+Gen 854  best=0.345617  species=18  nodes=1021  conns=287
+Gen 855  best=0.370135  species=8  nodes=1025  conns=290
+Gen 856  best=0.359021  species=16  nodes=1014  conns=278
+Gen 857  best=0.345126  species=5  nodes=1028  conns=292
+Gen 858  best=0.360418  species=15  nodes=1018  conns=281
+Gen 859  best=0.355416  species=6  nodes=1030  conns=288
+Gen 860  best=0.354787  species=17  nodes=1031  conns=285
+  [saved -> bigun_genome.txt]
+Gen 861  best=0.361049  species=8  nodes=1018  conns=280
+Gen 862  best=0.354231  species=14  nodes=1041  conns=291
+Gen 863  best=0.365525  species=7  nodes=1016  conns=281
+Gen 864  best=0.372959  species=14  nodes=1035  conns=285
+Gen 865  best=0.342859  species=10  nodes=1034  conns=290
+Gen 866  best=0.353053  species=6  nodes=1042  conns=291
+Gen 867  best=0.37842  species=18  nodes=1021  conns=280
+Gen 868  best=0.359853  species=11  nodes=1042  conns=291
+Gen 869  best=0.359983  species=4  nodes=1048  conns=289
+Gen 870  best=0.355191  species=6  nodes=1021  conns=280
+  [saved -> bigun_genome.txt]
+Gen 871  best=0.341655  species=20  nodes=1050  conns=281
+Gen 872  best=0.344268  species=8  nodes=1054  conns=292
+Gen 873  best=0.339045  species=18  nodes=1052  conns=291
+Gen 874  best=0.336537  species=7  nodes=1054  conns=295
+Gen 875  best=0.346457  species=18  nodes=1056  conns=295
+Gen 876  best=0.349701  species=8  nodes=1054  conns=288
+Gen 877  best=0.355531  species=17  nodes=1059  conns=292
+Gen 878  best=0.358639  species=6  nodes=1053  conns=286
+Gen 879  best=0.362181  species=17  nodes=1053  conns=286
+Gen 880  best=0.342675  species=7  nodes=1067  conns=291
+  [saved -> bigun_genome.txt]
+Gen 881  best=0.352398  species=18  nodes=1053  conns=286
+Gen 882  best=0.344934  species=6  nodes=1066  conns=296
+Gen 883  best=0.36747  species=17  nodes=1064  conns=296
+Gen 884  best=0.35609  species=6  nodes=1054  conns=285
+Gen 885  best=0.366444  species=16  nodes=1066  conns=294
+Gen 886  best=0.37518  species=6  nodes=1068  conns=293
+Gen 887  best=0.351197  species=15  nodes=1065  conns=289
+Gen 888  best=0.343247  species=7  nodes=1074  conns=291
+Gen 889  best=0.391372  species=13  nodes=1075  conns=292
+Gen 890  best=0.357747  species=5  nodes=1065  conns=289
+  [saved -> bigun_genome.txt]
+Gen 891  best=0.349334  species=13  nodes=1058  conns=286
+Gen 892  best=0.361  species=5  nodes=1058  conns=287
+Gen 893  best=0.366912  species=14  nodes=1074  conns=297
+Gen 894  best=0.356055  species=4  nodes=1078  conns=287
+Gen 895  best=0.345697  species=20  nodes=1079  conns=296
+Gen 896  best=0.362059  species=4  nodes=1079  conns=292
+Gen 897  best=0.355783  species=17  nodes=1083  conns=287
+Gen 898  best=0.344074  species=3  nodes=1084  conns=293
+Gen 899  best=0.37602  species=14  nodes=1090  conns=293
+Gen 900  best=0.359331  species=3  nodes=1067  conns=291
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 901  best=0.354383  species=17  nodes=1072  conns=290
+Gen 902  best=0.356661  species=3  nodes=1082  conns=299
+Gen 903  best=0.365358  species=19  nodes=1072  conns=290
+Gen 904  best=0.366845  species=2  nodes=1084  conns=290
+Gen 905  best=0.366681  species=15  nodes=1087  conns=298
+Gen 906  best=0.36257  species=2  nodes=1087  conns=298
+Gen 907  best=0.351009  species=16  nodes=1104  conns=299
+Gen 908  best=0.355611  species=3  nodes=1102  conns=296
+Gen 909  best=0.357606  species=19  nodes=1088  conns=290
+Gen 910  best=0.362942  species=2  nodes=1108  conns=295
+  [saved -> bigun_genome.txt]
+Gen 911  best=0.362582  species=18  nodes=1090  conns=295
+Gen 912  best=0.355428  species=2  nodes=1111  conns=289
+Gen 913  best=0.362547  species=19  nodes=1114  conns=298
+Gen 914  best=0.378935  species=3  nodes=1115  conns=290
+Gen 915  best=0.352573  species=22  nodes=1109  conns=303
+Gen 916  best=0.359068  species=2  nodes=1120  conns=291
+Gen 917  best=0.35026  species=24  nodes=1119  conns=300
+Gen 918  best=0.362337  species=3  nodes=1118  conns=296
+Gen 919  best=0.357314  species=21  nodes=1117  conns=299
+Gen 920  best=0.370217  species=3  nodes=1120  conns=296
+  [saved -> bigun_genome.txt]
+Gen 921  best=0.359091  species=16  nodes=1121  conns=295
+Gen 922  best=0.378084  species=4  nodes=1121  conns=302
+Gen 923  best=0.379202  species=19  nodes=1123  conns=298
+Gen 924  best=0.343521  species=3  nodes=1121  conns=299
+Gen 925  best=0.361784  species=15  nodes=1095  conns=296
+Gen 926  best=0.365361  species=2  nodes=1126  conns=301
+Gen 927  best=0.355688  species=18  nodes=1126  conns=301
+Gen 928  best=0.37081  species=2  nodes=1129  conns=301
+Gen 929  best=0.347751  species=20  nodes=1137  conns=295
+Gen 930  best=0.370674  species=3  nodes=1137  conns=291
+  [saved -> bigun_genome.txt]
+Gen 931  best=0.356492  species=21  nodes=1097  conns=299
+Gen 932  best=0.372297  species=3  nodes=1140  conns=293
+Gen 933  best=0.359236  species=21  nodes=1096  conns=298
+Gen 934  best=0.371769  species=5  nodes=1142  conns=303
+Gen 935  best=0.387395  species=22  nodes=1143  conns=305
+Gen 936  best=0.359599  species=5  nodes=1143  conns=301
+Gen 937  best=0.371245  species=18  nodes=1149  conns=304
+Gen 938  best=0.368501  species=5  nodes=1145  conns=295
+Gen 939  best=0.340569  species=15  nodes=1146  conns=295
+Gen 940  best=0.380757  species=5  nodes=1147  conns=308
+  [saved -> bigun_genome.txt]
+Gen 941  best=0.367948  species=21  nodes=1151  conns=301
+Gen 942  best=0.355142  species=4  nodes=1150  conns=302
+Gen 943  best=0.349824  species=18  nodes=1158  conns=308
+Gen 944  best=0.358008  species=3  nodes=1157  conns=294
+Gen 945  best=0.361653  species=14  nodes=1158  conns=305
+Gen 946  best=0.367688  species=2  nodes=1161  conns=295
+Gen 947  best=0.355329  species=18  nodes=1165  conns=301
+Gen 948  best=0.383014  species=2  nodes=1163  conns=298
+Gen 949  best=0.349663  species=18  nodes=1160  conns=305
+Gen 950  best=0.35062  species=4  nodes=1161  conns=307
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 951  best=0.350018  species=20  nodes=1170  conns=294
+Gen 952  best=0.36133  species=4  nodes=1174  conns=297
+Gen 953  best=0.366635  species=19  nodes=1165  conns=302
+Gen 954  best=0.356661  species=3  nodes=1176  conns=297
+Gen 955  best=0.378404  species=18  nodes=1178  conns=310
+Gen 956  best=0.384142  species=4  nodes=1176  conns=298
+Gen 957  best=0.358957  species=19  nodes=1181  conns=297
+Gen 958  best=0.381295  species=6  nodes=1181  conns=304
+Gen 959  best=0.359247  species=21  nodes=1183  conns=305
+Gen 960  best=0.390798  species=5  nodes=1183  conns=305
+  [saved -> bigun_genome.txt]
+Gen 961  best=0.365608  species=20  nodes=1184  conns=312
+Gen 962  best=0.374704  species=6  nodes=1184  conns=308
+Gen 963  best=0.36789  species=17  nodes=1184  conns=307
+Gen 964  best=0.354976  species=7  nodes=1183  conns=297
+Gen 965  best=0.35969  species=18  nodes=1190  conns=297
+Gen 966  best=0.364009  species=4  nodes=1195  conns=302
+Gen 967  best=0.375102  species=17  nodes=1195  conns=305
+Gen 968  best=0.350347  species=4  nodes=1195  conns=305
+Gen 969  best=0.35012  species=17  nodes=1196  conns=308
+Gen 970  best=0.366481  species=5  nodes=1198  conns=297
+  [saved -> bigun_genome.txt]
+Gen 971  best=0.363296  species=20  nodes=1201  conns=312
+Gen 972  best=0.355464  species=5  nodes=1201  conns=304
+Gen 973  best=0.384949  species=19  nodes=1198  conns=298
+Gen 974  best=0.381622  species=8  nodes=1195  conns=295
+Gen 975  best=0.348693  species=18  nodes=1203  conns=304
+Gen 976  best=0.388995  species=6  nodes=1202  conns=295
+Gen 977  best=0.356813  species=14  nodes=1201  conns=304
+Gen 978  best=0.371539  species=7  nodes=1204  conns=307
+Gen 979  best=0.352483  species=15  nodes=1203  conns=295
+Gen 980  best=0.363357  species=7  nodes=1203  conns=304
+  [saved -> bigun_genome.txt]
+Gen 981  best=0.357189  species=18  nodes=1212  conns=315
+Gen 982  best=0.364963  species=6  nodes=1220  conns=311
+Gen 983  best=0.358675  species=18  nodes=1204  conns=313
+Gen 984  best=0.360575  species=7  nodes=1207  conns=301
+Gen 985  best=0.353355  species=17  nodes=1213  conns=313
+Gen 986  best=0.380502  species=6  nodes=1215  conns=316
+Gen 987  best=0.362798  species=17  nodes=1207  conns=299
+Gen 988  best=0.338859  species=5  nodes=1207  conns=309
+Gen 989  best=0.349851  species=13  nodes=1227  conns=313
+Gen 990  best=0.400332  species=5  nodes=1208  conns=308
+  [saved -> bigun_genome.txt]
+Gen 991  best=0.355486  species=16  nodes=1229  conns=306
+Gen 992  best=0.371149  species=5  nodes=1233  conns=305
+Gen 993  best=0.347922  species=16  nodes=1212  conns=309
+Gen 994  best=0.375777  species=6  nodes=1213  conns=296
+Gen 995  best=0.346996  species=19  nodes=1209  conns=307
+Gen 996  best=0.358416  species=5  nodes=1212  conns=296
+Gen 997  best=0.358318  species=22  nodes=1236  conns=300
+Gen 998  best=0.349962  species=6  nodes=1243  conns=307
+Gen 999  best=0.356373  species=23  nodes=1240  conns=310
+Gen 1000  best=0.35798  species=7  nodes=1241  conns=300
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1001  best=0.360549  species=22  nodes=1255  conns=310
+Gen 1002  best=0.367434  species=6  nodes=1245  conns=313
+Gen 1003  best=0.371741  species=19  nodes=1256  conns=300
+Gen 1004  best=0.356167  species=7  nodes=1233  conns=313
+Gen 1005  best=0.372677  species=17  nodes=1256  conns=301
+Gen 1006  best=0.366997  species=5  nodes=1262  conns=301
+Gen 1007  best=0.36506  species=18  nodes=1274  conns=306
+Gen 1008  best=0.37639  species=8  nodes=1270  conns=302
+Gen 1009  best=0.390766  species=20  nodes=1269  conns=299
+Gen 1010  best=0.376047  species=6  nodes=1270  conns=299
+  [saved -> bigun_genome.txt]
+Gen 1011  best=0.36781  species=19  nodes=1279  conns=304
+Gen 1012  best=0.357218  species=6  nodes=1267  conns=314
+Gen 1013  best=0.370185  species=21  nodes=1281  conns=304
+Gen 1014  best=0.375985  species=8  nodes=1268  conns=314
+Gen 1015  best=0.360883  species=22  nodes=1238  conns=318
+Gen 1016  best=0.368815  species=6  nodes=1287  conns=305
+Gen 1017  best=0.369851  species=21  nodes=1293  conns=309
+Gen 1018  best=0.370791  species=8  nodes=1283  conns=303
+Gen 1019  best=0.361662  species=25  nodes=1292  conns=308
+Gen 1020  best=0.353582  species=7  nodes=1300  conns=308
+  [saved -> bigun_genome.txt]
+Gen 1021  best=0.368176  species=27  nodes=1238  conns=318
+Gen 1022  best=0.357529  species=7  nodes=1306  conns=299
+Gen 1023  best=0.357773  species=17  nodes=1299  conns=316
+Gen 1024  best=0.368948  species=4  nodes=1303  conns=314
+Gen 1025  best=0.353865  species=9  nodes=1300  conns=317
+Gen 1026  best=0.359491  species=9  nodes=1312  conns=308
+Gen 1027  best=0.354754  species=11  nodes=1304  conns=314
+Gen 1028  best=0.362705  species=4  nodes=1305  conns=314
+Gen 1029  best=0.370307  species=12  nodes=1303  conns=315
+Gen 1030  best=0.358732  species=4  nodes=1304  conns=314
+  [saved -> bigun_genome.txt]
+Gen 1031  best=0.359521  species=12  nodes=1309  conns=314
+Gen 1032  best=0.370919  species=5  nodes=1240  conns=319
+Gen 1033  best=0.353678  species=11  nodes=1240  conns=319
+Gen 1034  best=0.379519  species=5  nodes=1311  conns=318
+Gen 1035  best=0.386322  species=13  nodes=1308  conns=315
+Gen 1036  best=0.357559  species=4  nodes=1311  conns=320
+Gen 1037  best=0.35317  species=12  nodes=1312  conns=320
+Gen 1038  best=0.364586  species=4  nodes=1317  conns=316
+Gen 1039  best=0.341756  species=14  nodes=1321  conns=317
+Gen 1040  best=0.356754  species=4  nodes=1313  conns=315
+  [saved -> bigun_genome.txt]
+Gen 1041  best=0.354074  species=15  nodes=1313  conns=318
+Gen 1042  best=0.359611  species=4  nodes=1322  conns=316
+Gen 1043  best=0.36185  species=20  nodes=1325  conns=313
+Gen 1044  best=0.353851  species=3  nodes=1318  conns=317
+Gen 1045  best=0.359984  species=10  nodes=1318  conns=317
+Gen 1046  best=0.370869  species=10  nodes=1313  conns=314
+Gen 1047  best=0.349358  species=10  nodes=1319  conns=316
+Gen 1048  best=0.363632  species=2  nodes=1317  conns=318
+Gen 1049  best=0.350036  species=10  nodes=1316  conns=319
+Gen 1050  best=0.35957  species=3  nodes=1321  conns=320
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1051  best=0.367562  species=14  nodes=1319  conns=320
+Gen 1052  best=0.353195  species=2  nodes=1321  conns=319
+Gen 1053  best=0.35969  species=22  nodes=1322  conns=320
+Gen 1054  best=0.355605  species=2  nodes=1313  conns=321
+Gen 1055  best=0.366363  species=24  nodes=1322  conns=320
+Gen 1056  best=0.361654  species=3  nodes=1325  conns=322
+Gen 1057  best=0.374953  species=23  nodes=1329  conns=322
+Gen 1058  best=0.366618  species=2  nodes=1330  conns=319
+Gen 1059  best=0.359851  species=22  nodes=1328  conns=322
+Gen 1060  best=0.353357  species=2  nodes=1331  conns=321
+  [saved -> bigun_genome.txt]
+Gen 1061  best=0.37795  species=24  nodes=1337  conns=324
+Gen 1062  best=0.366818  species=2  nodes=1335  conns=323
+Gen 1063  best=0.354798  species=27  nodes=1340  conns=321
+Gen 1064  best=0.358717  species=3  nodes=1334  conns=321
+Gen 1065  best=0.361659  species=28  nodes=1340  conns=321
+Gen 1066  best=0.373869  species=3  nodes=1333  conns=320
+Gen 1067  best=0.352272  species=26  nodes=1339  conns=320
+Gen 1068  best=0.36776  species=2  nodes=1344  conns=323
+Gen 1069  best=0.36685  species=22  nodes=1337  conns=323
+Gen 1070  best=0.364648  species=2  nodes=1344  conns=322
+  [saved -> bigun_genome.txt]
+Gen 1071  best=0.376412  species=29  nodes=1341  conns=325
+Gen 1072  best=0.36574  species=2  nodes=1349  conns=324
+Gen 1073  best=0.357476  species=29  nodes=1344  conns=323
+Gen 1074  best=0.357746  species=3  nodes=1366  conns=328
+Gen 1075  best=0.360643  species=28  nodes=1366  conns=328
+Gen 1076  best=0.38458  species=3  nodes=1367  conns=328
+Gen 1077  best=0.369022  species=26  nodes=1366  conns=328
+Gen 1078  best=0.365851  species=3  nodes=1372  conns=324
+Gen 1079  best=0.354447  species=30  nodes=1374  conns=328
+Gen 1080  best=0.349713  species=3  nodes=1380  conns=328
+  [saved -> bigun_genome.txt]
+Gen 1081  best=0.364946  species=36  nodes=1378  conns=321
+Gen 1082  best=0.351483  species=2  nodes=1379  conns=330
+Gen 1083  best=0.344022  species=30  nodes=1381  conns=316
+Gen 1084  best=0.366474  species=4  nodes=1382  conns=324
+Gen 1085  best=0.366439  species=29  nodes=1384  conns=326
+Gen 1086  best=0.374797  species=4  nodes=1388  conns=323
+Gen 1087  best=0.386764  species=26  nodes=1395  conns=322
+Gen 1088  best=0.370046  species=3  nodes=1388  conns=325
+Gen 1089  best=0.361115  species=26  nodes=1391  conns=327
+Gen 1090  best=0.377205  species=2  nodes=1391  conns=333
+  [saved -> bigun_genome.txt]
+Gen 1091  best=0.364677  species=29  nodes=1399  conns=324
+Gen 1092  best=0.355621  species=3  nodes=1403  conns=326
+Gen 1093  best=0.356939  species=32  nodes=1398  conns=322
+Gen 1094  best=0.371257  species=4  nodes=1405  conns=326
+Gen 1095  best=0.395541  species=26  nodes=1408  conns=330
+Gen 1096  best=0.371743  species=3  nodes=1395  conns=322
+Gen 1097  best=0.354222  species=25  nodes=1411  conns=331
+Gen 1098  best=0.363424  species=5  nodes=1403  conns=325
+Gen 1099  best=0.370768  species=30  nodes=1406  conns=324
+Gen 1100  best=0.359756  species=4  nodes=1409  conns=323
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1101  best=0.390184  species=29  nodes=1408  conns=326
+Gen 1102  best=0.378223  species=4  nodes=1408  conns=325
+Gen 1103  best=0.372802  species=27  nodes=1414  conns=335
+Gen 1104  best=0.37792  species=4  nodes=1426  conns=317
+Gen 1105  best=0.353054  species=24  nodes=1419  conns=324
+Gen 1106  best=0.379624  species=3  nodes=1421  conns=324
+Gen 1107  best=0.373346  species=27  nodes=1416  conns=336
+Gen 1108  best=0.376386  species=5  nodes=1410  conns=328
+Gen 1109  best=0.38464  species=26  nodes=1432  conns=328
+Gen 1110  best=0.363631  species=4  nodes=1412  conns=322
+  [saved -> bigun_genome.txt]
+Gen 1111  best=0.376537  species=21  nodes=1411  conns=326
+Gen 1112  best=0.380903  species=3  nodes=1410  conns=328
+Gen 1113  best=0.37643  species=23  nodes=1435  conns=330
+Gen 1114  best=0.367351  species=4  nodes=1438  conns=337
+Gen 1115  best=0.370439  species=24  nodes=1439  conns=330
+Gen 1116  best=0.365088  species=3  nodes=1416  conns=323
+Gen 1117  best=0.385558  species=23  nodes=1440  conns=332
+Gen 1118  best=0.362862  species=4  nodes=1414  conns=326
+Gen 1119  best=0.385296  species=23  nodes=1421  conns=330
+Gen 1120  best=0.361573  species=4  nodes=1420  conns=326
+  [saved -> bigun_genome.txt]
+Gen 1121  best=0.374335  species=22  nodes=1439  conns=330
+Gen 1122  best=0.386798  species=4  nodes=1420  conns=327
+Gen 1123  best=0.381887  species=20  nodes=1420  conns=327
+Gen 1124  best=0.354475  species=4  nodes=1426  conns=332
+Gen 1125  best=0.359792  species=22  nodes=1423  conns=330
+Gen 1126  best=0.359613  species=2  nodes=1426  conns=332
+Gen 1127  best=0.354435  species=22  nodes=1427  conns=329
+Gen 1128  best=0.359497  species=6  nodes=1428  conns=332
+Gen 1129  best=0.361562  species=30  nodes=1429  conns=333
+Gen 1130  best=0.358503  species=4  nodes=1428  conns=332
+  [saved -> bigun_genome.txt]
+Gen 1131  best=0.365553  species=27  nodes=1428  conns=329
+Gen 1132  best=0.357032  species=5  nodes=1455  conns=332
+Gen 1133  best=0.359826  species=26  nodes=1458  conns=333
+Gen 1134  best=0.368276  species=7  nodes=1459  conns=330
+Gen 1135  best=0.357191  species=24  nodes=1431  conns=332
+Gen 1136  best=0.384006  species=8  nodes=1461  conns=331
+Gen 1137  best=0.361049  species=21  nodes=1463  conns=329
+Gen 1138  best=0.358494  species=6  nodes=1433  conns=328
+Gen 1139  best=0.366599  species=16  nodes=1437  conns=332
+Gen 1140  best=0.36774  species=8  nodes=1438  conns=334
+  [saved -> bigun_genome.txt]
+Gen 1141  best=0.351746  species=16  nodes=1466  conns=331
+Gen 1142  best=0.383873  species=4  nodes=1436  conns=334
+Gen 1143  best=0.363359  species=18  nodes=1436  conns=334
+Gen 1144  best=0.359766  species=7  nodes=1463  conns=332
+Gen 1145  best=0.386558  species=20  nodes=1437  conns=336
+Gen 1146  best=0.381044  species=5  nodes=1437  conns=336
+Gen 1147  best=0.370667  species=15  nodes=1441  conns=332
+Gen 1148  best=0.368403  species=7  nodes=1470  conns=332
+Gen 1149  best=0.36961  species=18  nodes=1470  conns=332
+Gen 1150  best=0.353608  species=8  nodes=1441  conns=336
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1151  best=0.366246  species=21  nodes=1441  conns=336
+Gen 1152  best=0.359348  species=5  nodes=1445  conns=339
+Gen 1153  best=0.37206  species=20  nodes=1442  conns=334
+Gen 1154  best=0.351025  species=7  nodes=1470  conns=332
+Gen 1155  best=0.353014  species=25  nodes=1473  conns=334
+Gen 1156  best=0.364977  species=11  nodes=1444  conns=329
+Gen 1157  best=0.367872  species=3  nodes=1448  conns=339
+Gen 1158  best=0.387256  species=6  nodes=1471  conns=332
+Gen 1159  best=0.360816  species=14  nodes=1472  conns=337
+Gen 1160  best=0.357084  species=5  nodes=1474  conns=334
+  [saved -> bigun_genome.txt]
+Gen 1161  best=0.356102  species=14  nodes=1514  conns=336
+Gen 1162  best=0.370238  species=5  nodes=1475  conns=332
+Gen 1163  best=0.37917  species=15  nodes=1522  conns=334
+Gen 1164  best=0.359335  species=5  nodes=1524  conns=343
+Gen 1165  best=0.36722  species=13  nodes=1523  conns=337
+Gen 1166  best=0.350142  species=5  nodes=1527  conns=336
+Gen 1167  best=0.372029  species=13  nodes=1524  conns=339
+Gen 1168  best=0.359098  species=5  nodes=1517  conns=339
+Gen 1169  best=0.365115  species=9  nodes=1526  conns=341
+Gen 1170  best=0.359772  species=9  nodes=1528  conns=332
+  [saved -> bigun_genome.txt]
+Gen 1171  best=0.362581  species=10  nodes=1532  conns=333
+Gen 1172  best=0.366468  species=9  nodes=1517  conns=339
+Gen 1173  best=0.362247  species=8  nodes=1523  conns=337
+Gen 1174  best=0.359839  species=8  nodes=1531  conns=338
+Gen 1175  best=0.368298  species=7  nodes=1528  conns=332
+Gen 1176  best=0.345482  species=7  nodes=1527  conns=341
+Gen 1177  best=0.355907  species=7  nodes=1530  conns=330
+Gen 1178  best=0.363858  species=7  nodes=1532  conns=332
+Gen 1179  best=0.360296  species=7  nodes=1528  conns=332
+Gen 1180  best=0.348199  species=7  nodes=1535  conns=339
+  [saved -> bigun_genome.txt]
+Gen 1181  best=0.354442  species=7  nodes=1538  conns=330
+Gen 1182  best=0.351999  species=7  nodes=1528  conns=332
+Gen 1183  best=0.36257  species=7  nodes=1538  conns=340
+Gen 1184  best=0.352342  species=9  nodes=1538  conns=338
+Gen 1185  best=0.37849  species=9  nodes=1533  conns=332
+Gen 1186  best=0.364897  species=13  nodes=1538  conns=342
+Gen 1187  best=0.368557  species=3  nodes=1533  conns=333
+Gen 1188  best=0.346644  species=12  nodes=1544  conns=343
+Gen 1189  best=0.33994  species=3  nodes=1545  conns=330
+Gen 1190  best=0.390778  species=13  nodes=1524  conns=340
+  [saved -> bigun_genome.txt]
+Gen 1191  best=0.359687  species=8  nodes=1547  conns=330
+Gen 1192  best=0.349237  species=15  nodes=1545  conns=330
+Gen 1193  best=0.360994  species=3  nodes=1546  conns=342
+Gen 1194  best=0.361461  species=11  nodes=1525  conns=340
+Gen 1195  best=0.380006  species=3  nodes=1547  conns=337
+Gen 1196  best=0.348732  species=14  nodes=1564  conns=335
+Gen 1197  best=0.347719  species=3  nodes=1540  conns=347
+Gen 1198  best=0.355372  species=17  nodes=1552  conns=330
+Gen 1199  best=0.369007  species=3  nodes=1567  conns=333
+Gen 1200  best=0.34985  species=20  nodes=1579  conns=336
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1201  best=0.352049  species=3  nodes=1579  conns=336
+Gen 1202  best=0.357013  species=22  nodes=1577  conns=338
+Gen 1203  best=0.351266  species=3  nodes=1576  conns=341
+Gen 1204  best=0.35286  species=25  nodes=1584  conns=338
+Gen 1205  best=0.344775  species=2  nodes=1584  conns=346
+Gen 1206  best=0.355239  species=13  nodes=1576  conns=341
+Gen 1207  best=0.359918  species=1  nodes=1588  conns=336
+Gen 1208  best=0.370173  species=11  nodes=1583  conns=336
+Gen 1209  best=0.374997  species=2  nodes=1580  conns=337
+Gen 1210  best=0.355986  species=16  nodes=1591  conns=345
+  [saved -> bigun_genome.txt]
+Gen 1211  best=0.359783  species=3  nodes=1584  conns=337
+Gen 1212  best=0.357057  species=17  nodes=1591  conns=339
+Gen 1213  best=0.34544  species=2  nodes=1597  conns=348
+Gen 1214  best=0.346496  species=20  nodes=1598  conns=348
+Gen 1215  best=0.376398  species=2  nodes=1596  conns=334
+Gen 1216  best=0.352517  species=21  nodes=1603  conns=344
+Gen 1217  best=0.377516  species=2  nodes=1595  conns=342
+Gen 1218  best=0.349035  species=19  nodes=1599  conns=345
+Gen 1219  best=0.368204  species=2  nodes=1608  conns=349
+Gen 1220  best=0.350182  species=28  nodes=1604  conns=347
+  [saved -> bigun_genome.txt]
+Gen 1221  best=0.402466  species=3  nodes=1609  conns=343
+Gen 1222  best=0.381518  species=21  nodes=1602  conns=338
+Gen 1223  best=0.370408  species=2  nodes=1619  conns=345
+Gen 1224  best=0.371963  species=23  nodes=1617  conns=340
+Gen 1225  best=0.360831  species=2  nodes=1623  conns=337
+Gen 1226  best=0.367574  species=25  nodes=1621  conns=342
+Gen 1227  best=0.367879  species=2  nodes=1622  conns=348
+Gen 1228  best=0.355835  species=26  nodes=1630  conns=340
+Gen 1229  best=0.35882  species=2  nodes=1626  conns=348
+Gen 1230  best=0.378226  species=24  nodes=1628  conns=340
+  [saved -> bigun_genome.txt]
+Gen 1231  best=0.361164  species=3  nodes=1628  conns=340
+Gen 1232  best=0.353832  species=25  nodes=1632  conns=352
+Gen 1233  best=0.36092  species=3  nodes=1633  conns=340
+Gen 1234  best=0.37206  species=23  nodes=1631  conns=348
+Gen 1235  best=0.358519  species=3  nodes=1635  conns=353
+Gen 1236  best=0.366917  species=25  nodes=1638  conns=348
+Gen 1237  best=0.361087  species=4  nodes=1639  conns=341
+Gen 1238  best=0.37206  species=18  nodes=1644  conns=345
+Gen 1239  best=0.362307  species=3  nodes=1643  conns=346
+Gen 1240  best=0.374106  species=21  nodes=1652  conns=343
+  [saved -> bigun_genome.txt]
+Gen 1241  best=0.363894  species=3  nodes=1641  conns=349
+Gen 1242  best=0.355392  species=26  nodes=1649  conns=352
+Gen 1243  best=0.350477  species=2  nodes=1642  conns=350
+Gen 1244  best=0.35831  species=25  nodes=1652  conns=343
+Gen 1245  best=0.359856  species=2  nodes=1652  conns=349
+Gen 1246  best=0.369512  species=28  nodes=1660  conns=351
+Gen 1247  best=0.359209  species=3  nodes=1650  conns=341
+Gen 1248  best=0.376783  species=27  nodes=1660  conns=347
+Gen 1249  best=0.352483  species=2  nodes=1660  conns=349
+Gen 1250  best=0.355855  species=26  nodes=1663  conns=345
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1251  best=0.386023  species=2  nodes=1659  conns=341
+Gen 1252  best=0.366225  species=26  nodes=1660  conns=347
+Gen 1253  best=0.352302  species=3  nodes=1665  conns=343
+Gen 1254  best=0.354159  species=23  nodes=1663  conns=346
+Gen 1255  best=0.373443  species=13  nodes=1663  conns=346
+Gen 1256  best=0.368603  species=1  nodes=1667  conns=350
+Gen 1257  best=0.360745  species=3  nodes=1670  conns=353
+Gen 1258  best=0.353995  species=17  nodes=1674  conns=350
+Gen 1259  best=0.343639  species=2  nodes=1669  conns=344
+Gen 1260  best=0.364481  species=17  nodes=1674  conns=343
+  [saved -> bigun_genome.txt]
+Gen 1261  best=0.372714  species=3  nodes=1673  conns=351
+Gen 1262  best=0.363276  species=23  nodes=1672  conns=352
+Gen 1263  best=0.379536  species=4  nodes=1684  conns=344
+Gen 1264  best=0.374632  species=25  nodes=1682  conns=353
+Gen 1265  best=0.370053  species=4  nodes=1684  conns=344
+Gen 1266  best=0.363368  species=23  nodes=1685  conns=344
+Gen 1267  best=0.354016  species=5  nodes=1679  conns=353
+Gen 1268  best=0.364158  species=21  nodes=1673  conns=351
+Gen 1269  best=0.362131  species=3  nodes=1684  conns=353
+Gen 1270  best=0.383495  species=19  nodes=1699  conns=352
+  [saved -> bigun_genome.txt]
+Gen 1271  best=0.360868  species=3  nodes=1696  conns=352
+Gen 1272  best=0.354458  species=24  nodes=1688  conns=351
+Gen 1273  best=0.356504  species=3  nodes=1692  conns=353
+Gen 1274  best=0.379398  species=23  nodes=1694  conns=350
+Gen 1275  best=0.383205  species=7  nodes=1711  conns=353
+Gen 1276  best=0.364915  species=26  nodes=1712  conns=355
+Gen 1277  best=0.359977  species=5  nodes=1711  conns=354
+Gen 1278  best=0.376593  species=23  nodes=1718  conns=355
+Gen 1279  best=0.359069  species=4  nodes=1710  conns=353
+Gen 1280  best=0.346288  species=23  nodes=1716  conns=354
+  [saved -> bigun_genome.txt]
+Gen 1281  best=0.366498  species=6  nodes=1713  conns=351
+Gen 1282  best=0.384969  species=24  nodes=1717  conns=347
+Gen 1283  best=0.344431  species=5  nodes=1723  conns=347
+Gen 1284  best=0.378732  species=24  nodes=1728  conns=357
+Gen 1285  best=0.352971  species=5  nodes=1726  conns=355
+Gen 1286  best=0.375027  species=25  nodes=1725  conns=353
+Gen 1287  best=0.359601  species=5  nodes=1727  conns=351
+Gen 1288  best=0.364393  species=25  nodes=1730  conns=347
+Gen 1289  best=0.412624  species=6  nodes=1726  conns=356
+Gen 1290  best=0.390414  species=21  nodes=1726  conns=357
+  [saved -> bigun_genome.txt]
+Gen 1291  best=0.35833  species=6  nodes=1728  conns=362
+Gen 1292  best=0.368517  species=21  nodes=1729  conns=355
+Gen 1293  best=0.354527  species=6  nodes=1733  conns=358
+Gen 1294  best=0.354925  species=22  nodes=1733  conns=355
+Gen 1295  best=0.37111  species=7  nodes=1736  conns=352
+Gen 1296  best=0.344443  species=22  nodes=1733  conns=347
+Gen 1297  best=0.363631  species=5  nodes=1734  conns=352
+Gen 1298  best=0.366334  species=18  nodes=1734  conns=352
+Gen 1299  best=0.355966  species=5  nodes=1738  conns=352
+Gen 1300  best=0.352705  species=18  nodes=1734  conns=351
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1301  best=0.360357  species=4  nodes=1736  conns=357
+Gen 1302  best=0.356218  species=11  nodes=1741  conns=354
+Gen 1303  best=0.34987  species=4  nodes=1741  conns=355
+Gen 1304  best=0.381297  species=13  nodes=1740  conns=357
+Gen 1305  best=0.350448  species=4  nodes=1740  conns=358
+Gen 1306  best=0.367293  species=16  nodes=1746  conns=356
+Gen 1307  best=0.364583  species=4  nodes=1741  conns=366
+Gen 1308  best=0.35716  species=19  nodes=1746  conns=354
+Gen 1309  best=0.372057  species=4  nodes=1746  conns=357
+Gen 1310  best=0.362151  species=19  nodes=1746  conns=365
+  [saved -> bigun_genome.txt]
+Gen 1311  best=0.370408  species=4  nodes=1746  conns=356
+Gen 1312  best=0.357236  species=19  nodes=1748  conns=355
+Gen 1313  best=0.353772  species=4  nodes=1747  conns=360
+Gen 1314  best=0.368099  species=14  nodes=1752  conns=368
+Gen 1315  best=0.35519  species=3  nodes=1749  conns=356
+Gen 1316  best=0.349801  species=15  nodes=1747  conns=360
+Gen 1317  best=0.357715  species=3  nodes=1752  conns=357
+Gen 1318  best=0.365714  species=14  nodes=1751  conns=365
+Gen 1319  best=0.355703  species=3  nodes=1751  conns=365
+Gen 1320  best=0.358702  species=20  nodes=1754  conns=365
+  [saved -> bigun_genome.txt]
+Gen 1321  best=0.366776  species=4  nodes=1758  conns=355
+Gen 1322  best=0.373589  species=21  nodes=1759  conns=360
+Gen 1323  best=0.35498  species=3  nodes=1760  conns=357
+Gen 1324  best=0.351384  species=19  nodes=1760  conns=356
+Gen 1325  best=0.35696  species=5  nodes=1756  conns=358
+Gen 1326  best=0.357977  species=17  nodes=1763  conns=356
+Gen 1327  best=0.362819  species=6  nodes=1764  conns=367
+Gen 1328  best=0.357886  species=24  nodes=1764  conns=359
+Gen 1329  best=0.351554  species=3  nodes=1765  conns=356
+Gen 1330  best=0.356878  species=20  nodes=1775  conns=361
+  [saved -> bigun_genome.txt]
+Gen 1331  best=0.346349  species=4  nodes=1760  conns=356
+Gen 1332  best=0.364964  species=24  nodes=1775  conns=357
+Gen 1333  best=0.377323  species=3  nodes=1772  conns=367
+Gen 1334  best=0.370555  species=28  nodes=1774  conns=357
+Gen 1335  best=0.347222  species=3  nodes=1782  conns=357
+Gen 1336  best=0.362483  species=29  nodes=1783  conns=359
+Gen 1337  best=0.361339  species=4  nodes=1780  conns=362
+Gen 1338  best=0.361312  species=27  nodes=1784  conns=361
+Gen 1339  best=0.377244  species=3  nodes=1792  conns=364
+Gen 1340  best=0.394231  species=32  nodes=1785  conns=364
+  [saved -> bigun_genome.txt]
+Gen 1341  best=0.387882  species=5  nodes=1788  conns=373
+Gen 1342  best=0.366632  species=24  nodes=1777  conns=363
+Gen 1343  best=0.353799  species=5  nodes=1789  conns=356
+Gen 1344  best=0.364314  species=22  nodes=1798  conns=364
+Gen 1345  best=0.36814  species=3  nodes=1784  conns=356
+Gen 1346  best=0.355505  species=22  nodes=1799  conns=370
+Gen 1347  best=0.356024  species=3  nodes=1796  conns=360
+Gen 1348  best=0.359117  species=27  nodes=1807  conns=364
+Gen 1349  best=0.351202  species=3  nodes=1807  conns=364
+Gen 1350  best=0.380114  species=27  nodes=1807  conns=364
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1351  best=0.354011  species=4  nodes=1809  conns=365
+Gen 1352  best=0.362914  species=28  nodes=1777  conns=364
+Gen 1353  best=0.356233  species=5  nodes=1810  conns=364
+Gen 1354  best=0.362511  species=27  nodes=1806  conns=361
+Gen 1355  best=0.355768  species=4  nodes=1812  conns=364
+Gen 1356  best=0.350042  species=17  nodes=1804  conns=364
+Gen 1357  best=0.363167  species=4  nodes=1818  conns=362
+Gen 1358  best=0.360026  species=18  nodes=1812  conns=358
+Gen 1359  best=0.35522  species=4  nodes=1819  conns=367
+Gen 1360  best=0.368787  species=18  nodes=1821  conns=368
+  [saved -> bigun_genome.txt]
+Gen 1361  best=0.362558  species=3  nodes=1820  conns=362
+Gen 1362  best=0.348968  species=17  nodes=1829  conns=371
+Gen 1363  best=0.375021  species=3  nodes=1826  conns=372
+Gen 1364  best=0.360025  species=15  nodes=1823  conns=362
+Gen 1365  best=0.368497  species=3  nodes=1813  conns=358
+Gen 1366  best=0.386102  species=20  nodes=1812  conns=358
+Gen 1367  best=0.347323  species=4  nodes=1827  conns=367
+Gen 1368  best=0.356961  species=21  nodes=1835  conns=374
+Gen 1369  best=0.363377  species=3  nodes=1827  conns=364
+Gen 1370  best=0.371898  species=21  nodes=1831  conns=369
+  [saved -> bigun_genome.txt]
+Gen 1371  best=0.378132  species=6  nodes=1834  conns=368
+Gen 1372  best=0.362502  species=20  nodes=1834  conns=364
+Gen 1373  best=0.370481  species=4  nodes=1833  conns=366
+Gen 1374  best=0.367755  species=22  nodes=1816  conns=360
+Gen 1375  best=0.356161  species=3  nodes=1839  conns=381
+Gen 1376  best=0.370187  species=21  nodes=1841  conns=379
+Gen 1377  best=0.379289  species=8  nodes=1839  conns=372
+Gen 1378  best=0.34097  species=18  nodes=1841  conns=374
+Gen 1379  best=0.361474  species=4  nodes=1840  conns=378
+Gen 1380  best=0.357365  species=20  nodes=1846  conns=362
+  [saved -> bigun_genome.txt]
+Gen 1381  best=0.351741  species=4  nodes=1846  conns=373
+Gen 1382  best=0.374836  species=19  nodes=1846  conns=373
+Gen 1383  best=0.353245  species=6  nodes=1850  conns=375
+Gen 1384  best=0.35073  species=17  nodes=1842  conns=375
+Gen 1385  best=0.361877  species=4  nodes=1847  conns=362
+Gen 1386  best=0.364212  species=15  nodes=1844  conns=375
+Gen 1387  best=0.366565  species=6  nodes=1840  conns=379
+Gen 1388  best=0.356817  species=17  nodes=1842  conns=376
+Gen 1389  best=0.370267  species=4  nodes=1856  conns=370
+Gen 1390  best=0.362082  species=17  nodes=1852  conns=373
+  [saved -> bigun_genome.txt]
+Gen 1391  best=0.367337  species=4  nodes=1845  conns=379
+Gen 1392  best=0.352176  species=17  nodes=1855  conns=376
+Gen 1393  best=0.359146  species=4  nodes=1822  conns=360
+Gen 1394  best=0.356318  species=17  nodes=1858  conns=362
+Gen 1395  best=0.420442  species=5  nodes=1852  conns=372
+Gen 1396  best=0.370055  species=22  nodes=1861  conns=374
+Gen 1397  best=0.36203  species=6  nodes=1863  conns=371
+Gen 1398  best=0.364367  species=19  nodes=1863  conns=372
+Gen 1399  best=0.358854  species=4  nodes=1864  conns=370
+Gen 1400  best=0.36351  species=21  nodes=1870  conns=379
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1401  best=0.363658  species=5  nodes=1849  conns=379
+Gen 1402  best=0.345487  species=19  nodes=1868  conns=370
+Gen 1403  best=0.355207  species=4  nodes=1874  conns=376
+Gen 1404  best=0.374077  species=25  nodes=1850  conns=379
+Gen 1405  best=0.35823  species=4  nodes=1868  conns=366
+Gen 1406  best=0.357023  species=21  nodes=1872  conns=378
+Gen 1407  best=0.356842  species=4  nodes=1877  conns=376
+Gen 1408  best=0.374945  species=18  nodes=1870  conns=379
+Gen 1409  best=0.364545  species=4  nodes=1881  conns=382
+Gen 1410  best=0.360483  species=17  nodes=1917  conns=367
+  [saved -> bigun_genome.txt]
+Gen 1411  best=0.363214  species=5  nodes=1870  conns=377
+Gen 1412  best=0.352661  species=19  nodes=1862  conns=360
+Gen 1413  best=0.371383  species=6  nodes=1871  conns=382
+Gen 1414  best=0.382117  species=18  nodes=1863  conns=361
+Gen 1415  best=0.383342  species=5  nodes=1882  conns=382
+Gen 1416  best=0.367428  species=20  nodes=1863  conns=363
+Gen 1417  best=0.34692  species=6  nodes=1932  conns=366
+Gen 1418  best=0.357055  species=19  nodes=1932  conns=366
+Gen 1419  best=0.350797  species=6  nodes=1876  conns=383
+Gen 1420  best=0.349076  species=21  nodes=1883  conns=380
+  [saved -> bigun_genome.txt]
+Gen 1421  best=0.361959  species=4  nodes=1932  conns=368
+Gen 1422  best=0.351881  species=22  nodes=1932  conns=369
+Gen 1423  best=0.343509  species=7  nodes=1865  conns=363
+Gen 1424  best=0.357293  species=17  nodes=1936  conns=375
+Gen 1425  best=0.386516  species=5  nodes=1865  conns=363
+Gen 1426  best=0.349662  species=16  nodes=1933  conns=370
+Gen 1427  best=0.353398  species=5  nodes=1937  conns=375
+Gen 1428  best=0.360765  species=15  nodes=1937  conns=383
+Gen 1429  best=0.368459  species=5  nodes=1940  conns=369
+Gen 1430  best=0.341498  species=16  nodes=1942  conns=383
+  [saved -> bigun_genome.txt]
+Gen 1431  best=0.374587  species=5  nodes=1948  conns=384
+Gen 1432  best=0.372504  species=18  nodes=1939  conns=381
+Gen 1433  best=0.347702  species=5  nodes=1939  conns=381
+Gen 1434  best=0.35686  species=16  nodes=1951  conns=377
+Gen 1435  best=0.362  species=6  nodes=1952  conns=382
+Gen 1436  best=0.358857  species=19  nodes=1954  conns=373
+Gen 1437  best=0.357545  species=5  nodes=1953  conns=371
+Gen 1438  best=0.362166  species=19  nodes=1951  conns=378
+Gen 1439  best=0.375692  species=5  nodes=1953  conns=377
+Gen 1440  best=0.364113  species=18  nodes=1956  conns=383
+  [saved -> bigun_genome.txt]
+Gen 1441  best=0.351464  species=4  nodes=1954  conns=383
+Gen 1442  best=0.362959  species=16  nodes=1953  conns=382
+Gen 1443  best=0.366644  species=4  nodes=1967  conns=373
+Gen 1444  best=0.366727  species=16  nodes=1966  conns=383
+Gen 1445  best=0.376573  species=4  nodes=1971  conns=370
+Gen 1446  best=0.361482  species=17  nodes=1974  conns=370
+Gen 1447  best=0.365257  species=3  nodes=1958  conns=379
+Gen 1448  best=0.357594  species=16  nodes=1958  conns=379
+Gen 1449  best=0.386473  species=3  nodes=1958  conns=379
+Gen 1450  best=0.361125  species=18  nodes=1958  conns=379
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1451  best=0.360995  species=3  nodes=1958  conns=382
+Gen 1452  best=0.375719  species=21  nodes=1961  conns=385
+Gen 1453  best=0.352216  species=4  nodes=1958  conns=379
+Gen 1454  best=0.35314  species=16  nodes=1978  conns=382
+Gen 1455  best=0.349546  species=4  nodes=1979  conns=371
+Gen 1456  best=0.352835  species=22  nodes=1979  conns=376
+Gen 1457  best=0.360362  species=4  nodes=1980  conns=375
+Gen 1458  best=0.355774  species=19  nodes=1980  conns=377
+Gen 1459  best=0.364811  species=6  nodes=1981  conns=373
+Gen 1460  best=0.363659  species=20  nodes=1978  conns=379
+  [saved -> bigun_genome.txt]
+Gen 1461  best=0.340217  species=4  nodes=1971  conns=382
+Gen 1462  best=0.359641  species=18  nodes=1981  conns=384
+Gen 1463  best=0.374816  species=4  nodes=1973  conns=385
+Gen 1464  best=0.366337  species=18  nodes=1973  conns=385
+Gen 1465  best=0.37557  species=5  nodes=1984  conns=377
+Gen 1466  best=0.378525  species=16  nodes=1983  conns=377
+Gen 1467  best=0.343836  species=4  nodes=1988  conns=375
+Gen 1468  best=0.34784  species=20  nodes=1973  conns=382
+Gen 1469  best=0.360754  species=6  nodes=1983  conns=385
+Gen 1470  best=0.390282  species=19  nodes=1981  conns=382
+  [saved -> bigun_genome.txt]
+Gen 1471  best=0.383574  species=7  nodes=1984  conns=383
+Gen 1472  best=0.372247  species=18  nodes=1982  conns=386
+Gen 1473  best=0.36198  species=4  nodes=1984  conns=378
+Gen 1474  best=0.346622  species=17  nodes=1980  conns=386
+Gen 1475  best=0.35515  species=5  nodes=1980  conns=386
+Gen 1476  best=0.365733  species=15  nodes=2002  conns=377
+Gen 1477  best=0.371259  species=6  nodes=2002  conns=379
+Gen 1478  best=0.380904  species=14  nodes=1983  conns=386
+Gen 1479  best=0.362147  species=5  nodes=2005  conns=378
+Gen 1480  best=0.396124  species=15  nodes=1985  conns=384
+  [saved -> bigun_genome.txt]
+Gen 1481  best=0.347897  species=3  nodes=1985  conns=384
+Gen 1482  best=0.367958  species=8  nodes=1985  conns=384
+Gen 1483  best=0.377255  species=9  nodes=1985  conns=384
+Gen 1484  best=0.347743  species=10  nodes=1989  conns=382
+Gen 1485  best=0.367882  species=7  nodes=1986  conns=384
+Gen 1486  best=0.368106  species=8  nodes=1985  conns=382
+Gen 1487  best=0.374472  species=11  nodes=1988  conns=384
+Gen 1488  best=0.364856  species=3  nodes=1987  conns=386
+Gen 1489  best=0.358898  species=9  nodes=1989  conns=382
+Gen 1490  best=0.363316  species=12  nodes=1988  conns=382
+  [saved -> bigun_genome.txt]
+Gen 1491  best=0.356976  species=4  nodes=1992  conns=388
+Gen 1492  best=0.377335  species=11  nodes=1991  conns=388
+Gen 1493  best=0.350911  species=3  nodes=1995  conns=388
+Gen 1494  best=0.365292  species=11  nodes=1991  conns=382
+Gen 1495  best=0.348861  species=4  nodes=1996  conns=382
+Gen 1496  best=0.366863  species=8  nodes=1987  conns=382
+Gen 1497  best=0.359743  species=9  nodes=1997  conns=383
+Gen 1498  best=0.39526  species=8  nodes=1991  conns=382
+Gen 1499  best=0.371241  species=6  nodes=1991  conns=382
+Gen 1500  best=0.353474  species=7  nodes=1997  conns=383
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1501  best=0.363477  species=6  nodes=1998  conns=387
+Gen 1502  best=0.358609  species=6  nodes=1997  conns=389
+Gen 1503  best=0.355  species=8  nodes=1997  conns=382
+Gen 1504  best=0.355261  species=7  nodes=2000  conns=387
+Gen 1505  best=0.366329  species=7  nodes=2004  conns=387
+Gen 1506  best=0.350561  species=7  nodes=2002  conns=387
+Gen 1507  best=0.356598  species=7  nodes=1999  conns=388
+Gen 1508  best=0.352793  species=8  nodes=1999  conns=388
+Gen 1509  best=0.37235  species=7  nodes=1999  conns=388
+Gen 1510  best=0.358805  species=7  nodes=1998  conns=388
+  [saved -> bigun_genome.txt]
+Gen 1511  best=0.365312  species=8  nodes=2004  conns=383
+Gen 1512  best=0.367738  species=8  nodes=2006  conns=387
+Gen 1513  best=0.352089  species=6  nodes=2003  conns=385
+Gen 1514  best=0.350577  species=8  nodes=2006  conns=388
+Gen 1515  best=0.350059  species=6  nodes=1999  conns=385
+Gen 1516  best=0.350599  species=7  nodes=2004  conns=383
+Gen 1517  best=0.340033  species=7  nodes=2007  conns=388
+Gen 1518  best=0.348934  species=7  nodes=2009  conns=389
+Gen 1519  best=0.339037  species=7  nodes=2002  conns=389
+Gen 1520  best=0.34607  species=8  nodes=2005  conns=383
+  [saved -> bigun_genome.txt]
+Gen 1521  best=0.357762  species=9  nodes=2011  conns=390
+Gen 1522  best=0.339044  species=9  nodes=2011  conns=383
+Gen 1523  best=0.364876  species=10  nodes=2015  conns=389
+Gen 1524  best=0.351182  species=11  nodes=2014  conns=389
+Gen 1525  best=0.348688  species=2  nodes=2015  conns=389
+Gen 1526  best=0.351418  species=12  nodes=2015  conns=388
+Gen 1527  best=0.379589  species=2  nodes=2018  conns=389
+Gen 1528  best=0.340789  species=11  nodes=2022  conns=391
+Gen 1529  best=0.358203  species=2  nodes=2022  conns=391
+Gen 1530  best=0.356124  species=15  nodes=2019  conns=389
+  [saved -> bigun_genome.txt]
+Gen 1531  best=0.365726  species=3  nodes=2020  conns=389
+Gen 1532  best=0.35774  species=13  nodes=2023  conns=391
+Gen 1533  best=0.344043  species=3  nodes=2023  conns=391
+Gen 1534  best=0.36999  species=13  nodes=2026  conns=391
+Gen 1535  best=0.375929  species=3  nodes=2026  conns=391
+Gen 1536  best=0.375059  species=13  nodes=2027  conns=393
+Gen 1537  best=0.35733  species=3  nodes=2032  conns=393
+Gen 1538  best=0.3644  species=13  nodes=2027  conns=391
+Gen 1539  best=0.365388  species=3  nodes=2027  conns=390
+Gen 1540  best=0.362004  species=13  nodes=2031  conns=390
+  [saved -> bigun_genome.txt]
+Gen 1541  best=0.370259  species=3  nodes=2039  conns=391
+Gen 1542  best=0.346751  species=13  nodes=2040  conns=393
+Gen 1543  best=0.36457  species=3  nodes=2032  conns=390
+Gen 1544  best=0.362976  species=14  nodes=2036  conns=390
+Gen 1545  best=0.352569  species=4  nodes=2035  conns=390
+Gen 1546  best=0.365996  species=13  nodes=2040  conns=394
+Gen 1547  best=0.361388  species=5  nodes=2039  conns=395
+Gen 1548  best=0.360241  species=12  nodes=2040  conns=390
+Gen 1549  best=0.37884  species=3  nodes=2037  conns=391
+Gen 1550  best=0.347851  species=13  nodes=2043  conns=396
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1551  best=0.389335  species=3  nodes=2038  conns=390
+Gen 1552  best=0.35946  species=17  nodes=2045  conns=397
+Gen 1553  best=0.363176  species=3  nodes=2040  conns=390
+Gen 1554  best=0.35416  species=15  nodes=2045  conns=396
+Gen 1555  best=0.353293  species=3  nodes=2050  conns=397
+Gen 1556  best=0.36851  species=16  nodes=2046  conns=398
+Gen 1557  best=0.342355  species=3  nodes=2043  conns=390
+Gen 1558  best=0.343223  species=15  nodes=2050  conns=396
+Gen 1559  best=0.414113  species=3  nodes=2049  conns=390
+Gen 1560  best=0.345989  species=15  nodes=2049  conns=396
+  [saved -> bigun_genome.txt]
+Gen 1561  best=0.353944  species=3  nodes=2052  conns=398
+Gen 1562  best=0.377255  species=15  nodes=2050  conns=396
+Gen 1563  best=0.379154  species=3  nodes=2053  conns=394
+Gen 1564  best=0.347116  species=14  nodes=2050  conns=396
+Gen 1565  best=0.347928  species=3  nodes=2049  conns=391
+Gen 1566  best=0.403797  species=15  nodes=2056  conns=391
+Gen 1567  best=0.363992  species=3  nodes=2053  conns=390
+Gen 1568  best=0.357027  species=14  nodes=2055  conns=390
+Gen 1569  best=0.351524  species=3  nodes=2050  conns=396
+Gen 1570  best=0.366787  species=15  nodes=2061  conns=402
+  [saved -> bigun_genome.txt]
+Gen 1571  best=0.364929  species=3  nodes=2061  conns=398
+Gen 1572  best=0.353661  species=14  nodes=2059  conns=392
+Gen 1573  best=0.387237  species=3  nodes=2051  conns=397
+Gen 1574  best=0.35921  species=16  nodes=2063  conns=402
+Gen 1575  best=0.351413  species=3  nodes=2062  conns=392
+Gen 1576  best=0.388181  species=16  nodes=2051  conns=398
+Gen 1577  best=0.352845  species=3  nodes=2059  conns=395
+Gen 1578  best=0.367578  species=16  nodes=2052  conns=396
+Gen 1579  best=0.358245  species=3  nodes=2067  conns=400
+Gen 1580  best=0.367928  species=16  nodes=2066  conns=393
+  [saved -> bigun_genome.txt]
+Gen 1581  best=0.389824  species=3  nodes=2071  conns=403
+Gen 1582  best=0.358104  species=13  nodes=2070  conns=394
+Gen 1583  best=0.356862  species=3  nodes=2068  conns=399
+Gen 1584  best=0.357663  species=15  nodes=2071  conns=405
+Gen 1585  best=0.344078  species=3  nodes=2065  conns=403
+Gen 1586  best=0.366238  species=16  nodes=2076  conns=394
+Gen 1587  best=0.357253  species=3  nodes=2070  conns=394
+Gen 1588  best=0.375407  species=17  nodes=2077  conns=396
+Gen 1589  best=0.356801  species=3  nodes=2078  conns=393
+Gen 1590  best=0.351025  species=19  nodes=2072  conns=403
+  [saved -> bigun_genome.txt]
+Gen 1591  best=0.340268  species=2  nodes=2072  conns=396
+Gen 1592  best=0.346265  species=18  nodes=2074  conns=395
+Gen 1593  best=0.380738  species=2  nodes=2077  conns=399
+Gen 1594  best=0.368764  species=17  nodes=2076  conns=402
+Gen 1595  best=0.370183  species=2  nodes=2075  conns=396
+Gen 1596  best=0.365684  species=22  nodes=2072  conns=403
+Gen 1597  best=0.375481  species=2  nodes=2074  conns=406
+Gen 1598  best=0.38828  species=20  nodes=2075  conns=403
+Gen 1599  best=0.368711  species=3  nodes=2087  conns=396
+Gen 1600  best=0.353381  species=21  nodes=2079  conns=406
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1601  best=0.348902  species=3  nodes=2077  conns=396
+Gen 1602  best=0.348727  species=19  nodes=2093  conns=397
+Gen 1603  best=0.358514  species=3  nodes=2093  conns=397
+Gen 1604  best=0.343865  species=19  nodes=2096  conns=397
+Gen 1605  best=0.373179  species=2  nodes=2078  conns=399
+Gen 1606  best=0.354003  species=19  nodes=2096  conns=397
+Gen 1607  best=0.359983  species=2  nodes=2084  conns=397
+Gen 1608  best=0.355505  species=21  nodes=2085  conns=407
+Gen 1609  best=0.361169  species=3  nodes=2102  conns=394
+Gen 1610  best=0.358825  species=20  nodes=2087  conns=407
+  [saved -> bigun_genome.txt]
+Gen 1611  best=0.391599  species=3  nodes=2100  conns=395
+Gen 1612  best=0.353929  species=21  nodes=2085  conns=407
+Gen 1613  best=0.358938  species=3  nodes=2105  conns=397
+Gen 1614  best=0.358053  species=21  nodes=2106  conns=398
+Gen 1615  best=0.352653  species=3  nodes=2104  conns=400
+Gen 1616  best=0.347082  species=19  nodes=2085  conns=407
+Gen 1617  best=0.366138  species=3  nodes=2089  conns=402
+Gen 1618  best=0.350969  species=17  nodes=2105  conns=397
+Gen 1619  best=0.367554  species=3  nodes=2109  conns=399
+Gen 1620  best=0.370634  species=15  nodes=2108  conns=397
+  [saved -> bigun_genome.txt]
+Gen 1621  best=0.36386  species=5  nodes=2117  conns=399
+Gen 1622  best=0.346573  species=18  nodes=2094  conns=404
+Gen 1623  best=0.35266  species=3  nodes=2094  conns=406
+Gen 1624  best=0.344857  species=17  nodes=2094  conns=400
+Gen 1625  best=0.36035  species=5  nodes=2100  conns=403
+Gen 1626  best=0.363115  species=17  nodes=2114  conns=401
+Gen 1627  best=0.359946  species=3  nodes=2121  conns=399
+Gen 1628  best=0.35073  species=21  nodes=2100  conns=410
+Gen 1629  best=0.363926  species=4  nodes=2122  conns=398
+Gen 1630  best=0.345884  species=22  nodes=2124  conns=402
+  [saved -> bigun_genome.txt]
+Gen 1631  best=0.356877  species=5  nodes=2122  conns=397
+Gen 1632  best=0.364837  species=22  nodes=2128  conns=403
+Gen 1633  best=0.354405  species=3  nodes=2126  conns=401
+Gen 1634  best=0.343235  species=26  nodes=2123  conns=400
+Gen 1635  best=0.35404  species=7  nodes=2108  conns=406
+Gen 1636  best=0.343085  species=20  nodes=2106  conns=413
+Gen 1637  best=0.36575  species=6  nodes=2106  conns=414
+Gen 1638  best=0.35278  species=19  nodes=2107  conns=413
+Gen 1639  best=0.364198  species=7  nodes=2107  conns=413
+Gen 1640  best=0.363263  species=21  nodes=2109  conns=413
+  [saved -> bigun_genome.txt]
+Gen 1641  best=0.355961  species=5  nodes=2110  conns=404
+Gen 1642  best=0.345819  species=21  nodes=2110  conns=405
+Gen 1643  best=0.354656  species=4  nodes=2139  conns=402
+Gen 1644  best=0.358118  species=17  nodes=2113  conns=416
+Gen 1645  best=0.361473  species=5  nodes=2113  conns=414
+Gen 1646  best=0.352748  species=14  nodes=2113  conns=414
+Gen 1647  best=0.370762  species=4  nodes=2142  conns=401
+Gen 1648  best=0.361708  species=16  nodes=2114  conns=405
+Gen 1649  best=0.360684  species=4  nodes=2113  conns=416
+Gen 1650  best=0.383909  species=17  nodes=2147  conns=401
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1651  best=0.372486  species=6  nodes=2151  conns=403
+Gen 1652  best=0.357121  species=16  nodes=2143  conns=406
+Gen 1653  best=0.374354  species=4  nodes=2149  conns=400
+Gen 1654  best=0.385697  species=15  nodes=2154  conns=405
+Gen 1655  best=0.370029  species=4  nodes=2153  conns=403
+Gen 1656  best=0.358234  species=14  nodes=2150  conns=404
+Gen 1657  best=0.351693  species=6  nodes=2153  conns=403
+Gen 1658  best=0.380039  species=15  nodes=2156  conns=406
+Gen 1659  best=0.353035  species=6  nodes=2149  conns=405
+Gen 1660  best=0.344266  species=20  nodes=2156  conns=402
+  [saved -> bigun_genome.txt]
+Gen 1661  best=0.355335  species=5  nodes=2155  conns=403
+Gen 1662  best=0.340096  species=19  nodes=2128  conns=417
+Gen 1663  best=0.351313  species=4  nodes=2160  conns=408
+Gen 1664  best=0.358475  species=20  nodes=2129  conns=406
+Gen 1665  best=0.386546  species=5  nodes=2163  conns=407
+Gen 1666  best=0.358863  species=22  nodes=2166  conns=405
+Gen 1667  best=0.359969  species=5  nodes=2129  conns=418
+Gen 1668  best=0.34472  species=26  nodes=2132  conns=412
+Gen 1669  best=0.345552  species=8  nodes=2166  conns=408
+Gen 1670  best=0.35134  species=16  nodes=2166  conns=407
+  [saved -> bigun_genome.txt]
+Gen 1671  best=0.354738  species=4  nodes=2169  conns=409
+Gen 1672  best=0.375528  species=18  nodes=2167  conns=407
+Gen 1673  best=0.370042  species=4  nodes=2137  conns=420
+Gen 1674  best=0.391579  species=17  nodes=2175  conns=409
+Gen 1675  best=0.355493  species=5  nodes=2175  conns=411
+Gen 1676  best=0.389653  species=20  nodes=2175  conns=411
+Gen 1677  best=0.357118  species=4  nodes=2175  conns=411
+Gen 1678  best=0.363706  species=22  nodes=2178  conns=407
+Gen 1679  best=0.362415  species=4  nodes=2175  conns=404
+Gen 1680  best=0.406213  species=29  nodes=2180  conns=410
+  [saved -> bigun_genome.txt]
+Gen 1681  best=0.360782  species=5  nodes=2174  conns=407
+Gen 1682  best=0.365062  species=25  nodes=2182  conns=409
+Gen 1683  best=0.367164  species=4  nodes=2175  conns=404
+Gen 1684  best=0.366165  species=20  nodes=2147  conns=423
+Gen 1685  best=0.353204  species=4  nodes=2182  conns=410
+Gen 1686  best=0.361686  species=19  nodes=2184  conns=407
+Gen 1687  best=0.399693  species=4  nodes=2183  conns=408
+Gen 1688  best=0.371306  species=17  nodes=2184  conns=409
+Gen 1689  best=0.365558  species=5  nodes=2186  conns=409
+Gen 1690  best=0.381567  species=18  nodes=2188  conns=404
+  [saved -> bigun_genome.txt]
+Gen 1691  best=0.349921  species=3  nodes=2150  conns=426
+Gen 1692  best=0.352276  species=18  nodes=2190  conns=404
+Gen 1693  best=0.349855  species=4  nodes=2188  conns=411
+Gen 1694  best=0.360118  species=18  nodes=2195  conns=412
+Gen 1695  best=0.3547  species=4  nodes=2189  conns=404
+Gen 1696  best=0.358388  species=20  nodes=2191  conns=404
+Gen 1697  best=0.392636  species=4  nodes=2193  conns=410
+Gen 1698  best=0.352564  species=17  nodes=2192  conns=410
+Gen 1699  best=0.388924  species=5  nodes=2201  conns=410
+Gen 1700  best=0.361453  species=17  nodes=2194  conns=410
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1701  best=0.354812  species=5  nodes=2154  conns=429
+Gen 1702  best=0.358728  species=18  nodes=2154  conns=423
+Gen 1703  best=0.347852  species=5  nodes=2154  conns=423
+Gen 1704  best=0.357506  species=13  nodes=2154  conns=423
+Gen 1705  best=0.35479  species=4  nodes=2155  conns=426
+Gen 1706  best=0.382941  species=19  nodes=2155  conns=426
+Gen 1707  best=0.371495  species=4  nodes=2155  conns=426
+Gen 1708  best=0.360727  species=17  nodes=2218  conns=412
+Gen 1709  best=0.378581  species=4  nodes=2211  conns=410
+Gen 1710  best=0.367379  species=17  nodes=2211  conns=410
+  [saved -> bigun_genome.txt]
+Gen 1711  best=0.391401  species=4  nodes=2158  conns=429
+Gen 1712  best=0.356816  species=16  nodes=2224  conns=412
+Gen 1713  best=0.363833  species=4  nodes=2223  conns=406
+Gen 1714  best=0.358543  species=18  nodes=2158  conns=429
+Gen 1715  best=0.36304  species=5  nodes=2221  conns=405
+Gen 1716  best=0.35278  species=17  nodes=2225  conns=411
+Gen 1717  best=0.370846  species=4  nodes=2223  conns=413
+Gen 1718  best=0.363934  species=18  nodes=2228  conns=410
+Gen 1719  best=0.37223  species=4  nodes=2229  conns=406
+Gen 1720  best=0.359897  species=20  nodes=2163  conns=429
+  [saved -> bigun_genome.txt]
+Gen 1721  best=0.361247  species=6  nodes=2162  conns=427
+Gen 1722  best=0.354551  species=17  nodes=2227  conns=417
+Gen 1723  best=0.352498  species=5  nodes=2225  conns=414
+Gen 1724  best=0.357382  species=16  nodes=2163  conns=427
+Gen 1725  best=0.344288  species=5  nodes=2238  conns=413
+Gen 1726  best=0.359078  species=15  nodes=2239  conns=412
+Gen 1727  best=0.375263  species=4  nodes=2241  conns=414
+Gen 1728  best=0.353277  species=16  nodes=2242  conns=406
+Gen 1729  best=0.359696  species=5  nodes=2228  conns=412
+Gen 1730  best=0.363644  species=16  nodes=2230  conns=412
+  [saved -> bigun_genome.txt]
+Gen 1731  best=0.355209  species=5  nodes=2247  conns=408
+Gen 1732  best=0.365259  species=14  nodes=2229  conns=415
+Gen 1733  best=0.364271  species=7  nodes=2248  conns=415
+Gen 1734  best=0.364319  species=12  nodes=2245  conns=416
+Gen 1735  best=0.349697  species=5  nodes=2250  conns=415
+Gen 1736  best=0.377549  species=14  nodes=2251  conns=415
+Gen 1737  best=0.383424  species=5  nodes=2250  conns=414
+Gen 1738  best=0.369311  species=14  nodes=2250  conns=414
+Gen 1739  best=0.368384  species=4  nodes=2252  conns=415
+Gen 1740  best=0.3605  species=13  nodes=2235  conns=417
+  [saved -> bigun_genome.txt]
+Gen 1741  best=0.367286  species=4  nodes=2233  conns=416
+Gen 1742  best=0.346099  species=15  nodes=2254  conns=414
+Gen 1743  best=0.400096  species=4  nodes=2254  conns=420
+Gen 1744  best=0.372101  species=13  nodes=2243  conns=417
+Gen 1745  best=0.365259  species=4  nodes=2245  conns=417
+Gen 1746  best=0.347258  species=12  nodes=2259  conns=420
+Gen 1747  best=0.364972  species=5  nodes=2256  conns=416
+Gen 1748  best=0.370751  species=17  nodes=2257  conns=415
+Gen 1749  best=0.365397  species=5  nodes=2257  conns=423
+Gen 1750  best=0.348469  species=14  nodes=2258  conns=423
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1751  best=0.357234  species=6  nodes=2260  conns=421
+Gen 1752  best=0.355993  species=17  nodes=2257  conns=423
+Gen 1753  best=0.365911  species=6  nodes=2257  conns=423
+Gen 1754  best=0.363204  species=16  nodes=2263  conns=425
+Gen 1755  best=0.371804  species=5  nodes=2249  conns=420
+Gen 1756  best=0.36841  species=15  nodes=2250  conns=417
+Gen 1757  best=0.362568  species=6  nodes=2267  conns=419
+Gen 1758  best=0.36422  species=14  nodes=2260  conns=425
+Gen 1759  best=0.346102  species=7  nodes=2254  conns=419
+Gen 1760  best=0.353941  species=11  nodes=2267  conns=419
+  [saved -> bigun_genome.txt]
+Gen 1761  best=0.360875  species=4  nodes=2265  conns=412
+Gen 1762  best=0.364506  species=12  nodes=2270  conns=419
+Gen 1763  best=0.356388  species=4  nodes=2263  conns=426
+Gen 1764  best=0.384088  species=12  nodes=2266  conns=421
+Gen 1765  best=0.381621  species=3  nodes=2269  conns=421
+Gen 1766  best=0.343234  species=11  nodes=2259  conns=420
+Gen 1767  best=0.350419  species=4  nodes=2267  conns=424
+Gen 1768  best=0.357909  species=12  nodes=2274  conns=424
+Gen 1769  best=0.362961  species=4  nodes=2276  conns=414
+Gen 1770  best=0.358045  species=13  nodes=2276  conns=414
+  [saved -> bigun_genome.txt]
+Gen 1771  best=0.357114  species=2  nodes=2276  conns=414
+Gen 1772  best=0.353139  species=6  nodes=2271  conns=427
+Gen 1773  best=0.367122  species=9  nodes=2277  conns=423
+Gen 1774  best=0.35395  species=11  nodes=2276  conns=423
+Gen 1775  best=0.371073  species=3  nodes=2277  conns=423
+Gen 1776  best=0.345442  species=10  nodes=2279  conns=427
+Gen 1777  best=0.369111  species=9  nodes=2274  conns=423
+Gen 1778  best=0.354796  species=9  nodes=2272  conns=429
+Gen 1779  best=0.353336  species=11  nodes=2275  conns=428
+Gen 1780  best=0.350091  species=2  nodes=2275  conns=428
+  [saved -> bigun_genome.txt]
+Gen 1781  best=0.380987  species=4  nodes=2274  conns=429
+Gen 1782  best=0.355406  species=3  nodes=2272  conns=429
+Gen 1783  best=0.360843  species=5  nodes=2275  conns=428
+Gen 1784  best=0.356631  species=7  nodes=2278  conns=431
+Gen 1785  best=0.367628  species=6  nodes=2282  conns=425
+Gen 1786  best=0.375358  species=7  nodes=2278  conns=430
+Gen 1787  best=0.363128  species=6  nodes=2285  conns=419
+Gen 1788  best=0.351808  species=6  nodes=2276  conns=433
+Gen 1789  best=0.34183  species=7  nodes=2276  conns=433
+Gen 1790  best=0.338277  species=7  nodes=2285  conns=421
+  [saved -> bigun_genome.txt]
+Gen 1791  best=0.350036  species=9  nodes=2279  conns=433
+Gen 1792  best=0.390296  species=6  nodes=2282  conns=429
+Gen 1793  best=0.362841  species=7  nodes=2282  conns=429
+Gen 1794  best=0.366216  species=7  nodes=2288  conns=421
+Gen 1795  best=0.364125  species=7  nodes=2285  conns=436
+Gen 1796  best=0.354824  species=8  nodes=2285  conns=435
+Gen 1797  best=0.365788  species=9  nodes=2282  conns=429
+Gen 1798  best=0.365886  species=9  nodes=2295  conns=425
+Gen 1799  best=0.351099  species=9  nodes=2295  conns=425
+Gen 1800  best=0.338002  species=8  nodes=2295  conns=425
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1801  best=0.354433  species=10  nodes=2295  conns=425
+Gen 1802  best=0.378309  species=9  nodes=2291  conns=437
+Gen 1803  best=0.341583  species=9  nodes=2291  conns=437
+Gen 1804  best=0.368303  species=10  nodes=2293  conns=432
+Gen 1805  best=0.350991  species=10  nodes=2296  conns=427
+Gen 1806  best=0.354334  species=8  nodes=2293  conns=435
+Gen 1807  best=0.349345  species=9  nodes=2294  conns=435
+Gen 1808  best=0.360619  species=10  nodes=2296  conns=427
+Gen 1809  best=0.361766  species=7  nodes=2297  conns=431
+Gen 1810  best=0.343699  species=6  nodes=2294  conns=438
+  [saved -> bigun_genome.txt]
+Gen 1811  best=0.331854  species=7  nodes=2295  conns=430
+Gen 1812  best=0.352114  species=7  nodes=2292  conns=438
+Gen 1813  best=0.374589  species=5  nodes=2296  conns=437
+Gen 1814  best=0.36217  species=5  nodes=2293  conns=440
+Gen 1815  best=0.338812  species=5  nodes=2292  conns=438
+Gen 1816  best=0.358838  species=7  nodes=2296  conns=429
+Gen 1817  best=0.353923  species=6  nodes=2297  conns=429
+Gen 1818  best=0.33381  species=7  nodes=2301  conns=438
+Gen 1819  best=0.35045  species=6  nodes=2302  conns=436
+Gen 1820  best=0.362516  species=5  nodes=2301  conns=437
+  [saved -> bigun_genome.txt]
+Gen 1821  best=0.339548  species=7  nodes=2302  conns=436
+Gen 1822  best=0.346714  species=6  nodes=2296  conns=438
+Gen 1823  best=0.372148  species=7  nodes=2306  conns=429
+Gen 1824  best=0.345533  species=6  nodes=2304  conns=432
+Gen 1825  best=0.347208  species=5  nodes=2297  conns=440
+Gen 1826  best=0.33305  species=5  nodes=2303  conns=435
+Gen 1827  best=0.35821  species=6  nodes=2304  conns=440
+Gen 1828  best=0.357041  species=6  nodes=2303  conns=435
+Gen 1829  best=0.339534  species=5  nodes=2307  conns=431
+Gen 1830  best=0.368139  species=6  nodes=2305  conns=442
+  [saved -> bigun_genome.txt]
+Gen 1831  best=0.35182  species=7  nodes=2310  conns=434
+Gen 1832  best=0.345327  species=6  nodes=2311  conns=432
+Gen 1833  best=0.358725  species=8  nodes=2306  conns=437
+Gen 1834  best=0.339183  species=9  nodes=2310  conns=432
+Gen 1835  best=0.337347  species=10  nodes=2315  conns=439
+Gen 1836  best=0.361856  species=11  nodes=2310  conns=432
+Gen 1837  best=0.352226  species=2  nodes=2311  conns=434
+Gen 1838  best=0.356459  species=13  nodes=2317  conns=442
+Gen 1839  best=0.354403  species=2  nodes=2329  conns=440
+Gen 1840  best=0.341785  species=11  nodes=2341  conns=436
+  [saved -> bigun_genome.txt]
+Gen 1841  best=0.353941  species=2  nodes=2341  conns=436
+Gen 1842  best=0.346126  species=17  nodes=2341  conns=436
+Gen 1843  best=0.353482  species=2  nodes=2343  conns=440
+Gen 1844  best=0.359838  species=15  nodes=2341  conns=436
+Gen 1845  best=0.336321  species=2  nodes=2334  conns=443
+Gen 1846  best=0.347746  species=19  nodes=2348  conns=437
+Gen 1847  best=0.365412  species=2  nodes=2346  conns=434
+Gen 1848  best=0.360289  species=16  nodes=2354  conns=434
+Gen 1849  best=0.355943  species=2  nodes=2349  conns=444
+Gen 1850  best=0.362387  species=18  nodes=2349  conns=445
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1851  best=0.348049  species=2  nodes=2353  conns=441
+Gen 1852  best=0.347319  species=16  nodes=2356  conns=434
+Gen 1853  best=0.361251  species=2  nodes=2354  conns=440
+Gen 1854  best=0.341724  species=15  nodes=2363  conns=437
+Gen 1855  best=0.378746  species=3  nodes=2358  conns=435
+Gen 1856  best=0.34411  species=15  nodes=2360  conns=444
+Gen 1857  best=0.342217  species=2  nodes=2363  conns=439
+Gen 1858  best=0.35734  species=15  nodes=2365  conns=440
+Gen 1859  best=0.348479  species=3  nodes=2368  conns=439
+Gen 1860  best=0.34646  species=17  nodes=2369  conns=443
+  [saved -> bigun_genome.txt]
+Gen 1861  best=0.377156  species=3  nodes=2369  conns=443
+Gen 1862  best=0.332814  species=18  nodes=2364  conns=446
+Gen 1863  best=0.36127  species=2  nodes=2372  conns=442
+Gen 1864  best=0.335672  species=15  nodes=2373  conns=443
+Gen 1865  best=0.346694  species=2  nodes=2374  conns=444
+Gen 1866  best=0.360856  species=20  nodes=2374  conns=441
+Gen 1867  best=0.358927  species=1  nodes=2375  conns=442
+Gen 1868  best=0.371111  species=22  nodes=2374  conns=442
+Gen 1869  best=0.342263  species=2  nodes=2376  conns=443
+Gen 1870  best=0.347889  species=21  nodes=2377  conns=442
+  [saved -> bigun_genome.txt]
+Gen 1871  best=0.376147  species=2  nodes=2371  conns=439
+Gen 1872  best=0.35878  species=19  nodes=2385  conns=442
+Gen 1873  best=0.357639  species=2  nodes=2380  conns=443
+Gen 1874  best=0.340806  species=18  nodes=2386  conns=443
+Gen 1875  best=0.361168  species=1  nodes=2387  conns=439
+Gen 1876  best=0.361657  species=28  nodes=2383  conns=443
+Gen 1877  best=0.364055  species=2  nodes=2393  conns=443
+Gen 1878  best=0.363693  species=25  nodes=2389  conns=443
+Gen 1879  best=0.34013  species=2  nodes=2389  conns=443
+Gen 1880  best=0.345556  species=23  nodes=2392  conns=448
+  [saved -> bigun_genome.txt]
+Gen 1881  best=0.346163  species=4  nodes=2397  conns=440
+Gen 1882  best=0.345105  species=26  nodes=2400  conns=447
+Gen 1883  best=0.35303  species=5  nodes=2401  conns=445
+Gen 1884  best=0.369202  species=19  nodes=2400  conns=443
+Gen 1885  best=0.378094  species=2  nodes=2400  conns=443
+Gen 1886  best=0.37059  species=21  nodes=2400  conns=443
+Gen 1887  best=0.359835  species=3  nodes=2406  conns=445
+Gen 1888  best=0.361504  species=18  nodes=2406  conns=443
+Gen 1889  best=0.363265  species=1  nodes=2403  conns=437
+Gen 1890  best=0.359386  species=25  nodes=2412  conns=448
+  [saved -> bigun_genome.txt]
+Gen 1891  best=0.35377  species=5  nodes=2407  conns=445
+Gen 1892  best=0.353259  species=22  nodes=2414  conns=443
+Gen 1893  best=0.351737  species=2  nodes=2415  conns=440
+Gen 1894  best=0.350512  species=22  nodes=2400  conns=443
+Gen 1895  best=0.367033  species=3  nodes=2422  conns=442
+Gen 1896  best=0.354523  species=20  nodes=2420  conns=451
+Gen 1897  best=0.345518  species=2  nodes=2417  conns=446
+Gen 1898  best=0.363602  species=18  nodes=2426  conns=445
+Gen 1899  best=0.360396  species=3  nodes=2429  conns=446
+Gen 1900  best=0.353967  species=20  nodes=2425  conns=452
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1901  best=0.379524  species=3  nodes=2430  conns=445
+Gen 1902  best=0.365088  species=18  nodes=2432  conns=445
+Gen 1903  best=0.353946  species=3  nodes=2432  conns=439
+Gen 1904  best=0.347471  species=18  nodes=2439  conns=451
+Gen 1905  best=0.351197  species=4  nodes=2436  conns=452
+Gen 1906  best=0.350848  species=15  nodes=2439  conns=449
+Gen 1907  best=0.376395  species=5  nodes=2438  conns=445
+Gen 1908  best=0.364799  species=17  nodes=2437  conns=445
+Gen 1909  best=0.366369  species=4  nodes=2438  conns=447
+Gen 1910  best=0.367915  species=18  nodes=2438  conns=447
+  [saved -> bigun_genome.txt]
+Gen 1911  best=0.356507  species=4  nodes=2442  conns=447
+Gen 1912  best=0.359789  species=18  nodes=2444  conns=446
+Gen 1913  best=0.351816  species=3  nodes=2444  conns=446
+Gen 1914  best=0.370221  species=18  nodes=2444  conns=447
+Gen 1915  best=0.369621  species=2  nodes=2438  conns=446
+Gen 1916  best=0.363159  species=18  nodes=2450  conns=440
+Gen 1917  best=0.350877  species=3  nodes=2450  conns=440
+Gen 1918  best=0.4131  species=19  nodes=2452  conns=457
+Gen 1919  best=0.360809  species=4  nodes=2446  conns=448
+Gen 1920  best=0.344392  species=19  nodes=2452  conns=447
+  [saved -> bigun_genome.txt]
+Gen 1921  best=0.372155  species=3  nodes=2453  conns=440
+Gen 1922  best=0.350232  species=16  nodes=2453  conns=448
+Gen 1923  best=0.386206  species=3  nodes=2464  conns=443
+Gen 1924  best=0.351397  species=18  nodes=2465  conns=454
+Gen 1925  best=0.350113  species=2  nodes=2460  conns=450
+Gen 1926  best=0.352854  species=18  nodes=2462  conns=451
+Gen 1927  best=0.366036  species=2  nodes=2464  conns=450
+Gen 1928  best=0.373101  species=18  nodes=2462  conns=447
+Gen 1929  best=0.360128  species=3  nodes=2462  conns=447
+Gen 1930  best=0.341912  species=18  nodes=2470  conns=459
+  [saved -> bigun_genome.txt]
+Gen 1931  best=0.348621  species=4  nodes=2471  conns=440
+Gen 1932  best=0.35813  species=19  nodes=2471  conns=448
+Gen 1933  best=0.351506  species=6  nodes=2463  conns=448
+Gen 1934  best=0.355273  species=21  nodes=2464  conns=448
+Gen 1935  best=0.353551  species=3  nodes=2464  conns=449
+Gen 1936  best=0.351123  species=23  nodes=2464  conns=449
+Gen 1937  best=0.356098  species=4  nodes=2475  conns=451
+Gen 1938  best=0.394463  species=20  nodes=2484  conns=451
+Gen 1939  best=0.346881  species=3  nodes=2484  conns=447
+Gen 1940  best=0.360271  species=21  nodes=2486  conns=457
+  [saved -> bigun_genome.txt]
+Gen 1941  best=0.366158  species=6  nodes=2486  conns=457
+Gen 1942  best=0.341408  species=24  nodes=2484  conns=452
+Gen 1943  best=0.363353  species=4  nodes=2485  conns=451
+Gen 1944  best=0.353415  species=20  nodes=2486  conns=451
+Gen 1945  best=0.348697  species=5  nodes=2489  conns=451
+Gen 1946  best=0.337985  species=17  nodes=2490  conns=451
+Gen 1947  best=0.356086  species=6  nodes=2487  conns=451
+Gen 1948  best=0.344907  species=17  nodes=2496  conns=449
+Gen 1949  best=0.369816  species=8  nodes=2496  conns=445
+Gen 1950  best=0.359397  species=20  nodes=2493  conns=449
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 1951  best=0.355645  species=2  nodes=2499  conns=451
+Gen 1952  best=0.37524  species=20  nodes=2493  conns=449
+Gen 1953  best=0.375334  species=4  nodes=2500  conns=462
+Gen 1954  best=0.355569  species=18  nodes=2509  conns=465
+Gen 1955  best=0.352272  species=3  nodes=2504  conns=453
+Gen 1956  best=0.367977  species=20  nodes=2502  conns=458
+Gen 1957  best=0.394625  species=6  nodes=2502  conns=458
+Gen 1958  best=0.354552  species=21  nodes=2506  conns=457
+Gen 1959  best=0.373193  species=4  nodes=2506  conns=457
+Gen 1960  best=0.373102  species=22  nodes=2526  conns=455
+  [saved -> bigun_genome.txt]
+Gen 1961  best=0.343161  species=9  nodes=2516  conns=459
+Gen 1962  best=0.357251  species=22  nodes=2523  conns=468
+Gen 1963  best=0.343697  species=6  nodes=2526  conns=449
+Gen 1964  best=0.333264  species=19  nodes=2523  conns=468
+Gen 1965  best=0.354884  species=6  nodes=2517  conns=454
+Gen 1966  best=0.358051  species=17  nodes=2515  conns=455
+Gen 1967  best=0.370451  species=4  nodes=2526  conns=468
+Gen 1968  best=0.355408  species=16  nodes=2533  conns=454
+Gen 1969  best=0.346207  species=5  nodes=2533  conns=454
+Gen 1970  best=0.338574  species=19  nodes=2528  conns=451
+  [saved -> bigun_genome.txt]
+Gen 1971  best=0.370745  species=6  nodes=2531  conns=463
+Gen 1972  best=0.34503  species=18  nodes=2541  conns=457
+Gen 1973  best=0.355949  species=6  nodes=2549  conns=447
+Gen 1974  best=0.336505  species=20  nodes=2541  conns=468
+Gen 1975  best=0.345773  species=6  nodes=2541  conns=468
+Gen 1976  best=0.382925  species=21  nodes=2543  conns=450
+Gen 1977  best=0.377776  species=7  nodes=2551  conns=453
+Gen 1978  best=0.359832  species=18  nodes=2560  conns=459
+Gen 1979  best=0.342218  species=7  nodes=2562  conns=446
+Gen 1980  best=0.353993  species=19  nodes=2554  conns=451
+  [saved -> bigun_genome.txt]
+Gen 1981  best=0.373887  species=8  nodes=2547  conns=460
+Gen 1982  best=0.356131  species=21  nodes=2564  conns=460
+Gen 1983  best=0.37369  species=9  nodes=2565  conns=449
+Gen 1984  best=0.369026  species=18  nodes=2571  conns=456
+Gen 1985  best=0.34335  species=6  nodes=2570  conns=460
+Gen 1986  best=0.369187  species=20  nodes=2573  conns=449
+Gen 1987  best=0.350624  species=9  nodes=2565  conns=451
+Gen 1988  best=0.372579  species=20  nodes=2569  conns=462
+Gen 1989  best=0.343326  species=7  nodes=2572  conns=456
+Gen 1990  best=0.362707  species=20  nodes=2582  conns=456
+  [saved -> bigun_genome.txt]
+Gen 1991  best=0.352875  species=7  nodes=2577  conns=456
+Gen 1992  best=0.360327  species=19  nodes=2573  conns=462
+Gen 1993  best=0.360111  species=6  nodes=2576  conns=462
+Gen 1994  best=0.35949  species=19  nodes=2582  conns=455
+Gen 1995  best=0.346272  species=7  nodes=2582  conns=455
+Gen 1996  best=0.349165  species=16  nodes=2587  conns=458
+Gen 1997  best=0.349505  species=8  nodes=2578  conns=450
+Gen 1998  best=0.357057  species=12  nodes=2586  conns=451
+Gen 1999  best=0.350215  species=4  nodes=2583  conns=449
+Gen 2000  best=0.351212  species=11  nodes=2586  conns=464
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2001  best=0.374379  species=4  nodes=2583  conns=454
+Gen 2002  best=0.357735  species=9  nodes=2579  conns=453
+Gen 2003  best=0.358087  species=13  nodes=2599  conns=451
+Gen 2004  best=0.359408  species=5  nodes=2579  conns=453
+Gen 2005  best=0.368482  species=12  nodes=2590  conns=451
+Gen 2006  best=0.341985  species=6  nodes=2590  conns=461
+Gen 2007  best=0.361162  species=11  nodes=2596  conns=466
+Gen 2008  best=0.347026  species=5  nodes=2601  conns=460
+Gen 2009  best=0.361335  species=10  nodes=2596  conns=466
+Gen 2010  best=0.362914  species=11  nodes=2593  conns=456
+  [saved -> bigun_genome.txt]
+Gen 2011  best=0.368436  species=5  nodes=2593  conns=456
+Gen 2012  best=0.35956  species=13  nodes=2595  conns=455
+Gen 2013  best=0.354335  species=5  nodes=2599  conns=468
+Gen 2014  best=0.36464  species=15  nodes=2597  conns=456
+Gen 2015  best=0.375082  species=6  nodes=2593  conns=451
+Gen 2016  best=0.35478  species=11  nodes=2609  conns=455
+Gen 2017  best=0.359935  species=5  nodes=2607  conns=453
+Gen 2018  best=0.349585  species=12  nodes=2609  conns=466
+Gen 2019  best=0.349294  species=7  nodes=2600  conns=463
+Gen 2020  best=0.36599  species=12  nodes=2598  conns=456
+  [saved -> bigun_genome.txt]
+Gen 2021  best=0.392358  species=6  nodes=2600  conns=456
+Gen 2022  best=0.351333  species=12  nodes=2596  conns=455
+Gen 2023  best=0.349516  species=7  nodes=2614  conns=465
+Gen 2024  best=0.353697  species=16  nodes=2600  conns=467
+Gen 2025  best=0.36235  species=5  nodes=2604  conns=456
+Gen 2026  best=0.349304  species=18  nodes=2614  conns=466
+Gen 2027  best=0.346671  species=6  nodes=2618  conns=467
+Gen 2028  best=0.365416  species=15  nodes=2608  conns=458
+Gen 2029  best=0.369696  species=5  nodes=2614  conns=466
+Gen 2030  best=0.383155  species=14  nodes=2602  conns=466
+  [saved -> bigun_genome.txt]
+Gen 2031  best=0.356763  species=5  nodes=2611  conns=456
+Gen 2032  best=0.353114  species=16  nodes=2609  conns=453
+Gen 2033  best=0.357643  species=7  nodes=2615  conns=466
+Gen 2034  best=0.346977  species=16  nodes=2603  conns=464
+Gen 2035  best=0.351794  species=5  nodes=2618  conns=457
+Gen 2036  best=0.346193  species=13  nodes=2619  conns=454
+Gen 2037  best=0.34435  species=6  nodes=2605  conns=467
+Gen 2038  best=0.357508  species=11  nodes=2622  conns=457
+Gen 2039  best=0.371071  species=6  nodes=2621  conns=457
+Gen 2040  best=0.36466  species=13  nodes=2619  conns=459
+  [saved -> bigun_genome.txt]
+Gen 2041  best=0.358269  species=5  nodes=2616  conns=453
+Gen 2042  best=0.352145  species=12  nodes=2618  conns=459
+Gen 2043  best=0.386851  species=5  nodes=2619  conns=458
+Gen 2044  best=0.356594  species=11  nodes=2624  conns=453
+Gen 2045  best=0.347632  species=3  nodes=2624  conns=453
+Gen 2046  best=0.350357  species=9  nodes=2625  conns=454
+Gen 2047  best=0.363849  species=10  nodes=2629  conns=458
+Gen 2048  best=0.379054  species=11  nodes=2631  conns=467
+Gen 2049  best=0.339882  species=3  nodes=2631  conns=467
+Gen 2050  best=0.379208  species=10  nodes=2628  conns=453
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2051  best=0.358  species=11  nodes=2632  conns=459
+Gen 2052  best=0.371205  species=4  nodes=2632  conns=459
+Gen 2053  best=0.356774  species=11  nodes=2633  conns=465
+Gen 2054  best=0.360514  species=6  nodes=2629  conns=460
+Gen 2055  best=0.369836  species=15  nodes=2635  conns=459
+Gen 2056  best=0.357227  species=6  nodes=2638  conns=475
+Gen 2057  best=0.368899  species=14  nodes=2638  conns=475
+Gen 2058  best=0.331057  species=3  nodes=2638  conns=453
+Gen 2059  best=0.354599  species=7  nodes=2640  conns=457
+Gen 2060  best=0.370462  species=9  nodes=2639  conns=471
+  [saved -> bigun_genome.txt]
+Gen 2061  best=0.387005  species=8  nodes=2639  conns=471
+Gen 2062  best=0.360918  species=9  nodes=2639  conns=471
+Gen 2063  best=0.355802  species=9  nodes=2639  conns=456
+Gen 2064  best=0.356061  species=8  nodes=2644  conns=478
+Gen 2065  best=0.34074  species=8  nodes=2643  conns=471
+Gen 2066  best=0.341195  species=8  nodes=2639  conns=468
+Gen 2067  best=0.338122  species=7  nodes=2644  conns=463
+Gen 2068  best=0.350253  species=8  nodes=2644  conns=465
+Gen 2069  best=0.341709  species=8  nodes=2642  conns=457
+Gen 2070  best=0.359423  species=8  nodes=2642  conns=458
+  [saved -> bigun_genome.txt]
+Gen 2071  best=0.355544  species=9  nodes=2646  conns=474
+Gen 2072  best=0.359177  species=10  nodes=2641  conns=457
+Gen 2073  best=0.36033  species=9  nodes=2643  conns=457
+Gen 2074  best=0.349131  species=9  nodes=2646  conns=459
+Gen 2075  best=0.377079  species=10  nodes=2645  conns=457
+Gen 2076  best=0.353074  species=2  nodes=2649  conns=463
+Gen 2077  best=0.363617  species=3  nodes=2649  conns=463
+Gen 2078  best=0.355977  species=3  nodes=2641  conns=457
+Gen 2079  best=0.357296  species=4  nodes=2649  conns=463
+Gen 2080  best=0.36852  species=5  nodes=2650  conns=467
+  [saved -> bigun_genome.txt]
+Gen 2081  best=0.345378  species=4  nodes=2648  conns=460
+Gen 2082  best=0.343442  species=5  nodes=2651  conns=467
+Gen 2083  best=0.346384  species=6  nodes=2648  conns=460
+Gen 2084  best=0.35362  species=4  nodes=2641  conns=459
+Gen 2085  best=0.350405  species=6  nodes=2651  conns=467
+Gen 2086  best=0.363101  species=6  nodes=2657  conns=466
+Gen 2087  best=0.336051  species=8  nodes=2651  conns=467
+Gen 2088  best=0.381233  species=12  nodes=2655  conns=469
+Gen 2089  best=0.349661  species=2  nodes=2654  conns=466
+Gen 2090  best=0.356245  species=6  nodes=2658  conns=469
+  [saved -> bigun_genome.txt]
+Gen 2091  best=0.365516  species=5  nodes=2650  conns=458
+Gen 2092  best=0.336865  species=7  nodes=2649  conns=462
+Gen 2093  best=0.359376  species=7  nodes=2657  conns=469
+Gen 2094  best=0.362943  species=8  nodes=2649  conns=462
+Gen 2095  best=0.340698  species=9  nodes=2654  conns=461
+Gen 2096  best=0.348898  species=9  nodes=2665  conns=472
+Gen 2097  best=0.353833  species=10  nodes=2667  conns=473
+Gen 2098  best=0.343206  species=10  nodes=2656  conns=466
+Gen 2099  best=0.334885  species=11  nodes=2656  conns=462
+Gen 2100  best=0.342139  species=2  nodes=2657  conns=458
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2101  best=0.342883  species=12  nodes=2658  conns=458
+Gen 2102  best=0.332397  species=2  nodes=2671  conns=472
+Gen 2103  best=0.370982  species=17  nodes=2671  conns=466
+Gen 2104  best=0.387819  species=2  nodes=2679  conns=479
+Gen 2105  best=0.349853  species=17  nodes=2684  conns=466
+Gen 2106  best=0.357517  species=2  nodes=2680  conns=475
+Gen 2107  best=0.336539  species=16  nodes=2665  conns=468
+Gen 2108  best=0.364986  species=2  nodes=2681  conns=466
+Gen 2109  best=0.339794  species=14  nodes=2667  conns=458
+Gen 2110  best=0.362646  species=2  nodes=2683  conns=475
+  [saved -> bigun_genome.txt]
+Gen 2111  best=0.368921  species=16  nodes=2668  conns=464
+Gen 2112  best=0.361748  species=2  nodes=2668  conns=460
+Gen 2113  best=0.365376  species=18  nodes=2667  conns=467
+Gen 2114  best=0.344994  species=2  nodes=2683  conns=479
+Gen 2115  best=0.354619  species=19  nodes=2668  conns=465
+Gen 2116  best=0.351634  species=2  nodes=2690  conns=469
+Gen 2117  best=0.37359  species=21  nodes=2694  conns=469
+Gen 2118  best=0.358026  species=2  nodes=2697  conns=477
+Gen 2119  best=0.354865  species=24  nodes=2699  conns=468
+Gen 2120  best=0.345353  species=2  nodes=2698  conns=470
+  [saved -> bigun_genome.txt]
+Gen 2121  best=0.358696  species=22  nodes=2703  conns=481
+Gen 2122  best=0.378941  species=2  nodes=2702  conns=470
+Gen 2123  best=0.369266  species=22  nodes=2670  conns=463
+Gen 2124  best=0.350687  species=2  nodes=2673  conns=465
+Gen 2125  best=0.351943  species=23  nodes=2708  conns=471
+Gen 2126  best=0.348657  species=2  nodes=2709  conns=483
+Gen 2127  best=0.356218  species=24  nodes=2715  conns=479
+Gen 2128  best=0.361332  species=2  nodes=2716  conns=470
+Gen 2129  best=0.345238  species=28  nodes=2674  conns=467
+Gen 2130  best=0.358233  species=2  nodes=2710  conns=470
+  [saved -> bigun_genome.txt]
+Gen 2131  best=0.344909  species=26  nodes=2717  conns=480
+Gen 2132  best=0.358495  species=2  nodes=2721  conns=472
+Gen 2133  best=0.357658  species=26  nodes=2721  conns=477
+Gen 2134  best=0.362968  species=2  nodes=2725  conns=478
+Gen 2135  best=0.361862  species=27  nodes=2727  conns=469
+Gen 2136  best=0.367695  species=2  nodes=2684  conns=473
+Gen 2137  best=0.355317  species=30  nodes=2685  conns=473
+Gen 2138  best=0.359196  species=2  nodes=2681  conns=465
+Gen 2139  best=0.36396  species=27  nodes=2687  conns=464
+Gen 2140  best=0.3337  species=2  nodes=2728  conns=477
+  [saved -> bigun_genome.txt]
+Gen 2141  best=0.359272  species=25  nodes=2681  conns=465
+Gen 2142  best=0.367751  species=2  nodes=2687  conns=470
+Gen 2143  best=0.361013  species=27  nodes=2690  conns=468
+Gen 2144  best=0.374861  species=3  nodes=2734  conns=476
+Gen 2145  best=0.349183  species=23  nodes=2691  conns=474
+Gen 2146  best=0.347817  species=3  nodes=2691  conns=468
+Gen 2147  best=0.352219  species=24  nodes=2691  conns=473
+Gen 2148  best=0.343915  species=3  nodes=2737  conns=469
+Gen 2149  best=0.37654  species=22  nodes=2741  conns=488
+Gen 2150  best=0.35339  species=2  nodes=2741  conns=476
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2151  best=0.387278  species=27  nodes=2746  conns=484
+Gen 2152  best=0.355235  species=3  nodes=2744  conns=469
+Gen 2153  best=0.378724  species=22  nodes=2744  conns=477
+Gen 2154  best=0.366878  species=2  nodes=2699  conns=468
+Gen 2155  best=0.382469  species=21  nodes=2755  conns=471
+Gen 2156  best=0.34696  species=2  nodes=2696  conns=471
+Gen 2157  best=0.35326  species=22  nodes=2751  conns=479
+Gen 2158  best=0.341601  species=2  nodes=2751  conns=469
+Gen 2159  best=0.341093  species=19  nodes=2749  conns=479
+Gen 2160  best=0.355722  species=2  nodes=2707  conns=473
+  [saved -> bigun_genome.txt]
+Gen 2161  best=0.357762  species=26  nodes=2750  conns=469
+Gen 2162  best=0.344262  species=3  nodes=2758  conns=481
+Gen 2163  best=0.359359  species=26  nodes=2712  conns=476
+Gen 2164  best=0.35273  species=2  nodes=2715  conns=464
+Gen 2165  best=0.361722  species=26  nodes=2716  conns=468
+Gen 2166  best=0.350676  species=2  nodes=2713  conns=472
+Gen 2167  best=0.364054  species=24  nodes=2759  conns=486
+Gen 2168  best=0.348169  species=4  nodes=2721  conns=469
+Gen 2169  best=0.36063  species=20  nodes=2761  conns=488
+Gen 2170  best=0.352864  species=4  nodes=2723  conns=478
+  [saved -> bigun_genome.txt]
+Gen 2171  best=0.347431  species=22  nodes=2716  conns=472
+Gen 2172  best=0.3618  species=5  nodes=2724  conns=475
+Gen 2173  best=0.358047  species=17  nodes=2726  conns=481
+Gen 2174  best=0.361898  species=3  nodes=2760  conns=486
+Gen 2175  best=0.364107  species=17  nodes=2762  conns=471
+Gen 2176  best=0.361661  species=3  nodes=2762  conns=486
+Gen 2177  best=0.344916  species=14  nodes=2729  conns=481
+Gen 2178  best=0.360973  species=2  nodes=2768  conns=489
+Gen 2179  best=0.373213  species=17  nodes=2769  conns=489
+Gen 2180  best=0.365754  species=2  nodes=2739  conns=467
+  [saved -> bigun_genome.txt]
+Gen 2181  best=0.38233  species=17  nodes=2740  conns=471
+Gen 2182  best=0.385746  species=2  nodes=2740  conns=471
+Gen 2183  best=0.358806  species=22  nodes=2767  conns=486
+Gen 2184  best=0.38215  species=2  nodes=2735  conns=468
+Gen 2185  best=0.349332  species=18  nodes=2776  conns=482
+Gen 2186  best=0.373646  species=4  nodes=2749  conns=470
+Gen 2187  best=0.353439  species=20  nodes=2777  conns=474
+Gen 2188  best=0.366817  species=4  nodes=2751  conns=472
+Gen 2189  best=0.343941  species=18  nodes=2753  conns=472
+Gen 2190  best=0.360036  species=2  nodes=2751  conns=472
+  [saved -> bigun_genome.txt]
+Gen 2191  best=0.348682  species=11  nodes=2754  conns=481
+Gen 2192  best=0.368902  species=2  nodes=2754  conns=478
+Gen 2193  best=0.353133  species=9  nodes=2755  conns=472
+Gen 2194  best=0.363604  species=10  nodes=2755  conns=474
+Gen 2195  best=0.346859  species=9  nodes=2754  conns=474
+Gen 2196  best=0.350637  species=7  nodes=2755  conns=482
+Gen 2197  best=0.357152  species=5  nodes=2762  conns=472
+Gen 2198  best=0.357015  species=6  nodes=2755  conns=477
+Gen 2199  best=0.383304  species=6  nodes=2758  conns=472
+Gen 2200  best=0.33316  species=6  nodes=2758  conns=472
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2201  best=0.349811  species=6  nodes=2757  conns=483
+Gen 2202  best=0.37595  species=6  nodes=2755  conns=479
+Gen 2203  best=0.369352  species=6  nodes=2763  conns=472
+Gen 2204  best=0.369972  species=6  nodes=2751  conns=472
+Gen 2205  best=0.376272  species=7  nodes=2763  conns=472
+Gen 2206  best=0.350503  species=6  nodes=2765  conns=472
+Gen 2207  best=0.337466  species=7  nodes=2751  conns=472
+Gen 2208  best=0.359048  species=6  nodes=2754  conns=483
+Gen 2209  best=0.361701  species=8  nodes=2765  conns=472
+Gen 2210  best=0.34854  species=9  nodes=2765  conns=474
+  [saved -> bigun_genome.txt]
+Gen 2211  best=0.34318  species=11  nodes=2761  conns=486
+Gen 2212  best=0.347815  species=3  nodes=2772  conns=479
+Gen 2213  best=0.386606  species=11  nodes=2767  conns=473
+Gen 2214  best=0.337006  species=2  nodes=2765  conns=486
+Gen 2215  best=0.345453  species=11  nodes=2777  conns=473
+Gen 2216  best=0.349932  species=3  nodes=2775  conns=473
+Gen 2217  best=0.358215  species=11  nodes=2777  conns=473
+Gen 2218  best=0.36717  species=6  nodes=2783  conns=475
+Gen 2219  best=0.375871  species=12  nodes=2785  conns=479
+Gen 2220  best=0.357769  species=4  nodes=2801  conns=481
+  [saved -> bigun_genome.txt]
+Gen 2221  best=0.361613  species=17  nodes=2804  conns=477
+Gen 2222  best=0.367813  species=6  nodes=2803  conns=483
+Gen 2223  best=0.347395  species=12  nodes=2793  conns=487
+Gen 2224  best=0.363443  species=3  nodes=2793  conns=487
+Gen 2225  best=0.359908  species=12  nodes=2798  conns=487
+Gen 2226  best=0.344113  species=5  nodes=2812  conns=481
+Gen 2227  best=0.346706  species=10  nodes=2793  conns=487
+Gen 2228  best=0.369221  species=11  nodes=2810  conns=480
+Gen 2229  best=0.351093  species=4  nodes=2810  conns=480
+Gen 2230  best=0.37087  species=9  nodes=2817  conns=481
+  [saved -> bigun_genome.txt]
+Gen 2231  best=0.352527  species=10  nodes=2810  conns=480
+Gen 2232  best=0.355088  species=11  nodes=2816  conns=487
+Gen 2233  best=0.345454  species=4  nodes=2822  conns=482
+Gen 2234  best=0.361142  species=14  nodes=2823  conns=489
+Gen 2235  best=0.339757  species=4  nodes=2818  conns=481
+Gen 2236  best=0.378944  species=13  nodes=2829  conns=490
+Gen 2237  best=0.362588  species=5  nodes=2830  conns=476
+Gen 2238  best=0.360391  species=16  nodes=2831  conns=478
+Gen 2239  best=0.340744  species=7  nodes=2833  conns=491
+Gen 2240  best=0.371916  species=7  nodes=2835  conns=480
+  [saved -> bigun_genome.txt]
+Gen 2241  best=0.354833  species=5  nodes=2831  conns=491
+Gen 2242  best=0.355799  species=6  nodes=2830  conns=492
+Gen 2243  best=0.363671  species=6  nodes=2839  conns=487
+Gen 2244  best=0.357565  species=6  nodes=2839  conns=490
+Gen 2245  best=0.362665  species=6  nodes=2833  conns=494
+Gen 2246  best=0.357274  species=7  nodes=2839  conns=490
+Gen 2247  best=0.344506  species=7  nodes=2837  conns=481
+Gen 2248  best=0.355255  species=8  nodes=2837  conns=481
+Gen 2249  best=0.387128  species=6  nodes=2838  conns=487
+Gen 2250  best=0.358946  species=7  nodes=2842  conns=490
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2251  best=0.339984  species=5  nodes=2839  conns=487
+Gen 2252  best=0.352743  species=6  nodes=2842  conns=481
+Gen 2253  best=0.340085  species=4  nodes=2842  conns=481
+Gen 2254  best=0.342094  species=6  nodes=2843  conns=492
+Gen 2255  best=0.359339  species=5  nodes=2839  conns=487
+Gen 2256  best=0.364008  species=5  nodes=2844  conns=492
+Gen 2257  best=0.34439  species=6  nodes=2845  conns=494
+Gen 2258  best=0.350772  species=6  nodes=2841  conns=479
+Gen 2259  best=0.330652  species=5  nodes=2842  conns=494
+Gen 2260  best=0.350469  species=7  nodes=2843  conns=487
+  [saved -> bigun_genome.txt]
+Gen 2261  best=0.359062  species=4  nodes=2844  conns=496
+Gen 2262  best=0.345197  species=6  nodes=2848  conns=494
+Gen 2263  best=0.353309  species=8  nodes=2844  conns=490
+Gen 2264  best=0.3425  species=7  nodes=2848  conns=492
+Gen 2265  best=0.347398  species=6  nodes=2849  conns=495
+Gen 2266  best=0.37304  species=6  nodes=2845  conns=496
+Gen 2267  best=0.372098  species=9  nodes=2847  conns=494
+Gen 2268  best=0.391213  species=9  nodes=2849  conns=496
+Gen 2269  best=0.34653  species=8  nodes=2845  conns=497
+Gen 2270  best=0.371338  species=7  nodes=2848  conns=495
+  [saved -> bigun_genome.txt]
+Gen 2271  best=0.334375  species=8  nodes=2845  conns=496
+Gen 2272  best=0.353831  species=6  nodes=2846  conns=497
+Gen 2273  best=0.361648  species=6  nodes=2850  conns=498
+Gen 2274  best=0.357478  species=6  nodes=2846  conns=496
+Gen 2275  best=0.334995  species=6  nodes=2853  conns=499
+Gen 2276  best=0.338564  species=8  nodes=2850  conns=497
+Gen 2277  best=0.355178  species=9  nodes=2852  conns=498
+Gen 2278  best=0.364579  species=10  nodes=2846  conns=496
+Gen 2279  best=0.393496  species=8  nodes=2856  conns=496
+Gen 2280  best=0.342362  species=10  nodes=2848  conns=502
+  [saved -> bigun_genome.txt]
+Gen 2281  best=0.337634  species=7  nodes=2860  conns=496
+Gen 2282  best=0.344926  species=8  nodes=2853  conns=501
+Gen 2283  best=0.335771  species=7  nodes=2861  conns=496
+Gen 2284  best=0.335883  species=8  nodes=2862  conns=500
+Gen 2285  best=0.38489  species=9  nodes=2861  conns=496
+Gen 2286  best=0.347883  species=9  nodes=2858  conns=497
+Gen 2287  best=0.34896  species=7  nodes=2853  conns=501
+Gen 2288  best=0.340708  species=5  nodes=2867  conns=500
+Gen 2289  best=0.328138  species=7  nodes=2869  conns=502
+Gen 2290  best=0.3361  species=5  nodes=2868  conns=501
+  [saved -> bigun_genome.txt]
+Gen 2291  best=0.324376  species=8  nodes=2868  conns=501
+Gen 2292  best=0.354109  species=12  nodes=2868  conns=502
+Gen 2293  best=0.336466  species=2  nodes=2870  conns=500
+Gen 2294  best=0.357803  species=11  nodes=2857  conns=496
+Gen 2295  best=0.335348  species=2  nodes=2875  conns=503
+Gen 2296  best=0.35016  species=12  nodes=2874  conns=496
+Gen 2297  best=0.337272  species=2  nodes=2875  conns=496
+Gen 2298  best=0.347073  species=10  nodes=2861  conns=501
+Gen 2299  best=0.350959  species=11  nodes=2878  conns=504
+Gen 2300  best=0.342745  species=2  nodes=2880  conns=501
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2301  best=0.32419  species=11  nodes=2883  conns=507
+Gen 2302  best=0.378548  species=2  nodes=2888  conns=503
+Gen 2303  best=0.366352  species=12  nodes=2891  conns=496
+Gen 2304  best=0.336851  species=2  nodes=2862  conns=500
+Gen 2305  best=0.377139  species=14  nodes=2893  conns=505
+Gen 2306  best=0.340237  species=2  nodes=2893  conns=496
+Gen 2307  best=0.36463  species=14  nodes=2891  conns=502
+Gen 2308  best=0.353756  species=2  nodes=2884  conns=500
+Gen 2309  best=0.352855  species=16  nodes=2897  conns=506
+Gen 2310  best=0.341956  species=2  nodes=2894  conns=500
+  [saved -> bigun_genome.txt]
+Gen 2311  best=0.356712  species=17  nodes=2866  conns=502
+Gen 2312  best=0.379914  species=2  nodes=2897  conns=510
+Gen 2313  best=0.349502  species=12  nodes=2899  conns=510
+Gen 2314  best=0.342695  species=2  nodes=2900  conns=504
+Gen 2315  best=0.359157  species=20  nodes=2904  conns=504
+Gen 2316  best=0.351017  species=3  nodes=2905  conns=505
+Gen 2317  best=0.347838  species=18  nodes=2902  conns=505
+Gen 2318  best=0.369323  species=2  nodes=2905  conns=506
+Gen 2319  best=0.347429  species=15  nodes=2905  conns=506
+Gen 2320  best=0.351893  species=3  nodes=2905  conns=505
+  [saved -> bigun_genome.txt]
+Gen 2321  best=0.35608  species=15  nodes=2907  conns=504
+Gen 2322  best=0.343958  species=2  nodes=2912  conns=506
+Gen 2323  best=0.351653  species=17  nodes=2869  conns=503
+Gen 2324  best=0.352087  species=2  nodes=2907  conns=504
+Gen 2325  best=0.365019  species=13  nodes=2871  conns=501
+Gen 2326  best=0.375495  species=2  nodes=2873  conns=506
+Gen 2327  best=0.349953  species=15  nodes=2873  conns=506
+Gen 2328  best=0.346222  species=2  nodes=2916  conns=515
+Gen 2329  best=0.339014  species=19  nodes=2916  conns=508
+Gen 2330  best=0.359898  species=2  nodes=2917  conns=508
+  [saved -> bigun_genome.txt]
+Gen 2331  best=0.338664  species=18  nodes=2872  conns=501
+Gen 2332  best=0.346892  species=2  nodes=2925  conns=512
+Gen 2333  best=0.34866  species=20  nodes=2921  conns=508
+Gen 2334  best=0.365373  species=2  nodes=2926  conns=509
+Gen 2335  best=0.346908  species=22  nodes=2922  conns=510
+Gen 2336  best=0.389707  species=2  nodes=2931  conns=508
+Gen 2337  best=0.363171  species=22  nodes=2931  conns=508
+Gen 2338  best=0.337601  species=2  nodes=2929  conns=512
+Gen 2339  best=0.335334  species=20  nodes=2930  conns=512
+Gen 2340  best=0.350354  species=2  nodes=2928  conns=507
+  [saved -> bigun_genome.txt]
+Gen 2341  best=0.348482  species=16  nodes=2932  conns=507
+Gen 2342  best=0.361453  species=2  nodes=2941  conns=512
+Gen 2343  best=0.350954  species=16  nodes=2941  conns=512
+Gen 2344  best=0.340146  species=2  nodes=2937  conns=521
+Gen 2345  best=0.357032  species=19  nodes=2937  conns=521
+Gen 2346  best=0.364036  species=3  nodes=2940  conns=509
+Gen 2347  best=0.34055  species=18  nodes=2948  conns=523
+Gen 2348  best=0.353544  species=3  nodes=2950  conns=507
+Gen 2349  best=0.350695  species=18  nodes=2939  conns=512
+Gen 2350  best=0.350471  species=3  nodes=2947  conns=514
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2351  best=0.352069  species=15  nodes=2957  conns=507
+Gen 2352  best=0.344599  species=4  nodes=2953  conns=523
+Gen 2353  best=0.351471  species=15  nodes=2951  conns=521
+Gen 2354  best=0.347954  species=2  nodes=2960  conns=509
+Gen 2355  best=0.367106  species=16  nodes=2881  conns=503
+Gen 2356  best=0.39043  species=3  nodes=2962  conns=526
+Gen 2357  best=0.345591  species=13  nodes=2958  conns=513
+Gen 2358  best=0.351315  species=2  nodes=2960  conns=523
+Gen 2359  best=0.360675  species=16  nodes=2962  conns=523
+Gen 2360  best=0.350136  species=3  nodes=2963  conns=523
+  [saved -> bigun_genome.txt]
+Gen 2361  best=0.335303  species=15  nodes=2963  conns=523
+Gen 2362  best=0.368012  species=2  nodes=2969  conns=510
+Gen 2363  best=0.341226  species=17  nodes=2970  conns=523
+Gen 2364  best=0.34347  species=4  nodes=2972  conns=518
+Gen 2365  best=0.376268  species=18  nodes=2969  conns=517
+Gen 2366  best=0.36558  species=3  nodes=2969  conns=517
+Gen 2367  best=0.347289  species=19  nodes=2887  conns=504
+Gen 2368  best=0.347858  species=3  nodes=2977  conns=511
+Gen 2369  best=0.343074  species=16  nodes=2887  conns=505
+Gen 2370  best=0.372115  species=2  nodes=2979  conns=513
+  [saved -> bigun_genome.txt]
+Gen 2371  best=0.356711  species=16  nodes=2987  conns=509
+Gen 2372  best=0.355226  species=4  nodes=2972  conns=513
+Gen 2373  best=0.346182  species=18  nodes=2984  conns=513
+Gen 2374  best=0.353327  species=5  nodes=2989  conns=520
+Gen 2375  best=0.370716  species=18  nodes=2992  conns=520
+Gen 2376  best=0.356354  species=5  nodes=2993  conns=522
+Gen 2377  best=0.353353  species=17  nodes=2992  conns=520
+Gen 2378  best=0.3875  species=3  nodes=2996  conns=522
+Gen 2379  best=0.353177  species=19  nodes=2991  conns=530
+Gen 2380  best=0.415702  species=4  nodes=2993  conns=513
+  [saved -> bigun_genome.txt]
+Gen 2381  best=0.368811  species=18  nodes=3002  conns=530
+Gen 2382  best=0.352841  species=3  nodes=3003  conns=530
+Gen 2383  best=0.345487  species=18  nodes=3005  conns=517
+Gen 2384  best=0.360895  species=3  nodes=3004  conns=517
+Gen 2385  best=0.356974  species=19  nodes=3004  conns=517
+Gen 2386  best=0.359538  species=4  nodes=3009  conns=516
+Gen 2387  best=0.383443  species=15  nodes=3009  conns=516
+Gen 2388  best=0.343558  species=5  nodes=3011  conns=516
+Gen 2389  best=0.376727  species=16  nodes=3009  conns=516
+Gen 2390  best=0.353697  species=2  nodes=3009  conns=516
+  [saved -> bigun_genome.txt]
+Gen 2391  best=0.34537  species=18  nodes=3021  conns=516
+Gen 2392  best=0.378348  species=7  nodes=3016  conns=519
+Gen 2393  best=0.341851  species=17  nodes=3016  conns=516
+Gen 2394  best=0.345196  species=5  nodes=3017  conns=519
+Gen 2395  best=0.356557  species=14  nodes=3017  conns=519
+Gen 2396  best=0.348954  species=3  nodes=3017  conns=519
+Gen 2397  best=0.339269  species=13  nodes=3022  conns=527
+Gen 2398  best=0.343087  species=5  nodes=3021  conns=516
+Gen 2399  best=0.332523  species=17  nodes=3029  conns=516
+Gen 2400  best=0.351069  species=5  nodes=3029  conns=521
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2401  best=0.360372  species=19  nodes=3032  conns=518
+Gen 2402  best=0.354268  species=3  nodes=3032  conns=519
+Gen 2403  best=0.36695  species=18  nodes=3031  conns=525
+Gen 2404  best=0.358648  species=4  nodes=3038  conns=513
+Gen 2405  best=0.3534  species=17  nodes=3042  conns=521
+Gen 2406  best=0.363808  species=7  nodes=3037  conns=515
+Gen 2407  best=0.357554  species=19  nodes=3039  conns=513
+Gen 2408  best=0.373523  species=3  nodes=3043  conns=518
+Gen 2409  best=0.351127  species=22  nodes=3053  conns=535
+Gen 2410  best=0.463057  species=5  nodes=3050  conns=520
+  [saved -> bigun_genome.txt]
+Gen 2411  best=0.367497  species=20  nodes=3050  conns=527
+Gen 2412  best=0.355353  species=4  nodes=3043  conns=515
+Gen 2413  best=0.354049  species=21  nodes=3057  conns=523
+Gen 2414  best=0.346408  species=6  nodes=3044  conns=529
+Gen 2415  best=0.352228  species=18  nodes=3048  conns=523
+Gen 2416  best=0.371713  species=3  nodes=3059  conns=513
+Gen 2417  best=0.362935  species=14  nodes=3048  conns=523
+Gen 2418  best=0.35266  species=6  nodes=3065  conns=518
+Gen 2419  best=0.336423  species=17  nodes=3071  conns=514
+Gen 2420  best=0.360746  species=5  nodes=3063  conns=522
+  [saved -> bigun_genome.txt]
+Gen 2421  best=0.362682  species=16  nodes=3068  conns=532
+Gen 2422  best=0.356862  species=4  nodes=3072  conns=515
+Gen 2423  best=0.375579  species=15  nodes=3074  conns=536
+Gen 2424  best=0.365574  species=4  nodes=3074  conns=524
+Gen 2425  best=0.336684  species=17  nodes=3073  conns=534
+Gen 2426  best=0.356856  species=4  nodes=3077  conns=534
+Gen 2427  best=0.38096  species=16  nodes=3078  conns=536
+Gen 2428  best=0.346881  species=5  nodes=3081  conns=537
+Gen 2429  best=0.362122  species=14  nodes=3079  conns=519
+Gen 2430  best=0.344017  species=6  nodes=3081  conns=537
+  [saved -> bigun_genome.txt]
+Gen 2431  best=0.37834  species=16  nodes=3080  conns=522
+Gen 2432  best=0.358541  species=7  nodes=3080  conns=522
+Gen 2433  best=0.357203  species=13  nodes=3091  conns=520
+Gen 2434  best=0.346567  species=3  nodes=3091  conns=520
+Gen 2435  best=0.368231  species=12  nodes=3087  conns=513
+Gen 2436  best=0.374948  species=5  nodes=3097  conns=524
+Gen 2437  best=0.347763  species=15  nodes=3098  conns=520
+Gen 2438  best=0.359268  species=3  nodes=3103  conns=521
+Gen 2439  best=0.403546  species=12  nodes=3093  conns=537
+Gen 2440  best=0.374444  species=3  nodes=3091  conns=516
+  [saved -> bigun_genome.txt]
+Gen 2441  best=0.36756  species=13  nodes=3105  conns=521
+Gen 2442  best=0.358539  species=3  nodes=3101  conns=521
+Gen 2443  best=0.358865  species=13  nodes=3104  conns=538
+Gen 2444  best=0.365122  species=3  nodes=3110  conns=527
+Gen 2445  best=0.354091  species=13  nodes=3107  conns=525
+Gen 2446  best=0.34386  species=2  nodes=3104  conns=516
+Gen 2447  best=0.35316  species=7  nodes=3104  conns=516
+Gen 2448  best=0.348151  species=7  nodes=3114  conns=523
+Gen 2449  best=0.383275  species=8  nodes=3115  conns=525
+Gen 2450  best=0.36036  species=10  nodes=3117  conns=522
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2451  best=0.349808  species=10  nodes=3118  conns=524
+Gen 2452  best=0.357166  species=9  nodes=3119  conns=521
+Gen 2453  best=0.354817  species=8  nodes=3111  conns=522
+Gen 2454  best=0.350549  species=10  nodes=3119  conns=521
+Gen 2455  best=0.34817  species=9  nodes=3117  conns=524
+Gen 2456  best=0.348942  species=8  nodes=3117  conns=524
+Gen 2457  best=0.366757  species=9  nodes=3120  conns=525
+Gen 2458  best=0.396837  species=8  nodes=3119  conns=526
+Gen 2459  best=0.368391  species=10  nodes=3118  conns=516
+Gen 2460  best=0.345127  species=8  nodes=3124  conns=522
+  [saved -> bigun_genome.txt]
+Gen 2461  best=0.385357  species=9  nodes=3119  conns=525
+Gen 2462  best=0.353765  species=9  nodes=3122  conns=524
+Gen 2463  best=0.34483  species=10  nodes=3122  conns=524
+Gen 2464  best=0.346865  species=7  nodes=3121  conns=522
+Gen 2465  best=0.348524  species=9  nodes=3123  conns=527
+Gen 2466  best=0.364034  species=6  nodes=3119  conns=516
+Gen 2467  best=0.359126  species=9  nodes=3122  conns=524
+Gen 2468  best=0.381309  species=7  nodes=3122  conns=516
+Gen 2469  best=0.354735  species=7  nodes=3123  conns=525
+Gen 2470  best=0.35193  species=9  nodes=3124  conns=516
+  [saved -> bigun_genome.txt]
+Gen 2471  best=0.359505  species=8  nodes=3121  conns=517
+Gen 2472  best=0.354527  species=7  nodes=3120  conns=519
+Gen 2473  best=0.382415  species=7  nodes=3121  conns=517
+Gen 2474  best=0.34532  species=8  nodes=3125  conns=525
+Gen 2475  best=0.360808  species=7  nodes=3126  conns=526
+Gen 2476  best=0.334794  species=5  nodes=3123  conns=524
+Gen 2477  best=0.347675  species=5  nodes=3123  conns=527
+Gen 2478  best=0.352189  species=6  nodes=3125  conns=517
+Gen 2479  best=0.377365  species=6  nodes=3124  conns=523
+Gen 2480  best=0.351676  species=5  nodes=3126  conns=519
+  [saved -> bigun_genome.txt]
+Gen 2481  best=0.340415  species=7  nodes=3126  conns=517
+Gen 2482  best=0.350114  species=6  nodes=3122  conns=520
+Gen 2483  best=0.355984  species=6  nodes=3126  conns=520
+Gen 2484  best=0.370258  species=8  nodes=3126  conns=531
+Gen 2485  best=0.344301  species=9  nodes=3128  conns=521
+Gen 2486  best=0.354606  species=7  nodes=3127  conns=518
+Gen 2487  best=0.337124  species=6  nodes=3128  conns=521
+Gen 2488  best=0.335348  species=6  nodes=3128  conns=528
+Gen 2489  best=0.343611  species=5  nodes=3128  conns=521
+Gen 2490  best=0.357018  species=4  nodes=3129  conns=521
+  [saved -> bigun_genome.txt]
+Gen 2491  best=0.361168  species=5  nodes=3129  conns=521
+Gen 2492  best=0.3457  species=5  nodes=3134  conns=532
+Gen 2493  best=0.363966  species=6  nodes=3138  conns=529
+Gen 2494  best=0.330515  species=6  nodes=3134  conns=532
+Gen 2495  best=0.33893  species=6  nodes=3134  conns=533
+Gen 2496  best=0.353656  species=6  nodes=3128  conns=518
+Gen 2497  best=0.333928  species=5  nodes=3128  conns=518
+Gen 2498  best=0.358427  species=5  nodes=3128  conns=518
+Gen 2499  best=0.341585  species=4  nodes=3134  conns=532
+Gen 2500  best=0.351661  species=6  nodes=3136  conns=529
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2501  best=0.344011  species=4  nodes=3135  conns=532
+Gen 2502  best=0.364201  species=4  nodes=3143  conns=531
+Gen 2503  best=0.34462  species=4  nodes=3142  conns=529
+Gen 2504  best=0.346437  species=4  nodes=3142  conns=529
+Gen 2505  best=0.347967  species=5  nodes=3146  conns=536
+Gen 2506  best=0.345598  species=5  nodes=3146  conns=533
+Gen 2507  best=0.334079  species=6  nodes=3143  conns=530
+Gen 2508  best=0.371313  species=5  nodes=3147  conns=533
+Gen 2509  best=0.352739  species=6  nodes=3148  conns=536
+Gen 2510  best=0.371544  species=7  nodes=3145  conns=538
+  [saved -> bigun_genome.txt]
+Gen 2511  best=0.357289  species=7  nodes=3147  conns=533
+Gen 2512  best=0.330215  species=7  nodes=3147  conns=531
+Gen 2513  best=0.3359  species=6  nodes=3151  conns=530
+Gen 2514  best=0.331603  species=7  nodes=3147  conns=534
+Gen 2515  best=0.33216  species=6  nodes=3144  conns=530
+Gen 2516  best=0.362938  species=7  nodes=3156  conns=537
+Gen 2517  best=0.359068  species=7  nodes=3154  conns=534
+Gen 2518  best=0.358964  species=8  nodes=3148  conns=531
+Gen 2519  best=0.34632  species=8  nodes=3151  conns=533
+Gen 2520  best=0.344679  species=7  nodes=3157  conns=535
+  [saved -> bigun_genome.txt]
+Gen 2521  best=0.341836  species=8  nodes=3154  conns=539
+Gen 2522  best=0.35309  species=7  nodes=3160  conns=530
+Gen 2523  best=0.328717  species=6  nodes=3151  conns=531
+Gen 2524  best=0.340737  species=7  nodes=3154  conns=538
+Gen 2525  best=0.341371  species=6  nodes=3154  conns=541
+Gen 2526  best=0.351401  species=7  nodes=3156  conns=538
+Gen 2527  best=0.337346  species=5  nodes=3154  conns=541
+Gen 2528  best=0.334356  species=6  nodes=3168  conns=535
+Gen 2529  best=0.341925  species=6  nodes=3150  conns=540
+Gen 2530  best=0.337214  species=6  nodes=3156  conns=539
+  [saved -> bigun_genome.txt]
+Gen 2531  best=0.342319  species=6  nodes=3167  conns=536
+Gen 2532  best=0.36427  species=7  nodes=3156  conns=540
+Gen 2533  best=0.334729  species=5  nodes=3168  conns=534
+Gen 2534  best=0.342777  species=7  nodes=3161  conns=539
+Gen 2535  best=0.349155  species=6  nodes=3162  conns=542
+Gen 2536  best=0.333931  species=7  nodes=3169  conns=533
+Gen 2537  best=0.347116  species=9  nodes=3165  conns=539
+Gen 2538  best=0.351501  species=10  nodes=3163  conns=539
+Gen 2539  best=0.337452  species=8  nodes=3163  conns=541
+Gen 2540  best=0.334357  species=8  nodes=3172  conns=539
+  [saved -> bigun_genome.txt]
+Gen 2541  best=0.33686  species=9  nodes=3163  conns=541
+Gen 2542  best=0.338664  species=7  nodes=3175  conns=536
+Gen 2543  best=0.34239  species=8  nodes=3172  conns=536
+Gen 2544  best=0.339279  species=6  nodes=3172  conns=536
+Gen 2545  best=0.336213  species=9  nodes=3163  conns=541
+Gen 2546  best=0.339584  species=10  nodes=3178  conns=538
+Gen 2547  best=0.32683  species=7  nodes=3166  conns=541
+Gen 2548  best=0.344413  species=8  nodes=3173  conns=533
+Gen 2549  best=0.346671  species=7  nodes=3167  conns=542
+Gen 2550  best=0.370857  species=7  nodes=3169  conns=543
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2551  best=0.345039  species=5  nodes=3174  conns=536
+Gen 2552  best=0.340111  species=6  nodes=3178  conns=537
+Gen 2553  best=0.32592  species=5  nodes=3167  conns=541
+Gen 2554  best=0.33518  species=6  nodes=3169  conns=543
+Gen 2555  best=0.334592  species=7  nodes=3181  conns=537
+Gen 2556  best=0.352845  species=7  nodes=3181  conns=537
+Gen 2557  best=0.340684  species=7  nodes=3175  conns=538
+Gen 2558  best=0.371999  species=7  nodes=3172  conns=542
+Gen 2559  best=0.32062  species=7  nodes=3177  conns=538
+Gen 2560  best=0.344121  species=7  nodes=3176  conns=536
+  [saved -> bigun_genome.txt]
+Gen 2561  best=0.326118  species=7  nodes=3176  conns=536
+Gen 2562  best=0.377604  species=8  nodes=3170  conns=549
+Gen 2563  best=0.364238  species=8  nodes=3170  conns=549
+Gen 2564  best=0.342678  species=8  nodes=3171  conns=542
+Gen 2565  best=0.352561  species=7  nodes=3186  conns=538
+Gen 2566  best=0.347365  species=7  nodes=3172  conns=543
+Gen 2567  best=0.364194  species=6  nodes=3177  conns=550
+Gen 2568  best=0.347509  species=6  nodes=3177  conns=550
+Gen 2569  best=0.360528  species=6  nodes=3178  conns=552
+Gen 2570  best=0.336126  species=7  nodes=3173  conns=544
+  [saved -> bigun_genome.txt]
+Gen 2571  best=0.348166  species=6  nodes=3179  conns=552
+Gen 2572  best=0.352525  species=8  nodes=3173  conns=544
+Gen 2573  best=0.341869  species=7  nodes=3188  conns=539
+Gen 2574  best=0.341654  species=6  nodes=3178  conns=550
+Gen 2575  best=0.341273  species=6  nodes=3180  conns=551
+Gen 2576  best=0.328093  species=8  nodes=3188  conns=540
+Gen 2577  best=0.327517  species=6  nodes=3183  conns=545
+Gen 2578  best=0.342598  species=5  nodes=3182  conns=543
+Gen 2579  best=0.341381  species=7  nodes=3190  conns=543
+Gen 2580  best=0.35127  species=10  nodes=3184  conns=548
+  [saved -> bigun_genome.txt]
+Gen 2581  best=0.330828  species=6  nodes=3186  conns=554
+Gen 2582  best=0.319476  species=5  nodes=3192  conns=538
+Gen 2583  best=0.349623  species=6  nodes=3184  conns=550
+Gen 2584  best=0.329619  species=5  nodes=3191  conns=539
+Gen 2585  best=0.342392  species=7  nodes=3190  conns=542
+Gen 2586  best=0.345179  species=7  nodes=3194  conns=544
+Gen 2587  best=0.328852  species=8  nodes=3186  conns=553
+Gen 2588  best=0.33769  species=9  nodes=3198  conns=540
+Gen 2589  best=0.319983  species=9  nodes=3199  conns=544
+Gen 2590  best=0.339161  species=8  nodes=3185  conns=545
+  [saved -> bigun_genome.txt]
+Gen 2591  best=0.325757  species=8  nodes=3187  conns=545
+Gen 2592  best=0.347234  species=8  nodes=3201  conns=544
+Gen 2593  best=0.321911  species=6  nodes=3188  conns=545
+Gen 2594  best=0.338926  species=6  nodes=3187  conns=554
+Gen 2595  best=0.321991  species=6  nodes=3202  conns=545
+Gen 2596  best=0.33142  species=5  nodes=3193  conns=545
+Gen 2597  best=0.338551  species=5  nodes=3194  conns=546
+Gen 2598  best=0.335603  species=3  nodes=3206  conns=544
+Gen 2599  best=0.322746  species=3  nodes=3211  conns=548
+Gen 2600  best=0.325647  species=4  nodes=3194  conns=545
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2601  best=0.350946  species=5  nodes=3209  conns=544
+Gen 2602  best=0.336838  species=6  nodes=3212  conns=546
+Gen 2603  best=0.317002  species=4  nodes=3209  conns=544
+Gen 2604  best=0.352008  species=4  nodes=3209  conns=544
+Gen 2605  best=0.329048  species=4  nodes=3210  conns=548
+Gen 2606  best=0.345645  species=5  nodes=3210  conns=545
+Gen 2607  best=0.338339  species=6  nodes=3213  conns=545
+Gen 2608  best=0.340876  species=9  nodes=3205  conns=549
+Gen 2609  best=0.326886  species=7  nodes=3211  conns=545
+Gen 2610  best=0.334385  species=10  nodes=3201  conns=552
+  [saved -> bigun_genome.txt]
+Gen 2611  best=0.347458  species=9  nodes=3218  conns=543
+Gen 2612  best=0.333547  species=9  nodes=3211  conns=546
+Gen 2613  best=0.334635  species=11  nodes=3190  conns=548
+Gen 2614  best=0.345465  species=2  nodes=3220  conns=546
+Gen 2615  best=0.349304  species=9  nodes=3190  conns=549
+Gen 2616  best=0.318061  species=11  nodes=3190  conns=548
+Gen 2617  best=0.33018  species=2  nodes=3224  conns=548
+Gen 2618  best=0.332099  species=12  nodes=3223  conns=546
+Gen 2619  best=0.292756  species=2  nodes=3223  conns=546
+Gen 2620  best=0.335568  species=4  nodes=3278  conns=548
+  [saved -> bigun_genome.txt]
+Gen 2621  best=0.364708  species=3  nodes=3278  conns=549
+Gen 2622  best=0.341187  species=2  nodes=3278  conns=548
+Gen 2623  best=0.32708  species=3  nodes=3278  conns=548
+Gen 2624  best=0.341232  species=3  nodes=3295  conns=549
+Gen 2625  best=0.339757  species=3  nodes=3300  conns=548
+Gen 2626  best=0.349126  species=3  nodes=3223  conns=547
+Gen 2627  best=0.331118  species=4  nodes=3301  conns=548
+Gen 2628  best=0.334168  species=3  nodes=3299  conns=548
+Gen 2629  best=0.360011  species=3  nodes=3224  conns=547
+Gen 2630  best=0.316232  species=3  nodes=3303  conns=548
+  [saved -> bigun_genome.txt]
+Gen 2631  best=0.333399  species=3  nodes=3303  conns=550
+Gen 2632  best=0.359657  species=4  nodes=3304  conns=551
+Gen 2633  best=0.345726  species=4  nodes=3306  conns=549
+Gen 2634  best=0.336064  species=6  nodes=3306  conns=549
+Gen 2635  best=0.345293  species=5  nodes=3306  conns=549
+Gen 2636  best=0.332799  species=6  nodes=3308  conns=550
+Gen 2637  best=0.343076  species=6  nodes=3308  conns=548
+Gen 2638  best=0.356691  species=6  nodes=3308  conns=552
+Gen 2639  best=0.341003  species=7  nodes=3308  conns=552
+Gen 2640  best=0.34602  species=8  nodes=3314  conns=550
+  [saved -> bigun_genome.txt]
+Gen 2641  best=0.337806  species=8  nodes=3314  conns=552
+Gen 2642  best=0.347883  species=10  nodes=3317  conns=553
+Gen 2643  best=0.333902  species=8  nodes=3314  conns=552
+Gen 2644  best=0.332819  species=7  nodes=3316  conns=552
+Gen 2645  best=0.33925  species=7  nodes=3318  conns=550
+Gen 2646  best=0.346774  species=5  nodes=3314  conns=552
+Gen 2647  best=0.344758  species=4  nodes=3316  conns=553
+Gen 2648  best=0.332615  species=5  nodes=3317  conns=552
+Gen 2649  best=0.33526  species=4  nodes=3317  conns=552
+Gen 2650  best=0.353644  species=4  nodes=3318  conns=553
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2651  best=0.333571  species=4  nodes=3317  conns=552
+Gen 2652  best=0.340788  species=4  nodes=3317  conns=552
+Gen 2653  best=0.321856  species=4  nodes=3325  conns=555
+Gen 2654  best=0.354747  species=3  nodes=3326  conns=556
+Gen 2655  best=0.357354  species=6  nodes=3326  conns=553
+Gen 2656  best=0.325437  species=5  nodes=3250  conns=554
+Gen 2657  best=0.334784  species=8  nodes=3251  conns=553
+Gen 2658  best=0.368516  species=7  nodes=3330  conns=555
+Gen 2659  best=0.348442  species=8  nodes=3248  conns=549
+Gen 2660  best=0.335785  species=6  nodes=3330  conns=555
+  [saved -> bigun_genome.txt]
+Gen 2661  best=0.375308  species=8  nodes=3331  conns=559
+Gen 2662  best=0.348609  species=8  nodes=3248  conns=549
+Gen 2663  best=0.34857  species=6  nodes=3260  conns=549
+Gen 2664  best=0.329616  species=5  nodes=3253  conns=556
+Gen 2665  best=0.343028  species=6  nodes=3337  conns=559
+Gen 2666  best=0.357195  species=8  nodes=3337  conns=559
+Gen 2667  best=0.333507  species=6  nodes=3264  conns=557
+Gen 2668  best=0.347283  species=5  nodes=3260  conns=549
+Gen 2669  best=0.342834  species=6  nodes=3267  conns=551
+Gen 2670  best=0.3276  species=5  nodes=3337  conns=559
+  [saved -> bigun_genome.txt]
+Gen 2671  best=0.332978  species=8  nodes=3338  conns=559
+Gen 2672  best=0.339691  species=7  nodes=3266  conns=557
+Gen 2673  best=0.326486  species=5  nodes=3267  conns=551
+Gen 2674  best=0.342905  species=4  nodes=3267  conns=551
+Gen 2675  best=0.345169  species=3  nodes=3267  conns=558
+Gen 2676  best=0.347454  species=4  nodes=3267  conns=551
+Gen 2677  best=0.33124  species=4  nodes=3267  conns=552
+Gen 2678  best=0.340789  species=4  nodes=3268  conns=558
+Gen 2679  best=0.332199  species=4  nodes=3269  conns=557
+Gen 2680  best=0.340164  species=4  nodes=3269  conns=552
+  [saved -> bigun_genome.txt]
+Gen 2681  best=0.343826  species=5  nodes=3269  conns=553
+Gen 2682  best=0.334904  species=4  nodes=3271  conns=553
+Gen 2683  best=0.339484  species=6  nodes=3277  conns=559
+Gen 2684  best=0.346898  species=8  nodes=3284  conns=557
+Gen 2685  best=0.351621  species=7  nodes=3273  conns=551
+Gen 2686  best=0.340244  species=7  nodes=3281  conns=553
+Gen 2687  best=0.360533  species=7  nodes=3284  conns=560
+Gen 2688  best=0.353456  species=8  nodes=3285  conns=560
+Gen 2689  best=0.336395  species=8  nodes=3284  conns=560
+Gen 2690  best=0.331059  species=8  nodes=3284  conns=560
+  [saved -> bigun_genome.txt]
+Gen 2691  best=0.320539  species=8  nodes=3273  conns=552
+Gen 2692  best=0.324151  species=10  nodes=3287  conns=558
+Gen 2693  best=0.338724  species=9  nodes=3277  conns=555
+Gen 2694  best=0.325223  species=6  nodes=3277  conns=555
+Gen 2695  best=0.339147  species=9  nodes=3279  conns=555
+Gen 2696  best=0.309508  species=8  nodes=3292  conns=561
+Gen 2697  best=0.315297  species=7  nodes=3290  conns=558
+Gen 2698  best=0.32707  species=7  nodes=3284  conns=556
+Gen 2699  best=0.321108  species=8  nodes=3293  conns=561
+Gen 2700  best=0.320727  species=4  nodes=3297  conns=561
+  [saved -> bigun_genome.txt]
+  [pop saved -> bigun_pop.pop]
+Gen 2701  best=0.338006  species=3  nodes=3279  conns=556
+Gen 2702  best=0.324448  species=5  nodes=3280  conns=558
+Gen 2703  best=0.329237  species=4  nodes=3287  conns=558
+Gen 2704  best=0.34584  species=4  nodes=3297  conns=562
+Gen 2705  best=0.357158  species=4  nodes=3288  conns=556
+Gen 2706  best=0.340521  species=4  nodes=3289  conns=558
+Gen 2707  best=0.333338  species=4  nodes=3289  conns=556
+Gen 2708  best=0.33375  species=4  nodes=3284  conns=556
+Gen 2709  best=0.333685  species=4  nodes=3298  conns=566
+Gen 2710  best=0.334493  species=4  nodes=3291  conns=556
+  [saved -> bigun_genome.txt]
+Gen 2711  best=0.327342  species=5  nodes=3285  conns=557
+Gen 2712  best=0.337599  species=5  nodes=3286  conns=556
+Gen 2713  best=0.325118  species=5  nodes=3302  conns=560
+Gen 2714  best=0.358526  species=7  nodes=3294  conns=556
+Gen 2715  best=0.337376  species=5  nodes=3302  conns=561
+Gen 2716  best=0.339293  species=8  nodes=3302  conns=564
+Gen 2717  best=0.329244  species=8  nodes=3294  conns=558
+Gen 2718  best=0.341706  species=7  nodes=3305  conns=562
+Gen 2719  best=0.304956  species=6  nodes=3299  conns=559
+Gen 2720  best=0.330213  species=4  nodes=3306  conns=566
+  [saved -> bigun_genome.txt]
+Gen 2721  best=0.32422  species=4  nodes=3299  conns=559
