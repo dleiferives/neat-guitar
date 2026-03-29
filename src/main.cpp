@@ -242,9 +242,9 @@ static int cmd_train(const std::vector<std::string>& args) {
         if (pop.global_stagnation >= 100) {
             std::rotate(data.begin(), data.end() - 1, data.end());
             std::cout << "\n  [TRACK ROTATED] new order:";
-            for (size_t i = 0; i < data.size(); ++i)
+            for (size_t i = 0; i < 5; ++i)
                 std::cout << " " << data[i].name;
-            std::cout << "\n";
+            std::cout << "...\n";
 
             // Enter addition-only mode with triangle wave
             pop.signal_rotation();
