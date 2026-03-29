@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <fstream>
 #include <numeric>
 #include <stdexcept>
 
@@ -17,6 +18,60 @@ Population::Population(NeatConfig c, uint64_t seed)
         genomes.push_back(Genome::make_minimal(next_genome_id++, cfg, innov, rng));
     }
     innov.reset_generation();
+}
+
+Population Population::from_file(const std::string& path, NeatConfig cfg, uint64_t seed) {
+    Population pop;
+    pop.cfg = std::move(cfg);
+    pop.rng = std::mt19937(seed);
+
+    // Load genomes and generation number directly from the file.
+    {
+        std::ifstream f(path);
+        if (!f) throw std::runtime_error("Cannot open " + path);
+        std::string tag;
+        f >> tag;
+        if (tag != "NEAT_POPULATION") throw std::runtime_error("Bad population file");
+        f >> tag;
+        if (tag == "generation") {
+            f >> pop.generation;
+            f >> tag; // "count"
+        }
+        int count; f >> count;
+        pop.genomes.reserve(count);
+        for (int gi = 0; gi < count; ++gi) {
+            f >> tag;
+            if (tag != "NEAT_GENOME") throw std::runtime_error("Expected NEAT_GENOME");
+            Genome g;
+            f >> tag >> g.id;
+            f >> tag >> g.fitness;
+            int n_nodes; f >> tag >> n_nodes;
+            g.nodes.resize(n_nodes);
+            for (auto& n : g.nodes) {
+                int t; f >> n.id >> t >> n.bias;
+                n.type = static_cast<NodeType>(t);
+            }
+            int n_conns; f >> tag >> n_conns;
+            g.conns.resize(n_conns);
+            for (auto& c : g.conns) {
+                int en; f >> c.in_node >> c.out_node >> c.weight >> en >> c.innov;
+                c.enabled = en != 0;
+            }
+            pop.genomes.push_back(std::move(g));
+        }
+    }
+
+    // Reconstruct innovation state from the loaded genomes.
+    for (const auto& g : pop.genomes) {
+        pop.next_genome_id = std::max(pop.next_genome_id, g.id + 1);
+        for (const auto& n : g.nodes)
+            pop.innov.next_node_id = std::max(pop.innov.next_node_id, n.id + 1);
+        for (const auto& c : g.conns)
+            pop.innov.next_innov = std::max(pop.innov.next_innov, c.innov + 1);
+    }
+
+    pop.speciate();
+    return pop;
 }
 
 // ── Public interface ──────────────────────────────────────────────────────────
@@ -246,4 +301,71 @@ void Population::reproduce() {
     next_gen.resize(cfg.pop_size);
 
     genomes = std::move(next_gen);
+}
+
+// ── Population serialization ──────────────────────────────────────────────────
+
+void Population::save_all(const std::string& path) const {
+    std::ofstream f(path);
+    if (!f) throw std::runtime_error("Cannot open " + path + " for writing");
+    f << "NEAT_POPULATION\n";
+    f << "generation " << generation << "\n";
+    f << "count " << genomes.size() << "\n";
+    for (const auto& g : genomes) {
+        f << "NEAT_GENOME\n";
+        f << "id "      << g.id      << "\n";
+        f << "fitness " << g.fitness << "\n";
+        f << "nodes "   << g.nodes.size() << "\n";
+        for (const auto& n : g.nodes)
+            f << n.id << " " << (int)n.type << " " << n.bias << "\n";
+        f << "conns " << g.conns.size() << "\n";
+        for (const auto& c : g.conns)
+            f << c.in_node  << " "
+              << c.out_node << " "
+              << c.weight   << " "
+              << (int)c.enabled << " "
+              << c.innov    << "\n";
+    }
+}
+
+std::vector<Genome> Population::load_all(const std::string& path) {
+    std::ifstream f(path);
+    if (!f) throw std::runtime_error("Cannot open " + path);
+    std::string tag;
+    f >> tag;
+    if (tag != "NEAT_POPULATION") throw std::runtime_error("Bad population file");
+    int count;
+    // generation line is optional for backwards compatibility
+    f >> tag;
+    if (tag == "generation") {
+        // (generation number is reconstructed in from_file, not used here)
+        f >> tag; // consume the value
+        f >> tag; // now tag should be "count"
+    }
+    f >> count;
+    std::vector<Genome> result;
+    result.reserve(count);
+    for (int gi = 0; gi < count; ++gi) {
+        f >> tag;
+        if (tag != "NEAT_GENOME") throw std::runtime_error("Expected NEAT_GENOME");
+        Genome g;
+        f >> tag >> g.id;
+        f >> tag >> g.fitness;
+        int n_nodes;
+        f >> tag >> n_nodes;
+        g.nodes.resize(n_nodes);
+        for (auto& n : g.nodes) {
+            int t; f >> n.id >> t >> n.bias;
+            n.type = static_cast<NodeType>(t);
+        }
+        int n_conns;
+        f >> tag >> n_conns;
+        g.conns.resize(n_conns);
+        for (auto& c : g.conns) {
+            int en; f >> c.in_node >> c.out_node >> c.weight >> en >> c.innov;
+            c.enabled = en != 0;
+        }
+        result.push_back(std::move(g));
+    }
+    return result;
 }

@@ -12,12 +12,14 @@
 #include <cstdio>
 #include <cstdint>
 #include <random>
+#include <string>
 #include <vector>
 
 #include "neat/network.hpp"
 #include "neat/config.hpp"
 #include "neat/genome.hpp"
 #include "neat/innovation.hpp"
+#include "neat/population.hpp"
 
 // ── Timing helpers ────────────────────────────────────────────────────────────
 
@@ -151,12 +153,69 @@ static void bench_focal_loss(int n_iter, int n_rounds = 15) {
            med, (float)sink);
 }
 
+// ── Benchmark: real population from file ─────────────────────────────────────
+
+static void bench_real_population(const std::string& pop_path, int n_rounds = 15) {
+    NeatConfig cfg;
+    std::vector<Genome> genomes = Population::load_all(pop_path);
+    if (genomes.empty()) {
+        printf("real_pop: no genomes loaded from %s\n", pop_path.c_str());
+        return;
+    }
+
+    // Build all networks once.
+    std::vector<Network> nets;
+    nets.reserve(genomes.size());
+    for (const auto& g : genomes)
+        nets.push_back(Network::from_genome(g, cfg));
+
+    std::vector<float> inp(cfg.n_inputs(), 0.5f);
+    std::vector<float> out(cfg.n_outputs());
+
+    // Warmup
+    for (auto& net : nets)
+        net.activate(inp.data(), out.data());
+
+    volatile float sink = 0.0f;
+    std::vector<double> samples(n_rounds);
+
+    for (int r = 0; r < n_rounds; ++r) {
+        auto t0 = Clock::now();
+        for (int i = 0; i < (int)nets.size(); ++i) {
+            inp[0] = (float)i * 0.000001f;
+            nets[i].activate(inp.data(), out.data());
+            sink += out[0];
+        }
+        auto t1 = Clock::now();
+        // Report ns per activate() call across the whole population
+        samples[r] = elapsed_ns(t0, t1) / nets.size();
+    }
+
+    // Compute per-network stats for context
+    int total_conns = 0, total_hidden = 0;
+    int min_passes = nets[0].n_passes, max_passes = nets[0].n_passes;
+    for (const auto& net : nets) {
+        total_conns  += (int)net.conn_w.size();
+        total_hidden += net.n_nodes - net.n_inputs - net.n_outputs;
+        min_passes = std::min(min_passes, net.n_passes);
+        max_passes = std::max(max_passes, net.n_passes);
+    }
+    int n = (int)nets.size();
+    double med = median_of(samples);
+    printf("real_pop() | n=%4d  avg_conns=%4d  avg_hidden=%3d  passes=%d-%d | %7.1f ns/call  (sink=%.4f)\n",
+           n,
+           total_conns  / n,
+           total_hidden / n,
+           min_passes, max_passes,
+           med, (float)sink);
+}
+
 // ── main ──────────────────────────────────────────────────────────────────────
 
-int main() {
+int main(int argc, char* argv[]) {
     printf("=== neat-guitar micro-benchmark ===\n\n");
 
-    printf("--- Network::activate() ---\n");
+    printf("--- Network::activate() (synthetic) ---\n");
     bench_activate(  0,   0, 1000000);  // minimal (input→output direct)
     bench_activate( 50,  10, 1000000);  // typical early-generation genome
     bench_activate(100,  20, 1000000);  // medium genome
@@ -165,6 +224,12 @@ int main() {
 
     printf("\n--- focal_loss() ---\n");
     bench_focal_loss(10000000);
+
+    if (argc > 1) {
+        printf("\n--- Network::activate() (real population) ---\n");
+        for (int i = 1; i < argc; ++i)
+            bench_real_population(argv[i]);
+    }
 
     printf("\n");
     return 0;

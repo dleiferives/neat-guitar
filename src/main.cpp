@@ -30,6 +30,9 @@ static void usage(const char* argv0) {
         << "\n"
         << "Train/Eval options:\n"
         << "  --save <path>       Save best genome to path (default: best_genome.txt)\n"
+        << "  --save-pop <path>    Save entire final population to path\n"
+        << "  --save-pop-every <n> Also save population every N generations\n"
+        << "  --load-pop <path>    Resume from a saved population file\n"
         << "  --cache <path>      Override cache file location\n"
         << "  --no-cache          Disable caching\n"
         << "  --clear-cache       Delete existing cache and recompute\n"
@@ -100,6 +103,9 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     std::string rec_dir = args[0];
     std::string save_path = "best_genome.txt";
+    std::string save_pop_path;
+    std::string load_pop_path;
+    int save_pop_every = 0;
     DataLoadOptions load_opts;
     int gen_override = -1;
     int pop_override = -1;
@@ -107,6 +113,12 @@ static int cmd_train(const std::vector<std::string>& args) {
     for (size_t i = 1; i < args.size(); ++i) {
         if (args[i] == "--save" && i + 1 < args.size()) {
             save_path = args[++i];
+        } else if (args[i] == "--save-pop" && i + 1 < args.size()) {
+            save_pop_path = args[++i];
+        } else if (args[i] == "--load-pop" && i + 1 < args.size()) {
+            load_pop_path = args[++i];
+        } else if (args[i] == "--save-pop-every" && i + 1 < args.size()) {
+            save_pop_every = std::stoi(args[++i]);
         } else if (args[i] == "--cache" && i + 1 < args.size()) {
             load_opts.cache_path = args[++i];
         } else if (args[i] == "--no-cache") {
@@ -133,10 +145,15 @@ static int cmd_train(const std::vector<std::string>& args) {
     std::cout << "Network: " << cfg.n_inputs() << " inputs, "
               << cfg.n_outputs() << " outputs ("
               << cfg.midi_min << "-" << cfg.midi_max << " MIDI)\n";
-    std::cout << "Population: " << cfg.pop_size
-              << "  Generations: " << cfg.generations << "\n\n";
+    Population pop = load_pop_path.empty()
+        ? Population(cfg, 42)
+        : Population::from_file(load_pop_path, cfg, 42);
 
-    Population pop(cfg, 42);
+    std::cout << "Population: " << cfg.pop_size
+              << "  Generations: " << cfg.generations;
+    if (!load_pop_path.empty())
+        std::cout << "  (resuming from gen " << pop.generation << ")";
+    std::cout << "\n\n";
     std::mt19937 rng(std::random_device{}());
 
     auto fit_fn = [&](const Genome& g) {
@@ -154,6 +171,10 @@ static int cmd_train(const std::vector<std::string>& args) {
             best.save(save_path);
             std::cout << "  [saved -> " << save_path << "]\n";
         }
+        if (!save_pop_path.empty() && save_pop_every > 0 && gen % save_pop_every == 0) {
+            pop.save_all(save_pop_path);
+            std::cout << "  [pop saved -> " << save_pop_path << "]\n";
+        }
     };
 
     auto t0 = std::chrono::steady_clock::now();
@@ -162,6 +183,11 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     const Genome& best = pop.best_genome();
     best.save(save_path);
+
+    if (!save_pop_path.empty()) {
+        pop.save_all(save_pop_path);
+        std::cout << "Population saved to: " << save_pop_path << "\n";
+    }
 
     double secs = std::chrono::duration<double>(t1 - t0).count();
     std::cout << "\nDone in " << secs << "s\n";

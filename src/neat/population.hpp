@@ -30,6 +30,10 @@ struct Population {
 
     explicit Population(NeatConfig cfg, uint64_t seed = 42);
 
+    // Reconstruct a Population from a saved population file.
+    // Rebuilds innovation state from the genomes and re-speciates.
+    static Population from_file(const std::string& path, NeatConfig cfg, uint64_t seed = 42);
+
     // Run the full evolutionary loop.
     // on_generation called at end of each generation with (gen, best_fitness, best_genome).
     void evolve(FitnessFn fit_fn,
@@ -40,7 +44,13 @@ struct Population {
 
     const Genome& best_genome() const;
 
+    // Save/load the entire genome vector to a single file.
+    void save_all(const std::string& path) const;
+    static std::vector<Genome> load_all(const std::string& path);
+
 private:
+    Population() = default;
+
     void evaluate(FitnessFn fit_fn);
     void speciate();
     void reproduce();
