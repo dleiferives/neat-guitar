@@ -247,7 +247,12 @@ Genome Population::make_offspring(const Species& sp, std::mt19937& local_rng) {
 
      Genome child;
 
-     if (unit(local_rng) < cfg.crossover_rate && sp.member_indices.size() > 1) {
+    // Addition-only mode: clone only, no crossover (crossover can lose structure)
+    bool do_crossover = gens_since_rotation >= 100 &&
+                        unit(local_rng) < cfg.crossover_rate &&
+                        sp.member_indices.size() > 1;
+
+    if (do_crossover) {
          int idx1 = pick_parent_index(sp);
          int idx2 = pick_parent_index(sp);
          // Ensure different parents
@@ -257,25 +262,25 @@ Genome Population::make_offspring(const Species& sp, std::mt19937& local_rng) {
          const Genome* p2 = &genomes[idx2];
          if (p1->fitness < p2->fitness) std::swap(p1, p2);
 
-        child = Genome::crossover(*p1, *p2, next_genome_id++, local_rng);
+         child = Genome::crossover(*p1, *p2, next_genome_id++, local_rng);
      } else {
-        int idx = pick_parent_index(sp);
-        child   = genomes[idx];
-        child.id = next_genome_id++;
+         int idx = pick_parent_index(sp);
+         child   = genomes[idx];
+         child.id = next_genome_id++;
      }
 
-    // Addition-only mode for 100 gens after track rotation:
-    // freeze existing weights, no toggle — only structural additions allowed.
-    if (gens_since_rotation < 100) {
-        if (unit(local_rng) < cfg.add_conn_rate)
-            child.mutate_add_connection(cfg, innov, local_rng);
-        if (unit(local_rng) < cfg.add_node_rate)
-            child.mutate_add_node(cfg, innov, local_rng);
-    } else {
-        child.mutate(cfg, innov, local_rng);
-    }
+     // Addition-only mode for 100 gens after track rotation:
+    // Clone + add connections only. No node splits (disables the split conn),
+    // no crossover (can lose structure), no weight changes.
+     if (gens_since_rotation < 100) {
+         if (unit(local_rng) < cfg.add_conn_rate)
+             child.mutate_add_connection(cfg, innov, local_rng);
+        // Skip mutate_add_node — it disables the split connection
+     } else {
+         child.mutate(cfg, innov, local_rng);
+     }
 
-    return child;
+     return child;
  }
 
 void Population::reproduce() {
