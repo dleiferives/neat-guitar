@@ -107,7 +107,7 @@ void Population::evaluate(FitnessFn fit_fn) {
         if (g.is_elite) {
             // Rolling average: mostly trust the score that earned elite status,
             // but blend in the new evaluation to slowly correct stale scores.
-            g.fitness = (0.99f * g.fitness) + (0.01f * new_fit);
+            g.fitness = (0.9f * g.fitness) + (0.1f * new_fit);
             g.is_elite = false;
         } else {
             g.fitness = new_fit;
