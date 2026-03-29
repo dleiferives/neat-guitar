@@ -30,6 +30,7 @@ struct Genome {
     float                 fitness     = 0.0f;
     float                 adj_fitness = 0.0f;
     int                   species_id  = -1;
+    bool                  is_elite    = false;  // skip re-evaluation
 
     // ── Construction ─────────────────────────────────────────────────────────
     static Genome make_minimal(int genome_id,

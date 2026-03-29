@@ -102,8 +102,17 @@ const Genome& Population::best_genome() const {
 // ── Evaluation ───────────────────────────────────────────────────────────────
 
 void Population::evaluate(FitnessFn fit_fn) {
-    for (auto& g : genomes)
-        g.fitness = fit_fn(g);
+    for (auto& g : genomes) {
+        float new_fit = fit_fn(g);
+        if (g.is_elite) {
+            // Rolling average: mostly trust the score that earned elite status,
+            // but blend in the new evaluation to slowly correct stale scores.
+            g.fitness = (0.99f * g.fitness) + (0.01f * new_fit);
+            g.is_elite = false;
+        } else {
+            g.fitness = new_fit;
+        }
+    }
 }
 
 // ── Speciation ───────────────────────────────────────────────────────────────
@@ -298,11 +307,14 @@ void Population::reproduce() {
         std::sort(sp.member_indices.begin(), sp.member_indices.end(),
             [&](int a, int b){ return genomes[a].fitness > genomes[b].fitness; });
 
-        // Elitism: carry over top fraction unchanged
+        // Elitism: carry over top fraction unchanged, marked to skip re-evaluation
         int elite = std::max(1, (int)(sp.member_indices.size() * cfg.elitism_fraction));
         elite     = std::min(elite, alloc);
-        for (int e = 0; e < elite; ++e)
-            next_gen.push_back(genomes[sp.member_indices[e]]);
+        for (int e = 0; e < elite; ++e) {
+            Genome eg = genomes[sp.member_indices[e]];
+            eg.is_elite = true;
+            next_gen.push_back(std::move(eg));
+        }
 
         // Cull low performers
         int keep = std::max(1, (int)(sp.member_indices.size() * cfg.survival_threshold));
