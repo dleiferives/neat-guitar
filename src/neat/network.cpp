@@ -26,46 +26,71 @@ Network Network::from_genome(const Genome& g, const NeatConfig& cfg) {
             hidden_ids.push_back(n.id);
     std::sort(hidden_ids.begin(), hidden_ids.end());
 
-    int n_nodes = net.n_inputs + net.n_outputs + (int)hidden_ids.size();
-    net.values.assign(n_nodes, 0.0f);
-    net.sums.assign(n_nodes, 0.0f);
-    net.biases.assign(n_nodes, 0.0f);
+    net.n_nodes = net.n_inputs + net.n_outputs + (int)hidden_ids.size();
+    net.values.assign(net.n_nodes, 0.0f);
+    net.sums.assign(net.n_nodes, 0.0f);
+    net.biases.assign(net.n_nodes, 0.0f);
 
     int max_id = cfg.first_hidden_node() + (int)hidden_ids.size() + 10;
     for (const auto& n : g.nodes)
         max_id = std::max(max_id, n.id + 1);
-    net.node_id_to_idx.assign(max_id, -1);
+    std::vector<int> node_id_to_idx(max_id, -1);
 
     for (int i = 0; i < net.n_inputs; ++i)
-        net.node_id_to_idx[i] = i;
+        node_id_to_idx[i] = i;
 
     net.output_start = net.n_inputs;
     for (int k = 0; k < net.n_outputs; ++k)
-        net.node_id_to_idx[cfg.first_output_node() + k] = net.n_inputs + k;
+        node_id_to_idx[cfg.first_output_node() + k] = net.n_inputs + k;
 
     int hidden_start = net.n_inputs + net.n_outputs;
     for (int i = 0; i < (int)hidden_ids.size(); ++i)
-        net.node_id_to_idx[hidden_ids[i]] = hidden_start + i;
+        node_id_to_idx[hidden_ids[i]] = hidden_start + i;
 
     for (const auto& n : g.nodes) {
-        if (n.id >= (int)net.node_id_to_idx.size()) continue;
-        int idx = net.node_id_to_idx[n.id];
+        if (n.id >= (int)node_id_to_idx.size()) continue;
+        int idx = node_id_to_idx[n.id];
         if (idx >= 0) net.biases[idx] = n.bias;
     }
 
     for (const auto& c : g.conns) {
         if (!c.enabled) continue;
-        if (c.in_node  >= (int)net.node_id_to_idx.size()) continue;
-        if (c.out_node >= (int)net.node_id_to_idx.size()) continue;
-        int in_idx  = net.node_id_to_idx[c.in_node];
-        int out_idx = net.node_id_to_idx[c.out_node];
+        if (c.in_node  >= (int)node_id_to_idx.size()) continue;
+        if (c.out_node >= (int)node_id_to_idx.size()) continue;
+        int in_idx  = node_id_to_idx[c.in_node];
+        int out_idx = node_id_to_idx[c.out_node];
         if (in_idx < 0 || out_idx < 0) continue;
         net.conn_in.push_back(in_idx);
         net.conn_out.push_back(out_idx);
         net.conn_w.push_back(c.weight);
     }
 
+    net.compute_min_passes(cfg.activation_passes);
+
     return net;
+}
+
+// Bellman-Ford relaxation: compute the minimum activation passes needed.
+// Feedforward depth-1 networks → n_passes=1. Recurrent → up to max_passes.
+void Network::compute_min_passes(int max_passes) {
+    std::vector<int> depth(n_nodes, 0);
+    bool changed = true;
+    int iters = 0;
+    while (changed && iters < max_passes) {
+        changed = false;
+        for (int c = 0; c < (int)conn_in.size(); ++c) {
+            int new_depth = depth[conn_in[c]] + 1;
+            if (new_depth > depth[conn_out[c]]) {
+                depth[conn_out[c]] = new_depth;
+                changed = true;
+            }
+        }
+        ++iters;
+    }
+    int max_depth = 0;
+    for (int i = n_inputs; i < n_nodes; ++i)
+        max_depth = std::max(max_depth, depth[i]);
+    n_passes = std::max(1, std::min(max_depth, max_passes));
 }
 
 void Network::activate(const float* __restrict__ inp,
@@ -81,13 +106,13 @@ void Network::activate(const float* __restrict__ inp,
     const float* __restrict__ bias = biases.data();
 
     for (int pass = 0; pass < n_passes; ++pass) {
-        for (int i = n_inputs; i < (int)sums.size(); ++i)
+        for (int i = n_inputs; i < n_nodes; ++i)
             sums[i] = bias[i];
 
         for (int c = 0; c < n_c; ++c)
             sums[co[c]] += values[ci[c]] * cw[c];
 
-        for (int i = n_inputs; i < (int)values.size(); ++i)
+        for (int i = n_inputs; i < n_nodes; ++i)
             values[i] = sigmoid(sums[i]);
     }
 

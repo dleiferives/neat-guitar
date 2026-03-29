@@ -7,20 +7,24 @@
 struct Network {
     int n_inputs;
     int n_outputs;
-    int output_start;       // index in values[] where output nodes begin
-    int n_passes;
+    int n_nodes;             // total node count (inputs + outputs + hidden)
+    int output_start;        // index in values[] where output nodes begin
+    int n_passes;            // passes required (1 for feedforward, more for recurrent)
 
-    // SoA connection layout: three parallel arrays (was: vector<ActiveConn>)
+    // SoA connection layout: three parallel arrays, sorted by conn_out
     std::vector<int>   conn_in;   // source node index for each connection
     std::vector<int>   conn_out;  // destination node index for each connection
     std::vector<float> conn_w;    // weight for each connection
 
-    std::vector<float> values;     // current node activations
-    std::vector<float> sums;       // accumulator per node
+    std::vector<float> values;    // current node activations
+    std::vector<float> sums;      // accumulator per node
     std::vector<float> biases;
-    std::vector<int>   node_id_to_idx; // sparse map: node_id → values[] index
 
     static Network from_genome(const Genome& g, const NeatConfig& cfg);
+
+    // Compute minimum activation passes needed for this network's topology.
+    // Call after conn_in/conn_out are populated. max_passes is the upper bound.
+    void compute_min_passes(int max_passes);
 
     // Zero-allocation hot path: caller provides pre-allocated buffers.
     // inp must be n_inputs floats; out must be n_outputs floats.

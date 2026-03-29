@@ -35,9 +35,9 @@ static Network make_bench_network(int n_conns, int n_hidden) {
     net.n_inputs     = cfg.n_inputs();    // 165
     net.n_outputs    = cfg.n_outputs();   // 49
     net.output_start = cfg.n_inputs();
-    net.n_passes     = cfg.activation_passes;  // 4
 
     int n_nodes = net.n_inputs + net.n_outputs + n_hidden;
+    net.n_nodes = n_nodes;
     net.values.assign(n_nodes, 0.0f);
     net.sums.assign(n_nodes, 0.0f);
     net.biases.assign(n_nodes, 0.1f);
@@ -56,6 +56,9 @@ static Network make_bench_network(int n_conns, int n_hidden) {
         net.conn_out.push_back(out_dist(rng));
         net.conn_w.push_back(w_dist(rng));
     }
+
+    // Compute minimum passes for this topology (feedforward bench nets → 1 pass).
+    net.compute_min_passes(cfg.activation_passes);
 
     return net;
 }
