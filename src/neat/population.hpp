@@ -31,9 +31,8 @@ struct Population {
     // Auto-tuning: stagnation-responsive mutation boost
     float                global_best_fitness = 0.0f;
     int                  global_stagnation   = 0;
-    int                  gens_since_rotation = 100;
-    int                  rotation_depth      = 1;    // current depth of triangle wave
-    int                  rotation_step       = 0;    // step within current depth cycle
+    int                  gens_since_rotation = 100;  // start in normal mode
+
     explicit Population(NeatConfig cfg, uint64_t seed = 42);
 
     // Reconstruct a Population from a saved population file.
@@ -43,7 +42,7 @@ struct Population {
     // Call after rotating the track to enter addition-only mode for 100 gens.
     void signal_rotation() {
         gens_since_rotation = 0;
-        global_stagnation = 0;
+        global_stagnation   = 0;
         global_best_fitness = 0.0f;
     }
 

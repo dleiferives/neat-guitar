@@ -182,6 +182,8 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     float best_fit_ever = 0.0f;
     Genome best_genome;
+
+    // Triangle wave rotation state
     int gens_since_rotation = 100;  // start in normal mode
     int rotation_depth = 1;
     int rotation_step = 0;
@@ -200,12 +202,14 @@ static int cmd_train(const std::vector<std::string>& args) {
                         r.files_completed, r.total_files,
                         r.avg_accuracy, save_path.c_str());
         }
+
         std::cout << "Gen " << gen
                   << "  best=" << best_fit
                   << "  best_ever=" << best_fit_ever
                   << "  species=" << pop.species.size()
                   << "  nodes=" << best.nodes.size()
                   << "  conns=" << best.conns.size();
+
         if (pop.global_stagnation > 10) {
             float mb = 3.0f;
             for (int p = 100; p <= pop.global_stagnation; p *= 10) mb += 1.0f;
@@ -221,6 +225,8 @@ static int cmd_train(const std::vector<std::string>& args) {
                 // Rotate forward (same direction as initial rotation)
                 std::rotate(data.begin(), data.end() - 1, data.end());
                 ++rotation_step;
+                std::cout << "\n  [WAVE rotate fwd, step=" << rotation_step
+                          << "/" << rotation_depth << "]";
                 if (rotation_step >= rotation_depth) {
                     rotation_descending = false;
                 }
@@ -228,6 +234,8 @@ static int cmd_train(const std::vector<std::string>& args) {
                 // Rotate backward (undo)
                 std::rotate(data.begin(), data.begin() + 1, data.end());
                 --rotation_step;
+                std::cout << "\n  [WAVE rotate back, step=" << rotation_step
+                          << "/" << rotation_depth << "]";
                 if (rotation_step <= 0) {
                     rotation_descending = true;
                     ++rotation_depth;
@@ -238,13 +246,13 @@ static int cmd_train(const std::vector<std::string>& args) {
             for (auto& g : pop.genomes) g.is_elite = false;
         }
 
-        // Stagnation-triggered rotation (existing logic)
+        // Stagnation-triggered rotation
         if (pop.global_stagnation >= 100) {
             std::rotate(data.begin(), data.end() - 1, data.end());
             std::cout << "\n  [TRACK ROTATED] new order:";
-            for (size_t i = 0; i < 5; ++i)
+            for (size_t i = 0; i < data.size(); ++i)
                 std::cout << " " << data[i].name;
-            std::cout << "...\n";
+            std::cout << "\n";
 
             // Enter addition-only mode with triangle wave
             pop.signal_rotation();
@@ -256,6 +264,7 @@ static int cmd_train(const std::vector<std::string>& args) {
             best_fit_ever = 0.0f;
             theoretical_max = racing_theoretical_max(data);
 
+            // Force re-evaluation of all genomes (elites have stale fitness)
             for (auto& g : pop.genomes) g.is_elite = false;
         }
 

@@ -88,15 +88,21 @@ void Population::evolve(FitnessFn fit_fn,
 void Population::step(FitnessFn fit_fn) {
     innov.reset_generation();
     evaluate(fit_fn);
-    ++gens_since_rotation;
 
-    // Track global stagnation for auto-tuning
-    float current_best = best_genome().fitness;
-    if (current_best > global_best_fitness) {
-        global_best_fitness = current_best;
-        global_stagnation   = 0;
-    } else {
-        ++global_stagnation;
+    // Increment rotation counter
+    if (gens_since_rotation < 100) {
+        ++gens_since_rotation;
+    }
+
+    // Track global stagnation (only in normal mode)
+    if (gens_since_rotation >= 100) {
+        float current_best = best_genome().fitness;
+        if (current_best > global_best_fitness) {
+            global_best_fitness = current_best;
+            global_stagnation   = 0;
+        } else {
+            ++global_stagnation;
+        }
     }
 
     // Stagnation-responsive mutation boost: ramp from 1× up to max_boost.
@@ -243,9 +249,9 @@ int Population::pick_parent_index(const Species& sp) const {
 }
 
 Genome Population::make_offspring(const Species& sp, std::mt19937& local_rng) {
-     std::uniform_real_distribution<float> unit(0.0f, 1.0f);
+    std::uniform_real_distribution<float> unit(0.0f, 1.0f);
 
-     Genome child;
+    Genome child;
 
     // Addition-only mode: clone only, no crossover (crossover can lose structure)
     bool do_crossover = gens_since_rotation >= 100 &&
@@ -253,35 +259,35 @@ Genome Population::make_offspring(const Species& sp, std::mt19937& local_rng) {
                         sp.member_indices.size() > 1;
 
     if (do_crossover) {
-         int idx1 = pick_parent_index(sp);
-         int idx2 = pick_parent_index(sp);
-         // Ensure different parents
-         for (int t = 0; t < 5 && idx2 == idx1; ++t) idx2 = pick_parent_index(sp);
+        int idx1 = pick_parent_index(sp);
+        int idx2 = pick_parent_index(sp);
+        // Ensure different parents
+        for (int t = 0; t < 5 && idx2 == idx1; ++t) idx2 = pick_parent_index(sp);
 
-         const Genome* p1 = &genomes[idx1];
-         const Genome* p2 = &genomes[idx2];
-         if (p1->fitness < p2->fitness) std::swap(p1, p2);
+        const Genome* p1 = &genomes[idx1];
+        const Genome* p2 = &genomes[idx2];
+        if (p1->fitness < p2->fitness) std::swap(p1, p2);
 
-         child = Genome::crossover(*p1, *p2, next_genome_id++, local_rng);
-     } else {
-         int idx = pick_parent_index(sp);
-         child   = genomes[idx];
-         child.id = next_genome_id++;
-     }
+        child = Genome::crossover(*p1, *p2, next_genome_id++, local_rng);
+    } else {
+        int idx = pick_parent_index(sp);
+        child   = genomes[idx];
+        child.id = next_genome_id++;
+    }
 
-     // Addition-only mode for 100 gens after track rotation:
+    // Addition-only mode for 100 gens after track rotation:
     // Clone + add connections only. No node splits (disables the split conn),
     // no crossover (can lose structure), no weight changes.
-     if (gens_since_rotation < 100) {
-         if (unit(local_rng) < cfg.add_conn_rate)
-             child.mutate_add_connection(cfg, innov, local_rng);
+    if (gens_since_rotation < 100) {
+        if (unit(local_rng) < cfg.add_conn_rate)
+            child.mutate_add_connection(cfg, innov, local_rng);
         // Skip mutate_add_node — it disables the split connection
-     } else {
-         child.mutate(cfg, innov, local_rng);
-     }
+    } else {
+        child.mutate(cfg, innov, local_rng);
+    }
 
-     return child;
- }
+    return child;
+}
 
 void Population::reproduce() {
     // Cull stagnant species (keep at least 2, never cull the species
@@ -381,7 +387,8 @@ void Population::reproduce() {
     next_gen.resize(cfg.pop_size);
 
     // ── Stagnation diversity injection ─────────────────────────────────────
-    if (global_stagnation > 10) {
+    // Only in normal mode (not during addition-only period)
+    if (gens_since_rotation >= 100 && global_stagnation > 10) {
         int slot = cfg.pop_size - 1;  // overwrite from the tail (lowest-priority)
 
         // Bozos: clone the worst 5% and mutate aggressively (3 passes).
