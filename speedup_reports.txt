@@ -1,0 +1,26 @@
+population=500, generations=50
+
+226999f:
+real    4m51.600s
+user    4m51.294s
+sys     0m0.284s
+
+7ed89c6:
+real    3m52.770s
+user    3m52.488s
+sys     0m0.264s
+
+d632a68:
+real    3m49.743s
+user    3m49.478s
+sys     0m0.248s
+
+933447f:
+real    2m42.219s
+user    2m41.967s
+sys     0m0.236s
+
+001c5c2:
+real    2m9.682s
+user    2m9.442s
+sys     0m0.228s
