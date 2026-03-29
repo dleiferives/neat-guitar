@@ -28,3 +28,10 @@ std::vector<AudioFrame> extract_frames(const std::vector<float>& audio,
 std::vector<float> build_input(const std::vector<AudioFrame>& frames,
                                 int frame_idx,
                                 int pitch_history);
+
+// Zero-allocation variant: writes directly into caller-provided buffer.
+// out must point to at least (CQT_TOTAL_BINS + N_SALIENCE_BINS + pitch_history) floats.
+void build_input(const std::vector<AudioFrame>& frames,
+                 int frame_idx,
+                 int pitch_history,
+                 float* __restrict__ out) noexcept;

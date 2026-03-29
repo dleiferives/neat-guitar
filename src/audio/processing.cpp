@@ -148,22 +148,34 @@ std::vector<AudioFrame> extract_frames(const std::vector<float>& audio,
 
 // ── Input builder ─────────────────────────────────────────────────────────────
 
+void build_input(const std::vector<AudioFrame>& frames,
+                 int frame_idx,
+                 int pitch_history,
+                 float* __restrict__ out) noexcept {
+    const AudioFrame& cur = frames[frame_idx];
+    float* p = out;
+
+    const float* cqt = cur.cqt_bins.data();
+    int n_cqt = (int)cur.cqt_bins.size();
+    for (int i = 0; i < n_cqt; ++i) p[i] = cqt[i];
+    p += n_cqt;
+
+    const float* sal = cur.salience.data();
+    int n_sal = (int)cur.salience.size();
+    for (int i = 0; i < n_sal; ++i) p[i] = sal[i];
+    p += n_sal;
+
+    for (int k = pitch_history - 1; k >= 0; --k) {
+        int fi = frame_idx - k;
+        *p++ = (fi >= 0) ? frames[fi].peak_salience : 0.0f;
+    }
+}
+
 std::vector<float> build_input(const std::vector<AudioFrame>& frames,
                                 int frame_idx,
                                 int pitch_history) {
     const AudioFrame& cur = frames[frame_idx];
-    std::vector<float> inp;
-    inp.reserve(cur.cqt_bins.size() + cur.salience.size() + pitch_history);
-
-    inp.insert(inp.end(), cur.cqt_bins.begin(), cur.cqt_bins.end());
-    inp.insert(inp.end(), cur.salience.begin(), cur.salience.end());
-
-    // Recent peak-salience stream: how "loud/clear" the strongest pitch was
-    for (int k = pitch_history - 1; k >= 0; --k) {
-        int   fi = frame_idx - k;
-        float p  = (fi >= 0) ? frames[fi].peak_salience : 0.0f;
-        inp.push_back(p);
-    }
-
+    std::vector<float> inp(cur.cqt_bins.size() + cur.salience.size() + pitch_history);
+    build_input(frames, frame_idx, pitch_history, inp.data());
     return inp;
 }
