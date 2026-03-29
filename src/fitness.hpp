@@ -60,9 +60,11 @@ float racing_theoretical_max(const std::vector<RecordingFrames>& data_sorted);
 // Racing-style fitness: each frame earns its rolling-window F1 as fitness.
 // Hard kill at kill_threshold is just a compute optimisation for dead models.
 // Fitness = sum(rolling_f1 per frame) * (1 + 0.10 * files_completed) * parsimony
+// fitness.hpp - update these function signatures
 RacingResult evaluate_genome_racing_detailed(const Genome& g,
                                               const std::vector<RecordingFrames>& data_sorted,
                                               const NeatConfig& cfg,
+                                              int start_file_idx = 0,
                                               float threshold = 0.5f,
                                               float kill_threshold = 0.2f,
                                               float window_secs = 5.0f);
@@ -70,6 +72,7 @@ RacingResult evaluate_genome_racing_detailed(const Genome& g,
 float evaluate_genome_racing(const Genome& g,
                               const std::vector<RecordingFrames>& data_sorted,
                               const NeatConfig& cfg,
+                              int start_file_idx = 0,
                               float threshold = 0.5f,
                               float kill_threshold = 0.2f,
                               float window_secs = 5.0f);
