@@ -82,7 +82,19 @@ static void read_vector_2d(std::istream& is,
     }
 }
 
-// ── Cache save/load ───────────────────────────────────────────────────────────
+// In fitness.cpp - replace the AudioFrame serialization
+
+static void write_audio_frame(std::ostream& os, const AudioFrame& frame) {
+    write_vector(os, frame.cqt_bins);
+    write_vector(os, frame.salience);
+    write_pod(os, frame.peak_salience);
+}
+
+static void read_audio_frame(std::istream& is, AudioFrame& frame) {
+    read_vector(is, frame.cqt_bins);
+    read_vector(is, frame.salience);
+    read_pod(is, frame.peak_salience);
+}
 
 bool save_frames_cache(const std::vector<RecordingFrames>& data,
                        const std::string& path) {
@@ -98,7 +110,6 @@ bool save_frames_cache(const std::vector<RecordingFrames>& data,
     uint32_t n_recs = (uint32_t)data.size();
     write_pod(out, n_recs);
 
-    // Write config params used (for validation on load)
     if (!data.empty()) {
         write_pod(out, data[0].midi_min);
         write_pod(out, data[0].midi_max);
@@ -111,12 +122,11 @@ bool save_frames_cache(const std::vector<RecordingFrames>& data,
         write_pod(out, rf.midi_max);
         write_pod(out, rf.hop_secs);
 
-        // Frames (assuming AudioFrame is POD - adjust if not)
+        // Frames - serialize each AudioFrame properly
         uint64_t n_frames = rf.frames.size();
         write_pod(out, n_frames);
-        if (n_frames > 0) {
-            out.write(reinterpret_cast<const char*>(rf.frames.data()),
-                      n_frames * sizeof(AudioFrame));
+        for (const auto& frame : rf.frames) {
+            write_audio_frame(out, frame);
         }
 
         // Notes
@@ -160,7 +170,6 @@ bool load_frames_cache(std::vector<RecordingFrames>& data,
     uint32_t n_recs;
     read_pod(in, n_recs);
 
-    // Validate config
     if (n_recs > 0) {
         int cached_midi_min, cached_midi_max;
         float cached_hop_secs;
@@ -186,14 +195,15 @@ bool load_frames_cache(std::vector<RecordingFrames>& data,
         read_pod(in, rf.midi_max);
         read_pod(in, rf.hop_secs);
 
+        // Frames - deserialize each AudioFrame properly
         uint64_t n_frames;
         read_pod(in, n_frames);
         rf.frames.resize(n_frames);
-        if (n_frames > 0) {
-            in.read(reinterpret_cast<char*>(rf.frames.data()),
-                    n_frames * sizeof(AudioFrame));
+        for (auto& frame : rf.frames) {
+            read_audio_frame(in, frame);
         }
 
+        // Notes
         uint64_t n_notes;
         read_pod(in, n_notes);
         rf.notes.resize(n_notes);
@@ -203,6 +213,7 @@ bool load_frames_cache(std::vector<RecordingFrames>& data,
             read_pod(in, n.duration);
         }
 
+        // Targets
         read_vector_2d(in, rf.onset_targets);
         read_vector_2d(in, rf.frame_targets);
 
