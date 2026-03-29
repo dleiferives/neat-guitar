@@ -42,3 +42,18 @@ target_link_libraries(neat_detector PRIVATE
     nlohmann_json::nlohmann_json
 )
 target_compile_options(neat_detector PRIVATE -O3 -march=native -Wall -Wextra)
+
+option(BUILD_BENCH "Build micro-benchmark" OFF)
+if(BUILD_BENCH)
+    add_executable(neat_bench
+        bench/bench.cpp
+        src/neat/network.cpp
+        src/neat/genome.cpp
+        src/neat/population.cpp
+    )
+    target_include_directories(neat_bench PRIVATE
+        src
+        ${rtcqt_SOURCE_DIR}/include
+    )
+    target_compile_options(neat_bench PRIVATE -O3 -march=native)
+endif()
