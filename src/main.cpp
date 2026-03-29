@@ -173,13 +173,13 @@ static int cmd_train(const std::vector<std::string>& args) {
     std::cout << "\n\n";
 
 // Track lookback level for multi-start fitness
+// Track lookback level for multi-start fitness
     int lookback = 0;
 
     // Racing fitness with progressive multi-start as stagnation increases
     auto fit_fn = [&](const Genome& g) {
         float fitness = evaluate_genome_racing(g, data, cfg, 0);
 
-        // Add fitness from earlier starting positions based on lookback
         for (int lb = 1; lb <= lookback; ++lb) {
             int alt_start = (int)data.size() - lb;
             if (alt_start > 0) {
@@ -199,20 +199,33 @@ static int cmd_train(const std::vector<std::string>& args) {
             best_fit_ever = best_fit;
             best_genome = best;
             best_genome.save(save_path);
-            auto r = evaluate_genome_racing_detailed(best, data, cfg, 0);
-            float pct = 100.0f * (float)r.frames_processed / (float)r.total_frames;
-            std::printf("  [new best] fitness=%.1f / %.1f (%.1f%%)  "
-                        "files=%d/%d  acc=%.3f  -> %s\n",
-                        r.fitness, theoretical_max, pct,
-                        r.files_completed, r.total_files,
-                        r.avg_accuracy, save_path.c_str());
+
+            // Show breakdown per starting position
+            std::printf("  [new best] combined=%.1f  lookback=%d\n", best_fit, lookback);
+            for (int lb = 0; lb <= lookback; ++lb) {
+                int start_idx = (lb == 0) ? 0 : (int)data.size() - lb;
+                if (start_idx < 0) continue;
+                auto r = evaluate_genome_racing_detailed(best, data, cfg, start_idx);
+                float pct = 100.0f * (float)r.frames_processed / (float)r.total_frames;
+                std::printf("    start=%d (%s): fitness=%.1f  files=%d/%d  acc=%.3f  pct=%.1f%%\n",
+                            start_idx, data[start_idx].name.c_str(),
+                            r.fitness, r.files_completed, r.total_files,
+                            r.avg_accuracy, pct);
+            }
+            std::printf("  -> %s\n", save_path.c_str());
         }
+
         std::cout << "Gen " << gen
                   << "  best=" << best_fit
                   << "  best_ever=" << best_fit_ever
                   << "  species=" << pop.species.size()
                   << "  nodes=" << best.nodes.size()
                   << "  conns=" << best.conns.size();
+
+        if (lookback > 0) {
+            std::printf("  [lb=%d]", lookback);
+        }
+
         if (pop.global_stagnation > 10) {
             float mb = 3.0f;
             for (int p = 100; p <= pop.global_stagnation; p *= 10) mb += 1.0f;
@@ -224,22 +237,18 @@ static int cmd_train(const std::vector<std::string>& args) {
         int new_lookback = (pop.global_stagnation >= 100)
             ? ((pop.global_stagnation - 100) / 100 + 1)
             : 0;
-        new_lookback = std::min(new_lookback, (int)data.size() - 1);  // cap at max files
+        new_lookback = std::min(new_lookback, (int)data.size() - 1);
 
         if (new_lookback > lookback) {
             lookback = new_lookback;
             std::cout << "\n  [MULTI-START] now combining " << (lookback + 1)
                       << " starting positions (stag=" << pop.global_stagnation << ")";
 
-            // Update theoretical max for new combined fitness
             theoretical_max = racing_theoretical_max(data) * (float)(lookback + 1);
-
-            // Reset stagnation tracking since fitness landscape changed
             pop.global_stagnation   = 0;
             pop.global_best_fitness = 0.0f;
             best_fit_ever           = 0.0f;
 
-            // Force re-evaluation of elites
             for (auto& g : pop.genomes) g.is_elite = false;
         }
 
