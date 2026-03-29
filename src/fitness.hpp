@@ -41,5 +41,5 @@ float evaluate_genome(const Genome& g,
                       const std::vector<RecordingFrames>& data,
                       const NeatConfig& cfg,
                       std::mt19937& rng,
-                      float window_secs = 5.0f,
+                      float window_secs = 8.0f,
                       float threshold = 0.5f);

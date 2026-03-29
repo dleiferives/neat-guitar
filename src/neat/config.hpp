@@ -20,7 +20,7 @@ struct NeatConfig {
     float weight_perturb_rate = 0.90f;  // perturb vs full replace
     float weight_perturb_power= 0.25f;
     float weight_init_range   = 1.0f;
-    float add_conn_rate       = 0.30f;
+    float add_conn_rate       = 0.05f;
     float add_node_rate       = 0.005f;
     float toggle_conn_rate    = 0.01f;
     int   add_conn_tries      = 20;     // max attempts to find a novel connection
