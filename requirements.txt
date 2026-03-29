@@ -1,0 +1,5 @@
+# requirements.txt
+neat-python
+numpy
+librosa
+soundfile

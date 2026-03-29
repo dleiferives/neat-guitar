@@ -4,3 +4,6 @@
 /.Justfile.swp
 /data_old
 /src/.fitness.cpp.swp
+/build2/
+/build_bench/
+/perf.data
