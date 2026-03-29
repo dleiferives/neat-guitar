@@ -148,9 +148,16 @@ void Population::speciate() {
         for (int idx : sp.member_indices)
             sp_best = std::max(sp_best, genomes[idx].fitness);
 
+        // Use mean of current and previous best to smooth noise.
+        // Replaces the old all-time-max which could never be beaten under
+        // noisy evaluation, making staleness always increment.
+        float smoothed = 0.5f * sp_best + 0.5f * sp.best_fitness;
         if (sp_best > sp.best_fitness) {
             sp.best_fitness = sp_best;
             sp.staleness    = 0;
+        } else if (smoothed >= sp.best_fitness * 0.99f) {
+            // Within 1% — don't penalize, evaluation noise could explain it
+            sp.best_fitness = smoothed;
         } else {
             ++sp.staleness;
         }
@@ -176,18 +183,19 @@ void Population::adjust_compat_threshold() {
 // ── Reproduction ─────────────────────────────────────────────────────────────
 
 int Population::pick_parent_index(const Species& sp) const {
-    // Tournament selection within species by adj_fitness
+    // Roulette selection within species by raw fitness (not adj_fitness —
+    // adj_fitness divides by species size which is constant within a species,
+    // making selection nearly uniform).
     float total = 0.0f;
-    for (int idx : sp.member_indices) total += genomes[idx].adj_fitness;
+    for (int idx : sp.member_indices) total += genomes[idx].fitness;
     if (total <= 0.0f) {
-        std::uniform_int_distribution<size_t> d(0, sp.member_indices.size() - 1);
         return sp.member_indices[const_cast<Population*>(this)->rng() % sp.member_indices.size()];
     }
     std::uniform_real_distribution<float> roulette(0.0f, total);
     float r   = roulette(const_cast<Population*>(this)->rng);
     float acc = 0.0f;
     for (int idx : sp.member_indices) {
-        acc += genomes[idx].adj_fitness;
+        acc += genomes[idx].fitness;
         if (acc >= r) return idx;
     }
     return sp.member_indices.back();
@@ -219,12 +227,24 @@ Genome Population::make_offspring(const Species& sp, std::mt19937& local_rng) {
 }
 
 void Population::reproduce() {
-    // Cull stagnant species (keep at least 2 species)
+    // Cull stagnant species (keep at least 2, never cull the species
+    // containing the global best genome)
     if ((int)species.size() > 2) {
+        float global_best = -1e30f;
+        int best_species_id = -1;
+        for (const auto& sp : species) {
+            for (int idx : sp.member_indices) {
+                if (genomes[idx].fitness > global_best) {
+                    global_best = genomes[idx].fitness;
+                    best_species_id = sp.id;
+                }
+            }
+        }
         species.erase(
             std::remove_if(species.begin(), species.end(),
                 [&](const Species& s){
-                    return s.staleness >= cfg.stagnation_limit;
+                    return s.staleness >= cfg.stagnation_limit
+                        && s.id != best_species_id;
                 }),
             species.end());
     }
@@ -278,8 +298,8 @@ void Population::reproduce() {
         std::sort(sp.member_indices.begin(), sp.member_indices.end(),
             [&](int a, int b){ return genomes[a].fitness > genomes[b].fitness; });
 
-        // Elitism: carry over top N unchanged
-        int elite = std::min(cfg.species_elitism, (int)sp.member_indices.size());
+        // Elitism: carry over top fraction unchanged
+        int elite = std::max(1, (int)(sp.member_indices.size() * cfg.elitism_fraction));
         elite     = std::min(elite, alloc);
         for (int e = 0; e < elite; ++e)
             next_gen.push_back(genomes[sp.member_indices[e]]);

@@ -20,17 +20,17 @@ struct NeatConfig {
     float weight_perturb_rate = 0.90f;  // perturb vs full replace
     float weight_perturb_power= 0.25f;
     float weight_init_range   = 1.0f;
-    float add_conn_rate       = 0.03f;
-    float add_node_rate       = 0.01f;
+    float add_conn_rate       = 0.30f;
+    float add_node_rate       = 0.005f;
     float toggle_conn_rate    = 0.01f;
     int   add_conn_tries      = 20;     // max attempts to find a novel connection
 
     // ── Reproduction ─────────────────────────────────────────────────────────
     float crossover_rate      = 0.75f;
     float interspecies_rate   = 0.001f;
-    int   species_elitism     = 2;      // top N per species survive unchanged
+    float elitism_fraction    = 0.10f;  // top 10% per species survive unchanged
     float survival_threshold  = 0.20f;  // fraction allowed to reproduce
-    int   stagnation_limit    = 15;     // generations before culling a species
+    int   stagnation_limit    = 50;     // generations before culling a species
 
     // ── Network evaluation ───────────────────────────────────────────────────
     int   activation_passes   = 4;      // forward-pass iterations (handles cycles)

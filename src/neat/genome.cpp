@@ -51,17 +51,30 @@ Genome Genome::make_minimal(int genome_id,
     for (int i = 0; i < n_out; ++i)
         g.nodes.push_back({n_in + i, NodeType::OUTPUT, 0.0f});
 
-    // Sparse initial connectivity: each output gets ~3 random input connections
+    // Seed each output with a direct connection from its corresponding salience
+    // input (salience_bin[k] → output[k]).  This gives the network the trivial
+    // solution "note k is active when salience for note k is high" from gen 0.
+    // Also add a few random connections for exploration.
     std::uniform_real_distribution<float> wdist(-cfg.weight_init_range,
                                                   cfg.weight_init_range);
     std::uniform_int_distribution<int>    in_dist(0, n_in - 1);
 
-    for (int out_id = n_in; out_id < n_in + n_out; ++out_id) {
-        for (int k = 0; k < 3; ++k) {
+    int salience_offset = cfg.n_cqt_bins;  // salience bins start after CQT bins
+
+    for (int k = 0; k < n_out; ++k) {
+        int out_id = n_in + k;
+
+        // Direct salience → output connection
+        int sal_id = salience_offset + k;
+        uint32_t inv = innov.get_conn(sal_id, out_id);
+        g.conns.push_back({sal_id, out_id, wdist(rng), true, inv});
+
+        // Plus 2 random connections for exploration
+        for (int j = 0; j < 2; ++j) {
             int      in_id = in_dist(rng);
-            uint32_t inv   = innov.get_conn(in_id, out_id);
+            uint32_t inv2  = innov.get_conn(in_id, out_id);
             if (!g.has_connection(in_id, out_id))
-                g.conns.push_back({in_id, out_id, wdist(rng), true, inv});
+                g.conns.push_back({in_id, out_id, wdist(rng), true, inv2});
         }
     }
 
@@ -75,12 +88,23 @@ void Genome::mutate_weights(const NeatConfig& cfg, std::mt19937& rng) {
     std::normal_distribution<float>       perturb(0.0f, cfg.weight_perturb_power);
     std::uniform_real_distribution<float> replace(-cfg.weight_init_range,
                                                     cfg.weight_init_range);
+    // Mutate connection weights
     for (auto& c : conns) {
         if (unit(rng) < cfg.weight_mutate_rate) {
             if (unit(rng) < cfg.weight_perturb_rate)
                 c.weight += perturb(rng);
             else
                 c.weight = replace(rng);
+        }
+    }
+    // Mutate biases (same rates as weights)
+    for (auto& n : nodes) {
+        if (n.type == NodeType::INPUT) continue;
+        if (unit(rng) < cfg.weight_mutate_rate) {
+            if (unit(rng) < cfg.weight_perturb_rate)
+                n.bias += perturb(rng);
+            else
+                n.bias = replace(rng);
         }
     }
 }
@@ -190,9 +214,9 @@ Genome Genome::crossover(const Genome& p1,
             // Matching gene: inherit from either parent
             const ConnGene& chosen = coin(rng) ? c1 : *it->second;
             ConnGene gc            = chosen;
-            // If either parent has it disabled, 75% chance offspring also disables it
+            // If either parent has it disabled, 25% chance offspring also disables it
             if (!c1.enabled || !it->second->enabled) {
-                std::bernoulli_distribution dis(0.75);
+                std::bernoulli_distribution dis(0.25);
                 gc.enabled = !dis(rng);
             }
             child.conns.push_back(gc);
@@ -259,9 +283,12 @@ float Genome::compat_distance(const Genome& other, const NeatConfig& cfg) const 
         }
     }
 
+    // Build self innov set for O(1) lookup instead of O(n) any_of
+    std::unordered_map<uint32_t, bool> self_map;
+    for (const auto& c : conns) self_map[c.innov] = true;
+
     for (const auto& c : other.conns) {
-        if (!std::any_of(conns.begin(), conns.end(),
-                         [&](const ConnGene& g){ return g.innov == c.innov; })) {
+        if (!self_map.count(c.innov)) {
             if (c.innov <= self_max_innov) ++disjoint;
             else                           ++excess;
         }

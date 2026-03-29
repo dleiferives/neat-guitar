@@ -165,18 +165,28 @@ static int cmd_train(const std::vector<std::string>& args) {
         return evaluate_genome(g, data, cfg, eval_rng);
     };
 
+    float best_val_ever = 0.0f;
+    Genome best_val_genome;
+
     auto on_gen = [&](int gen, float best_fit, const Genome& best) {
         ++gen_counter;
+        // Evaluate best on fixed validation set (seed 0, always the same segments)
+        std::mt19937 val_rng(0);
+        float val_fit = evaluate_genome(best, data, cfg, val_rng);
+        if (val_fit > best_val_ever) {
+            best_val_ever = val_fit;
+            best_val_genome = best;
+            best_val_genome.save(save_path);
+            std::cout << "  [saved -> " << save_path << " (new best val)]\n";
+        }
         std::cout << "Gen " << gen
                   << "  best=" << best_fit
+                  << "  val=" << val_fit
+                  << "  best_val=" << best_val_ever
                   << "  species=" << pop.species.size()
                   << "  nodes=" << best.nodes.size()
                   << "  conns=" << best.conns.size()
                   << "\n";
-        if (gen % 10 == 0) {
-            best.save(save_path);
-            std::cout << "  [saved -> " << save_path << "]\n";
-        }
         if (!save_pop_path.empty() && save_pop_every > 0 && gen % save_pop_every == 0) {
             pop.save_all(save_pop_path);
             std::cout << "  [pop saved -> " << save_pop_path << "]\n";
@@ -187,8 +197,9 @@ static int cmd_train(const std::vector<std::string>& args) {
     pop.evolve(fit_fn, on_gen);
     auto t1 = std::chrono::steady_clock::now();
 
-    const Genome& best = pop.best_genome();
-    best.save(save_path);
+    // Save best-on-validation genome (already saved incrementally, but ensure final save)
+    if (best_val_ever > 0.0f)
+        best_val_genome.save(save_path);
 
     if (!save_pop_path.empty()) {
         pop.save_all(save_pop_path);
@@ -197,7 +208,7 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     double secs = std::chrono::duration<double>(t1 - t0).count();
     std::cout << "\nDone in " << secs << "s\n";
-    std::cout << "Best fitness: " << best.fitness << "\n";
+    std::cout << "Best val fitness: " << best_val_ever << "\n";
     std::cout << "Saved to: " << save_path << "\n";
     return 0;
 }
