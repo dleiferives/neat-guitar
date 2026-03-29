@@ -5,7 +5,7 @@
 #include <random>
 
 #include "audio/dataset.hpp"
-#include "audio/fitness.hpp"
+#include "fitness.hpp"
 #include "neat/config.hpp"
 #include "neat/population.hpp"
 
