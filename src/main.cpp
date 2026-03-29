@@ -180,9 +180,6 @@ static int cmd_train(const std::vector<std::string>& args) {
 
     float theoretical_max = racing_theoretical_max(data);
 
-    float best_fit_ever = 0.0f;
-    Genome best_genome;
-
 float best_fit_ever = 0.0f;
 Genome best_genome;
 
