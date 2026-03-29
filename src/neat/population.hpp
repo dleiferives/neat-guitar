@@ -32,7 +32,8 @@ struct Population {
     float                global_best_fitness = 0.0f;
     int                  global_stagnation   = 0;
     int                  gens_since_rotation = 100;
-
+    int                  rotation_depth      = 1;    // current depth of triangle wave
+    int                  rotation_step       = 0;    // step within current depth cycle
     explicit Population(NeatConfig cfg, uint64_t seed = 42);
 
     // Reconstruct a Population from a saved population file.
@@ -40,7 +41,13 @@ struct Population {
     static Population from_file(const std::string& path, NeatConfig cfg, uint64_t seed = 42);
 
     // Call after rotating the track to enter addition-only mode for 100 gens.
-    void signal_rotation() { gens_since_rotation = 0; }
+    void signal_rotation() {
+        gens_since_rotation = 0;
+        rotation_depth      = 1;
+        rotation_step       = 0;
+        global_stagnation   = 0;
+        global_best_fitness = 0.0f;
+    }
 
     // Run the full evolutionary loop.
     // on_generation called at end of each generation with (gen, best_fitness, best_genome).
