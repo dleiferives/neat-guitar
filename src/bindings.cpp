@@ -21,7 +21,6 @@ bool load_data(const std::string& data_dir) {
     g_data = load_or_compute_frames(data_dir, g_cfg);
     if (g_data.empty()) return false;
 
-    // Sort alphabetically (same as C++ train)
     std::sort(g_data.begin(), g_data.end(),
               [](const RecordingFrames& a, const RecordingFrames& b) {
                   return a.name < b.name;
@@ -42,11 +41,26 @@ std::vector<std::string> get_recording_names() {
     return names;
 }
 
+// Convert neat-python node ID to C++ node ID
+// neat-python: inputs=-1..-n_inputs, outputs=0..n_outputs-1, hidden>=n_outputs
+// C++:         inputs=0..n_inputs-1, outputs=n_inputs..n_inputs+n_outputs-1, hidden>=n_inputs+n_outputs
+static int convert_node_id(int neat_id, int n_inputs, int n_outputs) {
+    if (neat_id < 0) {
+        // Input node: -1 -> 0, -2 -> 1, etc.
+        return -neat_id - 1;
+    } else if (neat_id < n_outputs) {
+        // Output node: 0 -> n_inputs, 1 -> n_inputs+1, etc.
+        return n_inputs + neat_id;
+    } else {
+        // Hidden node: shift by n_inputs
+        return n_inputs + neat_id;
+    }
+}
+
 // Convert neat-python genome representation to our Genome struct
-// neat-python gives us: nodes dict, connections dict
 Genome genome_from_neat_python(
-    const std::vector<std::tuple<int, float, float, float>>& nodes,  // (key, bias, response, activation)
-    const std::vector<std::tuple<int, int, float, bool, int>>& conns  // (in, out, weight, enabled, innov)
+    const std::vector<std::tuple<int, float, float>>& nodes,  // (key, bias, response)
+    const std::vector<std::tuple<int, int, float, bool>>& conns  // (in, out, weight, enabled)
 ) {
     Genome g;
     g.id = 0;
@@ -54,36 +68,44 @@ Genome genome_from_neat_python(
     int n_in = g_cfg.n_inputs();
     int n_out = g_cfg.n_outputs();
 
-    // Add input nodes
+    // Add input nodes (IDs 0 to n_in-1)
     for (int i = 0; i < n_in; ++i) {
         g.nodes.push_back({i, NodeType::INPUT, 0.0f});
     }
 
-    // Add output nodes
+    // Add output nodes (IDs n_in to n_in+n_out-1)
     for (int i = 0; i < n_out; ++i) {
         g.nodes.push_back({n_in + i, NodeType::OUTPUT, 0.0f});
     }
 
-    // Add hidden nodes from neat-python (keys >= n_in + n_out are hidden)
-    for (const auto& [key, bias, response, activation] : nodes) {
-        if (key >= 0 && key < n_in) continue;  // input node
-        if (key >= n_in && key < n_in + n_out) {
-            // output node - update bias
+    // Process neat-python nodes to get biases and find hidden nodes
+    for (const auto& [key, bias, response] : nodes) {
+        int cpp_id = convert_node_id(key, n_in, n_out);
+        float effective_bias = bias * response;
+
+        if (key < 0) {
+            // Input node - no bias needed
+            continue;
+        } else if (key < n_out) {
+            // Output node - update bias
             for (auto& n : g.nodes) {
-                if (n.id == key) {
-                    n.bias = bias * response;
+                if (n.id == cpp_id) {
+                    n.bias = effective_bias;
                     break;
                 }
             }
         } else {
-            // hidden node
-            g.nodes.push_back({key, NodeType::HIDDEN, bias * response});
+            // Hidden node - add it
+            g.nodes.push_back({cpp_id, NodeType::HIDDEN, effective_bias});
         }
     }
 
-    // Add connections
-    for (const auto& [in_node, out_node, weight, enabled, innov] : conns) {
-        g.conns.push_back({in_node, out_node, weight, enabled, (uint32_t)innov});
+    // Add connections with converted node IDs
+    uint32_t innov = 1;
+    for (const auto& [in_node, out_node, weight, enabled] : conns) {
+        int cpp_in = convert_node_id(in_node, n_in, n_out);
+        int cpp_out = convert_node_id(out_node, n_in, n_out);
+        g.conns.push_back({cpp_in, cpp_out, weight, enabled, innov++});
     }
 
     return g;
@@ -91,8 +113,8 @@ Genome genome_from_neat_python(
 
 // Evaluate a genome and return detailed results
 py::dict evaluate_genome_py(
-    const std::vector<std::tuple<int, float, float, float>>& nodes,
-    const std::vector<std::tuple<int, int, float, bool, int>>& conns,
+    const std::vector<std::tuple<int, float, float>>& nodes,
+    const std::vector<std::tuple<int, int, float, bool>>& conns,
     int start_file_idx = 0,
     float threshold = 0.5f,
     float kill_threshold = 0.2f,
@@ -118,24 +140,6 @@ py::dict evaluate_genome_py(
     return d;
 }
 
-// Batch evaluate multiple genomes (more efficient)
-std::vector<py::dict> evaluate_genomes_batch(
-    const std::vector<std::pair<
-        std::vector<std::tuple<int, float, float, float>>,
-        std::vector<std::tuple<int, int, float, bool, int>>
-    >>& genomes,
-    int start_file_idx = 0
-) {
-    std::vector<py::dict> results;
-    results.reserve(genomes.size());
-
-    for (const auto& [nodes, conns] : genomes) {
-        results.push_back(evaluate_genome_py(nodes, conns, start_file_idx));
-    }
-
-    return results;
-}
-
 PYBIND11_MODULE(neat_fitness, m) {
     m.doc() = "NEAT fitness evaluation using C++ backend";
 
@@ -156,9 +160,4 @@ PYBIND11_MODULE(neat_fitness, m) {
           py::arg("threshold") = 0.5f,
           py::arg("kill_threshold") = 0.2f,
           py::arg("window_secs") = 5.0f);
-
-    m.def("evaluate_genomes_batch", &evaluate_genomes_batch,
-          "Evaluate multiple genomes",
-          py::arg("genomes"),
-          py::arg("start_file_idx") = 0);
 }

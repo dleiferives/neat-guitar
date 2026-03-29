@@ -7,7 +7,6 @@ from pathlib import Path
 
 import neat
 
-# Import the C++ module
 import neat_fitness
 
 
@@ -22,13 +21,15 @@ class GenomeEvaluator:
 
     def _genome_to_cpp(self, genome):
         """Convert neat-python genome to C++ format."""
+        # nodes: (key, bias, response)
         nodes = []
         for key, node in genome.nodes.items():
-            nodes.append((key, node.bias, node.response, 0.0))
+            nodes.append((key, node.bias, node.response))
 
+        # conns: (in_node, out_node, weight, enabled)
         conns = []
-        for key, conn in genome.connections.items():
-            conns.append((conn.key[0], conn.key[1], conn.weight, conn.enabled, 0))
+        for (in_node, out_node), conn in genome.connections.items():
+            conns.append((in_node, out_node, conn.weight, conn.enabled))
 
         return nodes, conns
 
@@ -60,8 +61,8 @@ class GenomeEvaluator:
                       f"files={result['files_completed']}/{result['total_files']} "
                       f"acc={result['avg_accuracy']:.3f} pct={pct:.1f}% "
                       f"nodes={result['n_nodes']} conns={result['n_conns']}")
-            else:
-                self.stagnation += 1
+
+        self.stagnation += 1
 
         # Progressive multi-start (matching C++ logic)
         if self.stagnation >= 100:
@@ -78,7 +79,6 @@ class GenomeEvaluator:
 
 
 def run_training(data_dir: str, save_path: str, config_path: str, generations: int):
-    # Load data via C++
     print(f"Loading data from {data_dir}...")
     if not neat_fitness.load_data(data_dir):
         print("Failed to load data!")
@@ -127,8 +127,8 @@ def run_eval(genome_path: str, data_dir: str, config_path: str):
     with open(genome_path, 'rb') as f:
         genome = pickle.load(f)
 
-    nodes = [(k, n.bias, n.response, 0.0) for k, n in genome.nodes.items()]
-    conns = [(c.key[0], c.key[1], c.weight, c.enabled, 0)
+    nodes = [(k, n.bias, n.response) for k, n in genome.nodes.items()]
+    conns = [(c.key[0], c.key[1], c.weight, c.enabled)
              for c in genome.connections.values()]
 
     result = neat_fitness.evaluate_genome(nodes, conns)
