@@ -172,10 +172,21 @@ static int cmd_train(const std::vector<std::string>& args) {
         std::cout << "  (resuming from gen " << pop.generation << ")";
     std::cout << "\n\n";
 
-    // Racing fitness is fully deterministic (fixed track, no RNG) — all genomes
-    // in a generation are evaluated identically and fairly.
+// Track lookback level for multi-start fitness
+    int lookback = 0;
+
+    // Racing fitness with progressive multi-start as stagnation increases
     auto fit_fn = [&](const Genome& g) {
-        return evaluate_genome_racing(g, data, cfg);
+        float fitness = evaluate_genome_racing(g, data, cfg, 0);
+
+        // Add fitness from earlier starting positions based on lookback
+        for (int lb = 1; lb <= lookback; ++lb) {
+            int alt_start = (int)data.size() - lb;
+            if (alt_start > 0) {
+                fitness += evaluate_genome_racing(g, data, cfg, alt_start);
+            }
+        }
+        return fitness;
     };
 
     float theoretical_max = racing_theoretical_max(data);
@@ -188,7 +199,7 @@ static int cmd_train(const std::vector<std::string>& args) {
             best_fit_ever = best_fit;
             best_genome = best;
             best_genome.save(save_path);
-            auto r = evaluate_genome_racing_detailed(best, data, cfg);
+            auto r = evaluate_genome_racing_detailed(best, data, cfg, 0);
             float pct = 100.0f * (float)r.frames_processed / (float)r.total_frames;
             std::printf("  [new best] fitness=%.1f / %.1f (%.1f%%)  "
                         "files=%d/%d  acc=%.3f  -> %s\n",
@@ -209,23 +220,26 @@ static int cmd_train(const std::vector<std::string>& args) {
             std::printf("  [stag=%d boost=%.1f/%.0fx]", pop.global_stagnation, boost, mb);
         }
 
-        // Track rotation: every 100 stagnation gens, rotate the file order
-        // to break local optima tied to a specific track layout.
-        if (pop.global_stagnation >= 100) {
-            std::rotate(data.begin(), data.end() - 1, data.end());
-            std::cout << "\n  [TRACK ROTATED] new order:";
-            for (size_t i = 0; i < data.size(); ++i)
-                std::cout << " " << data[i].name;
-            std::cout << "\n";
+        // Progressive multi-start: every 100 stagnation gens, add another starting position
+        int new_lookback = (pop.global_stagnation >= 100)
+            ? ((pop.global_stagnation - 100) / 100 + 1)
+            : 0;
+        new_lookback = std::min(new_lookback, (int)data.size() - 1);  // cap at max files
 
-            // New track = new fitness landscape.  Reset stagnation and baseline
-            // so the boost backs off and the population adapts to the new order.
+        if (new_lookback > lookback) {
+            lookback = new_lookback;
+            std::cout << "\n  [MULTI-START] now combining " << (lookback + 1)
+                      << " starting positions (stag=" << pop.global_stagnation << ")";
+
+            // Update theoretical max for new combined fitness
+            theoretical_max = racing_theoretical_max(data) * (float)(lookback + 1);
+
+            // Reset stagnation tracking since fitness landscape changed
             pop.global_stagnation   = 0;
             pop.global_best_fitness = 0.0f;
             best_fit_ever           = 0.0f;
-            theoretical_max         = racing_theoretical_max(data);
 
-            // Force re-evaluation of all genomes (elites have stale fitness)
+            // Force re-evaluation of elites
             for (auto& g : pop.genomes) g.is_elite = false;
         }
 

@@ -445,6 +445,7 @@ float racing_theoretical_max(const std::vector<RecordingFrames>& data_sorted) {
 RacingResult evaluate_genome_racing_detailed(const Genome& g,
                                               const std::vector<RecordingFrames>& data_sorted,
                                               const NeatConfig& cfg,
+                                              int start_file_idx,
                                               float threshold,
                                               float kill_threshold,
                                               float window_secs) {
@@ -454,6 +455,7 @@ RacingResult evaluate_genome_racing_detailed(const Genome& g,
     float hop_secs = data_sorted[0].hop_secs;
     int window_frames = std::max(1, (int)(window_secs / hop_secs));
     int n_out = cfg.n_outputs();
+    int n_files = (int)data_sorted.size();
 
     for (const auto& rf : data_sorted) result.total_frames += (int)rf.frames.size();
     if (result.total_frames == 0) return result;
@@ -462,18 +464,19 @@ RacingResult evaluate_genome_racing_detailed(const Genome& g,
     std::vector<float> inp_buf(cfg.n_inputs());
     std::vector<float> out_buf(cfg.n_outputs());
 
-    // Rolling window of per-frame (tp, fp, fn) for computing window F1.
-    // TN intentionally excluded — with 49 outputs and ~2-3 active, TN dominates
-    // and masks false positives (a "predict nothing" model scores 94% accuracy).
     struct FrameTPFPFN { int tp, fp, fn; };
     std::deque<FrameTPFPFN> win;
     int win_tp = 0, win_fp = 0, win_fn = 0;
 
-    double fitness_accum = 0.0;   // sum of per-frame rolling_f1 contributions
+    double fitness_accum = 0.0;
     int frames_processed = 0;
     int files_completed = 0;
 
-    for (const auto& rf : data_sorted) {
+    // Iterate starting from start_file_idx, wrapping around
+    for (int i = 0; i < n_files; ++i) {
+        int file_idx = (start_file_idx + i) % n_files;
+        const auto& rf = data_sorted[file_idx];
+
         net.reset();
         bool file_alive = true;
 
@@ -491,7 +494,6 @@ RacingResult evaluate_genome_racing_detailed(const Genome& g,
                 m.fn += (!predicted &&  target);
             }
 
-            // Maintain rolling window sums
             win.push_back(m);
             win_tp += m.tp; win_fp += m.fp; win_fn += m.fn;
             if ((int)win.size() > window_frames) {
@@ -501,17 +503,14 @@ RacingResult evaluate_genome_racing_detailed(const Genome& g,
                 win.pop_front();
             }
 
-            // Rolling F1 over the window (silence correctly predicted → 1.0)
             int denom = 2 * win_tp + win_fp + win_fn;
             float rolling_f1 = (denom > 0)
                 ? (float)(2 * win_tp) / (float)denom
                 : 1.0f;
 
-            // Each frame earns its rolling F1 as fitness
             fitness_accum += (double)rolling_f1;
             ++frames_processed;
 
-            // Hard kill: only fires once window is full, saves compute on dead models
             if ((int)win.size() == window_frames && rolling_f1 < kill_threshold) {
                 file_alive = false;
                 break;
@@ -525,27 +524,25 @@ RacingResult evaluate_genome_racing_detailed(const Genome& g,
     if (frames_processed == 0) return result;
 
     float fitness = (float)fitness_accum;
-
-    // File completion bonus: +10% per completed file
     fitness *= (1.0f + 0.10f * (float)files_completed);
 
-    // Parsimony penalty
     float complexity = (float)(g.nodes.size() + g.conns.size());
     fitness *= 1.0f / (1.0f + 0.0002f * complexity);
 
     result.fitness          = std::max(0.01f, fitness);
     result.frames_processed = frames_processed;
     result.files_completed  = files_completed;
-    result.avg_accuracy     = (float)(fitness_accum / frames_processed);  // avg rolling F1
+    result.avg_accuracy     = (float)(fitness_accum / frames_processed);
     return result;
 }
 
 float evaluate_genome_racing(const Genome& g,
                               const std::vector<RecordingFrames>& data_sorted,
                               const NeatConfig& cfg,
+                              int start_file_idx,
                               float threshold,
                               float kill_threshold,
                               float window_secs) {
-    return evaluate_genome_racing_detailed(g, data_sorted, cfg, threshold,
-                                           kill_threshold, window_secs).fitness;
+    return evaluate_genome_racing_detailed(g, data_sorted, cfg, start_file_idx,
+                                           threshold, kill_threshold, window_secs).fitness;
 }
