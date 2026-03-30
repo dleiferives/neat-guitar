@@ -1,5 +1,4 @@
-# dataset.py
-"""Fast dataset loading from pre-computed cache."""
+"""Dataset loading from dense 165-d cached features."""
 
 import pickle
 from pathlib import Path
@@ -10,44 +9,68 @@ from torch.utils.data import Dataset
 
 
 class GuitarSetDataset(Dataset):
-    """Load pre-computed features from cache."""
-
-    def __init__(self, data_dir: str, segment_frames: int = 256):
+    def __init__(
+        self,
+        data_dir: str,
+        segment_frames: int = 256,
+        step_frames: int | None = None,
+        cache_name: str = "features_165.pkl",
+    ):
+        self.data_dir = Path(data_dir)
         self.segment_frames = segment_frames
-        cache_path = Path(data_dir) / "features_cache.pkl"
+        self.step_frames = (
+            step_frames if step_frames is not None else max(1, segment_frames // 2)
+        )
 
-        with open(cache_path, 'rb') as f:
+        cache_path = self.data_dir / cache_name
+        if not cache_path.exists():
+            raise FileNotFoundError(
+                f"Missing {cache_path}. Run:\n"
+                f"  python precompute_165.py {self.data_dir}"
+            )
+
+        with open(cache_path, "rb") as f:
             self.recordings = pickle.load(f)
 
-        # Build index: (recording_idx, frame_offset)
-        self.index = []
-        for ri, rec in enumerate(self.recordings):
+        if not self.recordings:
+            raise ValueError(f"No recordings found in {cache_path}")
+
+        self.input_dim = int(self.recordings[0]["features"].shape[1])
+        self.n_pitches = int(self.recordings[0]["frame_targets"].shape[1])
+
+        self.index: list[tuple[int, int]] = []
+
+        for rec_idx, rec in enumerate(self.recordings):
             n_frames = rec["features"].shape[0]
-            for start in range(0, max(1, n_frames - segment_frames + 1), segment_frames // 2):
-                self.index.append((ri, start))
+            last_start = max(0, n_frames - self.segment_frames)
+
+            starts = list(range(0, last_start + 1, self.step_frames))
+            if not starts or starts[-1] != last_start:
+                starts.append(last_start)
+
+            for start in starts:
+                self.index.append((rec_idx, start))
 
     def __len__(self) -> int:
         return len(self.index)
 
     def __getitem__(self, idx: int) -> dict:
-        ri, start = self.index[idx]
-        rec = self.recordings[ri]
-        n_frames = rec["features"].shape[0]
-        end = min(start + self.segment_frames, n_frames)
+        rec_idx, start = self.index[idx]
+        rec = self.recordings[rec_idx]
+        end = start + self.segment_frames
 
         features = rec["features"][start:end]
-        onset_t = rec["onset_targets"][start:end]
-        frame_t = rec["frame_targets"][start:end]
+        onset_targets = rec["onset_targets"][start:end]
+        frame_targets = rec["frame_targets"][start:end]
 
-        # Pad if needed
         if features.shape[0] < self.segment_frames:
             pad = self.segment_frames - features.shape[0]
             features = np.pad(features, ((0, pad), (0, 0)))
-            onset_t = np.pad(onset_t, ((0, pad), (0, 0)))
-            frame_t = np.pad(frame_t, ((0, pad), (0, 0)))
+            onset_targets = np.pad(onset_targets, ((0, pad), (0, 0)))
+            frame_targets = np.pad(frame_targets, ((0, pad), (0, 0)))
 
         return {
             "features": torch.from_numpy(features.copy()),
-            "onset_targets": torch.from_numpy(onset_t.copy()),
-            "frame_targets": torch.from_numpy(frame_t.copy()),
+            "onset_targets": torch.from_numpy(onset_targets.copy()),
+            "frame_targets": torch.from_numpy(frame_targets.copy()),
         }

@@ -8,7 +8,9 @@ from torch.utils.data import DataLoader, random_split
 from torch.optim import AdamW
 from tqdm import tqdm
 
-from model import GuitarTranscriber, GuitarTranscriberRNN
+from model import HybridGuitarTranscriber
+
+
 from dataset import GuitarSetDataset
 
 
@@ -49,10 +51,12 @@ def train():
         persistent_workers=True,
     )
 
-    if args.model == "cnn":
-        model = GuitarTranscriber().to(device)
-    else:
-        model = GuitarTranscriberRNN().to(device)
+    model = HybridGuitarTranscriber(
+        n_cqt=108,
+        n_salience=49,
+        n_history=8,
+        n_pitches=49,
+    ).to(device)
 
     n_params = sum(p.numel() for p in model.parameters())
     print(f"Parameters: {n_params:,}")
